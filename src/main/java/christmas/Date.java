@@ -7,21 +7,10 @@ public class Date {
 
     private final int dayNumber;
 
-    public Date(String input) {
-        int dayNumber = validateNumber(input);
+    public Date(int dayNumber) {
         validateRange(dayNumber);
-
         this.dayNumber = dayNumber;
     }
-
-    private int validateNumber(String input) {
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(DATE_RE_INPUT_REQUEST_MESSAGE);
-        }
-    }
-
 
     private void validateRange(int dayNumber) {
         if ((dayNumber < DATE_MIN_NUMBER) || (dayNumber > DATE_MAX_NUMBER)) {

@@ -1,11 +1,21 @@
 package christmas;
 
+import static christmas.Date.DATE_RE_INPUT_REQUEST_MESSAGE;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Converter {
     private static final String ORDER_DELIMITER = ",";
     private static final String NAME_AND_AMOUNT_DELIMITER = "-";
+
+    public static int convertReadNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(DATE_RE_INPUT_REQUEST_MESSAGE);
+        }
+    }
 
     public List<Order> separateNameAndAmount(String input) {
         List<String> separatedOrder = separateOrder(input);
