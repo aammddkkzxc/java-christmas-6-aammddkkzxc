@@ -28,8 +28,13 @@ public class ResultStage {
 
     public void makeBenefitStatistics() {
         System.out.println("<혜택 내역>");
-        for (Benefit benefit : Benefits) {
-            System.out.println(benefit.getName() + " : -" + benefit.getAmount() + "원");
+        if (Benefits.isEmpty()) {
+            System.out.println("없음");
+        }
+        if (!Benefits.isEmpty()) {
+            for (Benefit benefit : Benefits) {
+                System.out.println(benefit.getName() + " : -" + benefit.getAmount() + "원");
+            }
         }
         System.out.println();
     }
