@@ -1,15 +1,25 @@
 package christmas;
 
+import christmas.ui.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationStage {
-    public Date setUpDate(String dateInput) {
+    public Date runMakeDateStage(String dateInput) {
+        try {
+            return makeDate(dateInput);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return runMakeDateStage(dateInput);
+        }
+    }
+
+    public Date makeDate(String dateInput) {
         int dayNumber = Converter.convertDateInput(dateInput);
         return new Date(dayNumber);
     }
 
-    public List<Order> setUpOrders(String orderInput) {
+    public List<Order> makeOrders(String orderInput) {
         List<String> separatedOrder = Converter.separateOrder(orderInput);
         List<Order> orders = new ArrayList<>();
 
