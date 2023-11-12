@@ -10,37 +10,23 @@ public class Converter {
     private static final String ORDER_DELIMITER = ",";
     private static final String NAME_AND_AMOUNT_DELIMITER = "-";
 
-    public static int convertReadNumber(String input) {
+    public static int convertDateInput(String dateInput) {
         try {
-            return Integer.parseInt(input);
+            return Integer.parseInt(dateInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(DATE_RE_READ_REQUEST_MESSAGE);
         }
     }
 
-    /*private static List<Order> makeOrders(String readOrder) {
-        List<String> separatedOrder = separateOrder(readOrder);
-        List<Order> orders = new ArrayList<>();
-
-        for (String order : separatedOrder) {
-            List<String> separatedNameAndAmount = separateNameAndAmount(order);
-            String name = separatedNameAndAmount.get(0);
-            int amount = convertAmount(separatedNameAndAmount.get(1));
-            orders.add(new Order(name, amount));
-        }
-
-        return orders;
-    }*/
-
-    private static List<String> separateOrder(String readOrder) {
+    public static List<String> separateOrder(String readOrder) {
         return new ArrayList<>(List.of(readOrder.split(ORDER_DELIMITER)));
     }
-    
-    private static List<String> separateNameAndAmount(String order) {
+
+    public static List<String> separateNameAndAmount(String order) {
         return new ArrayList<>(List.of(order.split(NAME_AND_AMOUNT_DELIMITER)));
     }
 
-    private static int convertAmount(String amount) {
+    public static int convertAmount(String amount) {
         try {
             return Integer.parseInt(amount);
         } catch (NumberFormatException e) {
