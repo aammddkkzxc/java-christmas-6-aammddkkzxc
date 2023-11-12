@@ -23,5 +23,14 @@ public class ResultStage {
         if (!Benefits.contains(null)) {
             System.out.println("<증정 메뉴>" + "\n" + "샴페인 1개");
         }
+        System.out.println();
+    }
+
+    public void makeBenefitStatistics() {
+        System.out.println("<혜택 내역>");
+        for (Benefit benefit : Benefits) {
+            System.out.println(benefit.getName() + " : -" + benefit.getAmount() + "원");
+        }
+        System.out.println();
     }
 }
