@@ -61,7 +61,7 @@ public class EventDecisionStage {
 
         for (Order order : orders) {
             Menu menu = Menu.decideMenu(order.getName());
-            if (date.isWeekday() && MenuType.decideMenuType(menu) == MenuType.DESSERT) {
+            if (date.isWeekend() && MenuType.decideMenuType(menu) == MenuType.MAIN) {
                 discount += order.getAmount() * 2023;
             }
         }

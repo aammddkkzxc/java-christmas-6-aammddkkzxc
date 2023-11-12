@@ -32,7 +32,7 @@ public class Date {
     }
 
     public boolean isStarred() {
-        return true;
+        return (dayNumber % 7 == 3) || (dayNumber == 25);
     }
 
     public int getDayNumber() {
