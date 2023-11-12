@@ -13,11 +13,17 @@ public class ResultStage {
     }
 
     public void run() {
+        printTotalPrice();
         makeGiftResult();
         makeBenefitStatistics();
         printBenefitPrice();
         printEstimatedPayment();
         printBadge();
+    }
+
+    public void printTotalPrice() {
+        System.out.println("<할인 전 총주문 금액>" + "\n" + totalOrderPrice + "원");
+        System.out.println();
     }
 
     public void makeGiftResult() {
