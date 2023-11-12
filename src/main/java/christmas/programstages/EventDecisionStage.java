@@ -5,6 +5,7 @@ import christmas.Date;
 import christmas.Order;
 import christmas.menutable.Menu;
 import christmas.menutable.MenuType;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EventDecisionStage {
@@ -24,6 +25,17 @@ public class EventDecisionStage {
         }
 
         return totalOrderPrice;
+    }
+
+    public List<Benefit> takeAllBenefit() {
+        List<Benefit> benefits = new ArrayList<>();
+        benefits.add(takeGift());
+        benefits.add(takeDDayDiscount());
+        benefits.add(takeWeekdayDiscount());
+        benefits.add(takeWeekendDiscount());
+        benefits.add(takeSpecialDiscount());
+
+        return benefits;
     }
 
     public Benefit takeGift() {
@@ -74,13 +86,5 @@ public class EventDecisionStage {
         }
 
         return new Benefit("특별 할인", discount);
-    }
-
-    public void calculateDiscountPrice() {
-
-    }
-
-    public void calculateBenefitPrice() {
-
     }
 }

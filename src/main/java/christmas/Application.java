@@ -2,6 +2,7 @@ package christmas;
 
 import christmas.programstages.EventDecisionStage;
 import christmas.programstages.ReservationStage;
+import christmas.programstages.ResultStage;
 import java.util.List;
 
 public class Application {
@@ -11,6 +12,8 @@ public class Application {
         Date date = reservationStage.runMakeDateStage();
         List<Order> orders = reservationStage.runMakeOrdersStage();
         EventDecisionStage eventDecisionStage = new EventDecisionStage(date, orders);
-        System.out.println(eventDecisionStage.calculateTotalOrderPrice());
+        int totalOrderPrice = eventDecisionStage.calculateTotalOrderPrice();
+        List<Benefit> benefits = eventDecisionStage.takeAllBenefit();
+        ResultStage resultStage = new ResultStage(totalOrderPrice, benefits);
     }
 }

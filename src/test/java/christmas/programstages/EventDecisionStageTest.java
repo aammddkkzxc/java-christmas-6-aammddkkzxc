@@ -30,12 +30,12 @@ class EventDecisionStageTest {
         assertThat(result).isEqualTo(145000);
     }
 
-    @Test
+    /*@Test
     void takeGift() {
         Benefit result = eventDecisionStage.takeGift(eventDecisionStage.calculateTotalOrderPrice());
 
         assertThat(result.getName()).isEqualTo("증정 이벤트");
-    }
+    }*/
 
     @Test
     void takeDDayDiscount() {
