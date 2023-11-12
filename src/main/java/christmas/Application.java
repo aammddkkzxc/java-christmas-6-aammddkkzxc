@@ -15,5 +15,6 @@ public class Application {
         int totalOrderPrice = eventDecisionStage.calculateTotalOrderPrice();
         List<Benefit> benefits = eventDecisionStage.takeAllBenefit(totalOrderPrice);
         ResultStage resultStage = new ResultStage(totalOrderPrice, benefits);
+        resultStage.run();
     }
 }

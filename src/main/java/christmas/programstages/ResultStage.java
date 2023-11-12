@@ -13,11 +13,15 @@ public class ResultStage {
     }
 
     public void run() {
-
+        makeGiftResult();
+        makeBenefitStatistics();
+        printBenefitPrice();
+        printEstimatedPayment();
+        printBadge();
     }
 
     public void makeGiftResult() {
-        if (Benefits.contains(null)) {
+        if (totalOrderPrice < 10000 || Benefits.contains(null)) {
             System.out.println("<증정 메뉴>" + "\n" + "없음");
         }
         if (!Benefits.contains(null)) {
@@ -28,7 +32,7 @@ public class ResultStage {
 
     public void makeBenefitStatistics() {
         System.out.println("<혜택 내역>");
-        if (Benefits.isEmpty()) {
+        if (totalOrderPrice < 10000 || Benefits.isEmpty()) {
             System.out.println("없음");
         }
         if (!Benefits.isEmpty()) {
@@ -40,7 +44,11 @@ public class ResultStage {
     }
 
     public void printBenefitPrice() {
+        if (totalOrderPrice < 10000) {
+            System.out.println("<총혜택 금액>" + "\n" + "-" + 0 + "원");
+        }
         System.out.println("<총혜택 금액>" + "\n" + "-" + calculateBenefitPrice() + "원");
+        System.out.println();
     }
 
     public int calculateBenefitPrice() {
@@ -54,7 +62,11 @@ public class ResultStage {
     }
 
     public void printEstimatedPayment() {
-        System.out.println("<할인 후 예상 결제 금액>" + "\n" + "-" + (totalOrderPrice - calculateEstimatedPayment()) + "원");
+        if (totalOrderPrice < 10000) {
+            System.out.println("<할인 후 예상 결제 금액>" + "\n" + totalOrderPrice + "원");
+        }
+        System.out.println("<할인 후 예상 결제 금액>" + "\n" + (totalOrderPrice - calculateEstimatedPayment()) + "원");
+        System.out.println();
     }
 
     public int calculateEstimatedPayment() {
@@ -76,16 +88,16 @@ public class ResultStage {
 
     public void printBadge() {
         int price = calculateBenefitPrice();
-        if(price < 5000) {
+        if (totalOrderPrice < 10000 || price < 5000) {
             System.out.println("<12월 이벤트 배지>" + "\n" + "없음");
         }
-        if(price >= 5000 && price < 10000) {
+        if (price >= 5000 && price < 10000) {
             System.out.println("<12월 이벤트 배지>" + "\n" + "별");
         }
-        if(price >= 10000 && price < 20000) {
+        if (price >= 10000 && price < 20000) {
             System.out.println("<12월 이벤트 배지>" + "\n" + "트리");
         }
-        if(price >= 20000) {
+        if (price >= 20000) {
             System.out.println("<12월 이벤트 배지>" + "\n" + "산타");
         }
     }
