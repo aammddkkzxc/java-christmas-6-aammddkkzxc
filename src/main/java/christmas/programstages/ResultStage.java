@@ -39,6 +39,10 @@ public class ResultStage {
         System.out.println();
     }
 
+    public void printBenefitPrice() {
+        System.out.println("<총혜택 금액>" + "\n" + "-" + calculateBenefitPrice() + "원");
+    }
+
     public int calculateBenefitPrice() {
         int price = 0;
 
