@@ -1,6 +1,7 @@
 package christmas.programstages;
 
 import christmas.Benefit;
+import christmas.BenefitTitle;
 import java.util.List;
 
 public class ResultStage {
@@ -27,10 +28,10 @@ public class ResultStage {
     }
 
     public void makeGiftResult() {
-        if (totalOrderPrice < 10000 || Benefits.contains(null)) {
+        if (totalOrderPrice < 10000 || Benefits.get(0).getBenefitTitle() == BenefitTitle.NONE) {
             System.out.println("<증정 메뉴>" + "\n" + "없음");
         }
-        if (!Benefits.contains(null)) {
+        if (Benefits.get(0).getBenefitTitle() == BenefitTitle.GIFT) {
             System.out.println("<증정 메뉴>" + "\n" + "샴페인 1개");
         }
         System.out.println();
