@@ -1,5 +1,8 @@
-package christmas;
+package christmas.programstages;
 
+import christmas.Converter;
+import christmas.Date;
+import christmas.Order;
 import christmas.ui.InputView;
 import christmas.ui.OutputView;
 import java.util.ArrayList;

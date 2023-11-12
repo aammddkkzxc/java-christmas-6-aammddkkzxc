@@ -1,5 +1,7 @@
 package christmas.menutable;
 
+import java.util.Objects;
+
 public enum Menu {
     MUSHROOM_SOUP("양송이수프", 6000),
     TAPAS("타파스", 5500),
@@ -20,6 +22,18 @@ public enum Menu {
     Menu(String name, int price) {
         this.name = name;
         this.price = price;
+    }
+
+    public static Menu decideMenu(String name) {
+        Menu[] menus = Menu.values();
+
+        for (Menu menu : menus) {
+            if (Objects.equals(name, menu.getName())) {
+                return menu;
+            }
+        }
+
+        return null;
     }
 
     public String getName() {
