@@ -38,4 +38,14 @@ public class ResultStage {
         }
         System.out.println();
     }
+
+    public int calculateBenefitPrice() {
+        int price = 0;
+
+        for (Benefit benefit : Benefits) {
+            price += benefit.getAmount();
+        }
+
+        return price;
+    }
 }
