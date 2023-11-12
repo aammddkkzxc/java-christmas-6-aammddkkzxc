@@ -18,8 +18,8 @@ public class Date {
         }
     }
 
-    public boolean isUntilChristmas() {
-        return true;
+    public boolean isBeforeChristmas() {
+        return dayNumber <= 25;
     }
 
     public boolean isWeekday() {
@@ -32,5 +32,9 @@ public class Date {
 
     public boolean isStarred() {
         return true;
+    }
+
+    public int getDayNumber() {
+        return dayNumber;
     }
 }

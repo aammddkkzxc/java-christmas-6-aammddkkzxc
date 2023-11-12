@@ -26,14 +26,20 @@ public class EventDecisionStage {
     }
 
     public Menu takeGift(int totalOrderPrice) {
-        if(totalOrderPrice > 120000){
+        if (totalOrderPrice > 120000) {
             return Menu.CHAMPAGNE;
         }
         return Menu.NONE;
     }
 
-    public void takeDiscount() {
+    public int takeDDayDiscount() {
+        int discount = 0;
 
+        if (date.isBeforeChristmas()) {
+            discount = 1000 + (date.getDayNumber() - 1) * 100;
+        }
+
+        return discount;
     }
 
     public void takeBenefit() {
