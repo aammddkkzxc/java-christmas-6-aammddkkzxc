@@ -13,7 +13,7 @@ public class Application {
         List<Order> orders = reservationStage.runMakeOrdersStage();
         EventDecisionStage eventDecisionStage = new EventDecisionStage(date, orders);
         int totalOrderPrice = eventDecisionStage.calculateTotalOrderPrice();
-        List<Benefit> benefits = eventDecisionStage.takeAllBenefit();
+        List<Benefit> benefits = eventDecisionStage.takeAllBenefit(totalOrderPrice);
         ResultStage resultStage = new ResultStage(totalOrderPrice, benefits);
     }
 }

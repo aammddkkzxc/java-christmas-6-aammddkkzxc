@@ -27,9 +27,9 @@ public class EventDecisionStage {
         return totalOrderPrice;
     }
 
-    public List<Benefit> takeAllBenefit() {
+    public List<Benefit> takeAllBenefit(int totalOrderPrice) {
         List<Benefit> benefits = new ArrayList<>();
-        benefits.add(takeGift());
+        benefits.add(takeGift(totalOrderPrice));
         benefits.add(takeDDayDiscount());
         benefits.add(takeWeekdayDiscount());
         benefits.add(takeWeekendDiscount());
@@ -38,8 +38,11 @@ public class EventDecisionStage {
         return benefits;
     }
 
-    public Benefit takeGift() {
-        return new Benefit("증정 이벤트", Menu.CHAMPAGNE.getPrice());
+    public Benefit takeGift(int totalOrderPrice) {
+        if (totalOrderPrice >= 120000) {
+            return new Benefit("증정 이벤트", Menu.CHAMPAGNE.getPrice());
+        }
+        return null;
     }
 
     public Benefit takeDDayDiscount() {
