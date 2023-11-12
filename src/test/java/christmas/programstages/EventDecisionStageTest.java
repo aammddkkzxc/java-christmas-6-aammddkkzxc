@@ -53,6 +53,9 @@ class EventDecisionStageTest {
 
     @Test
     void takeWeekendDiscount() {
+        Benefit result = eventDecisionStage.takeWeekendDiscount();
+
+        assertThat(result.getAmount()).isEqualTo(0);
     }
 
     @Test
