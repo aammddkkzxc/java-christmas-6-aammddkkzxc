@@ -56,6 +56,19 @@ public class EventDecisionStage {
         return discount;
     }
 
+    public int takeWeekendDiscount() {
+        int discount = 0;
+
+        for (Order order : orders) {
+            Menu menu = Menu.decideMenu(order.getName());
+            if (date.isWeekday() && MenuType.decideMenuType(menu) == MenuType.DESSERT) {
+                discount += order.getAmount() * 2023;
+            }
+        }
+
+        return discount;
+    }
+
     public void takeBenefit() {
 
     }

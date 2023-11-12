@@ -28,7 +28,7 @@ public class Date {
     }
 
     public boolean isWeekend() {
-        return true;
+        return (dayNumber % 7 == 1) || (dayNumber % 7 == 2);
     }
 
     public boolean isStarred() {
