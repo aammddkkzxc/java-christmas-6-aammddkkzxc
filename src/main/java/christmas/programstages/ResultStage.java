@@ -42,9 +42,9 @@ public class ResultStage {
         if (totalOrderPrice < 10000 || Benefits.isEmpty()) {
             System.out.println("없음");
         }
-        if (!Benefits.isEmpty()) {
-            for (Benefit benefit : Benefits) {
-                System.out.println(benefit.getName() + " : -" + benefit.getAmount() + "원");
+        for (Benefit benefit : Benefits) {
+            if (totalOrderPrice >= 10000 && benefit.getAmount() != 0) {
+                System.out.println(benefit.getBenefitTitle().getName() + " : -" + benefit.getAmount() + "원");
             }
         }
         System.out.println();
