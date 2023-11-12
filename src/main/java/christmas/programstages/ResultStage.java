@@ -12,5 +12,16 @@ public class ResultStage {
         this.Benefits = benefits;
     }
 
+    public void run() {
 
+    }
+
+    public void makeGiftResult() {
+        if (Benefits.contains(null)) {
+            System.out.println("<증정 메뉴>" + "\n" + "없음");
+        }
+        if (!Benefits.contains(null)) {
+            System.out.println("<증정 메뉴>" + "\n" + "샴페인 1개");
+        }
+    }
 }
