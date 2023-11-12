@@ -60,5 +60,8 @@ class EventDecisionStageTest {
 
     @Test
     void takeSpecialDiscount() {
+        Benefit result = eventDecisionStage.takeSpecialDiscount();
+
+        assertThat(result.getAmount()).isEqualTo(0);
     }
 }
