@@ -2,6 +2,7 @@ package christmas.programstages;
 
 import christmas.Date;
 import christmas.Order;
+import christmas.menutable.Menu;
 import java.util.List;
 
 public class EventDecisionStage {
@@ -24,8 +25,11 @@ public class EventDecisionStage {
         return totalOrderPrice;
     }
 
-    public void takeGift() {
-
+    public Menu takeGift(int totalOrderPrice) {
+        if(totalOrderPrice > 120000){
+            return Menu.CHAMPAGNE;
+        }
+        return Menu.NONE;
     }
 
     public void takeDiscount() {

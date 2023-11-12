@@ -14,7 +14,8 @@ public enum Menu {
     ICE_CREAM("아이스크림", 5000),
     ZERO_COKE("제로콜라", 3000),
     RED_WINE("레드와인", 60000),
-    CHAMPAGNE("샴페인", 20000);
+    CHAMPAGNE("샴페인", 20000),
+    NONE("없음", 0);
 
     private final String name;
     private final int price;
@@ -33,7 +34,7 @@ public enum Menu {
             }
         }
 
-        return null;
+        return NONE;
     }
 
     public String getName() {
