@@ -52,4 +52,21 @@ public class ResultStage {
 
         return price;
     }
+
+    public int calculateEstimatedPayment() {
+        int estimatedPayment = 0;
+        if (Benefits.contains(null)) {
+            Benefits.remove(null);
+            for (Benefit benefit : Benefits) {
+                estimatedPayment += benefit.getAmount();
+            }
+        }
+        if (!Benefits.contains(null)) {
+            for (Benefit benefit : Benefits) {
+                estimatedPayment += benefit.getAmount();
+            }
+            estimatedPayment -= 25000;
+        }
+        return estimatedPayment;
+    }
 }
