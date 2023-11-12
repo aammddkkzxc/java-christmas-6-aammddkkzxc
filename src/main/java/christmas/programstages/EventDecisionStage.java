@@ -69,6 +69,16 @@ public class EventDecisionStage {
         return discount;
     }
 
+    public int takeSpecialDiscount() {
+        int discount = 0;
+
+        if (date.isStarred()) {
+            discount += 1000;
+        }
+
+        return discount;
+    }
+
     public void takeBenefit() {
 
     }
