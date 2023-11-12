@@ -1,16 +1,16 @@
 package christmas;
 
 public class Benefit {
-    private final String name;
+    private final BenefitTitle benefitTitle;
     private final int amount;
 
-    public Benefit(String name, int amount) {
-        this.name = name;
+    public Benefit(BenefitTitle benefitTitle, int amount) {
+        this.benefitTitle = benefitTitle;
         this.amount = amount;
     }
 
-    public String getName() {
-        return name;
+    public BenefitTitle getBenefitTitle() {
+        return benefitTitle;
     }
 
     public int getAmount() {

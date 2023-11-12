@@ -1,6 +1,7 @@
 package christmas.programstages;
 
 import christmas.Benefit;
+import christmas.BenefitTitle;
 import christmas.Date;
 import christmas.Order;
 import christmas.menutable.Menu;
@@ -40,9 +41,9 @@ public class EventDecisionStage {
 
     public Benefit takeGift(int totalOrderPrice) {
         if (totalOrderPrice >= 120000) {
-            return new Benefit("증정 이벤트", Menu.CHAMPAGNE.getPrice());
+            return new Benefit(BenefitTitle.GIFT, Menu.CHAMPAGNE.getPrice());
         }
-        return null;
+        return new Benefit(BenefitTitle.NONE, 0);
     }
 
     public Benefit takeDDayDiscount() {
@@ -52,7 +53,7 @@ public class EventDecisionStage {
             discount = 1000 + (date.getDayNumber() - 1) * 100;
         }
 
-        return new Benefit("크리스마스 디데이 할인", discount);
+        return new Benefit(BenefitTitle.D_DAY, discount);
     }
 
     public Benefit takeWeekdayDiscount() {
@@ -65,7 +66,7 @@ public class EventDecisionStage {
             }
         }
 
-        return new Benefit("평일 할인", discount);
+        return new Benefit(BenefitTitle.WEEKDAY, discount);
     }
 
     public Benefit takeWeekendDiscount() {
@@ -78,7 +79,7 @@ public class EventDecisionStage {
             }
         }
 
-        return new Benefit("주말 할인", discount);
+        return new Benefit(BenefitTitle.WEEKEND, discount);
     }
 
     public Benefit takeSpecialDiscount() {
@@ -88,6 +89,6 @@ public class EventDecisionStage {
             discount += 1000;
         }
 
-        return new Benefit("특별 할인", discount);
+        return new Benefit(BenefitTitle.SPECIAL, discount);
     }
 }
