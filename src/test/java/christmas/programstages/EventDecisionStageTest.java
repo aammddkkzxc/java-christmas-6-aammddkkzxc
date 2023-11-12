@@ -21,7 +21,7 @@ class EventDecisionStageTest {
         orders.add(new Order("레드와인", 1));
         orders.add(new Order("초코케이크", 1));
 
-        eventDecisionStage = new EventDecisionStage(new Date(25), orders);
+        eventDecisionStage = new EventDecisionStage(new Date(26), orders);
     }
     @Test
     void calculateTotalOrderPrice() {
@@ -46,6 +46,9 @@ class EventDecisionStageTest {
 
     @Test
     void takeWeekdayDiscount() {
+        Benefit result = eventDecisionStage.takeWeekdayDiscount();
+
+        assertThat(result.getAmount()).isEqualTo(2023);
     }
 
     @Test
