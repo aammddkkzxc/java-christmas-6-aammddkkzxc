@@ -3,6 +3,7 @@ package christmas.programstages;
 import christmas.Date;
 import christmas.Order;
 import christmas.menutable.Menu;
+import christmas.menutable.MenuType;
 import java.util.List;
 
 public class EventDecisionStage {
@@ -37,6 +38,19 @@ public class EventDecisionStage {
 
         if (date.isBeforeChristmas()) {
             discount = 1000 + (date.getDayNumber() - 1) * 100;
+        }
+
+        return discount;
+    }
+
+    public int takeWeekdayDiscount() {
+        int discount = 0;
+
+        for (Order order : orders) {
+            Menu menu = Menu.decideMenu(order.getName());
+            if (date.isWeekday() && MenuType.decideMenuType(menu) == MenuType.DESSERT) {
+                discount += order.getAmount() * 2023;
+            }
         }
 
         return discount;

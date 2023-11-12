@@ -18,4 +18,12 @@ public class Order {
     public int calculatePrice() {
         return Objects.requireNonNull(Menu.decideMenu(name)).getPrice() * amount;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
 }

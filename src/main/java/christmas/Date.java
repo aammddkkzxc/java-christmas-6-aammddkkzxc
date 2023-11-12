@@ -23,7 +23,8 @@ public class Date {
     }
 
     public boolean isWeekday() {
-        return true;
+        return (dayNumber % 7 == 0) || (dayNumber % 7 == 3) || (dayNumber % 7 == 4) || (dayNumber % 7 == 5) || (
+                dayNumber % 7 == 6);
     }
 
     public boolean isWeekend() {

@@ -17,6 +17,18 @@ public enum MenuType {
         this.menus = menus;
     }
 
+    public static MenuType decideMenuType(Menu menu) {
+        MenuType[] menuTypes = MenuType.values();
+
+        for (MenuType menuType : menuTypes) {
+            if (menuType.getMenus().contains(menu)) {
+                return menuType;
+            }
+        }
+
+        return null;
+    }
+
     public String getName() {
         return name;
     }
