@@ -1,34 +1,38 @@
 package christmas;
 
+import christmas.ui.InputView;
 import christmas.ui.OutputView;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationStage {
-    public Date runMakeDateStage(String dateInput) {
+    public Date runMakeDateStage() {
         try {
-            return makeDate(dateInput);
+            return makeDate();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
-            return runMakeDateStage(dateInput);
+            return runMakeDateStage();
         }
     }
 
-    private Date makeDate(String dateInput) {
+    private Date makeDate() {
+        String dateInput = InputView.readDate();
         int dayNumber = Converter.convertDateInput(dateInput);
+
         return new Date(dayNumber);
     }
 
-    public List<Order> runMakeOrdersStage(String orderInput) {
+    public List<Order> runMakeOrdersStage() {
         try {
-            return makeOrders(orderInput);
+            return makeOrders();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
-            return runMakeOrdersStage(orderInput);
+            return runMakeOrdersStage();
         }
     }
 
-    private List<Order> makeOrders(String orderInput) {
+    private List<Order> makeOrders() {
+        String orderInput = InputView.readOrder();
         List<String> separatedOrder = Converter.separateOrder(orderInput);
         List<Order> orders = new ArrayList<>();
 
