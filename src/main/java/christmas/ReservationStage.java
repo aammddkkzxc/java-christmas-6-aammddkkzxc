@@ -14,12 +14,21 @@ public class ReservationStage {
         }
     }
 
-    public Date makeDate(String dateInput) {
+    private Date makeDate(String dateInput) {
         int dayNumber = Converter.convertDateInput(dateInput);
         return new Date(dayNumber);
     }
 
-    public List<Order> makeOrders(String orderInput) {
+    public List<Order> runMakeOrdersStage(String orderInput) {
+        try {
+            return makeOrders(orderInput);
+        } catch (IllegalArgumentException e) {
+            OutputView.printErrorMessage(e);
+            return runMakeOrdersStage(orderInput);
+        }
+    }
+
+    private List<Order> makeOrders(String orderInput) {
         List<String> separatedOrder = Converter.separateOrder(orderInput);
         List<Order> orders = new ArrayList<>();
 
