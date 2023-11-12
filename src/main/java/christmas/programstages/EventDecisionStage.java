@@ -26,11 +26,8 @@ public class EventDecisionStage {
         return totalOrderPrice;
     }
 
-    public Benefit takeGift(int totalOrderPrice) {
-        if (totalOrderPrice > 120000) {
-            return new Benefit("증정 이벤트", Menu.CHAMPAGNE.getPrice());
-        }
-        return null;
+    public Benefit takeGift() {
+        return new Benefit("증정 이벤트", Menu.CHAMPAGNE.getPrice());
     }
 
     public Benefit takeDDayDiscount() {
@@ -77,10 +74,6 @@ public class EventDecisionStage {
         }
 
         return new Benefit("특별 할인", discount);
-    }
-
-    public void takeBenefit() {
-
     }
 
     public void calculateDiscountPrice() {
