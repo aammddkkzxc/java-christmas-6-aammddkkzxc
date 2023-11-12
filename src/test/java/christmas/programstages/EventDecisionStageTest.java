@@ -21,7 +21,7 @@ class EventDecisionStageTest {
         orders.add(new Order("레드와인", 1));
         orders.add(new Order("초코케이크", 1));
 
-        eventDecisionStage = new EventDecisionStage(new Date(20), orders);
+        eventDecisionStage = new EventDecisionStage(new Date(25), orders);
     }
     @Test
     void calculateTotalOrderPrice() {
@@ -32,10 +32,16 @@ class EventDecisionStageTest {
 
     @Test
     void takeGift() {
+        Benefit result = eventDecisionStage.takeGift(eventDecisionStage.calculateTotalOrderPrice());
+
+        assertThat(result.getName()).isEqualTo("증정 이벤트");
     }
 
     @Test
     void takeDDayDiscount() {
+        Benefit result = eventDecisionStage.takeDDayDiscount();
+
+        assertThat(result.getAmount()).isEqualTo(3400);
     }
 
     @Test
