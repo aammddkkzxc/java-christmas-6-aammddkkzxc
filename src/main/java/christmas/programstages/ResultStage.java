@@ -53,6 +53,10 @@ public class ResultStage {
         return price;
     }
 
+    public void printEstimatedPayment() {
+        System.out.println("<할인 후 예상 결제 금액>" + "\n" + "-" + (totalOrderPrice - calculateEstimatedPayment()) + "원");
+    }
+
     public int calculateEstimatedPayment() {
         int estimatedPayment = 0;
         if (Benefits.contains(null)) {
