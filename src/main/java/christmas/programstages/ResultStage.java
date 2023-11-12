@@ -78,17 +78,11 @@ public class ResultStage {
 
     public int calculateEstimatedPayment() {
         int estimatedPayment = 0;
-        if (Benefits.contains(null)) {
-            Benefits.remove(null);
-            for (Benefit benefit : Benefits) {
-                estimatedPayment += benefit.getAmount();
+        for (Benefit benefit : Benefits) {
+            estimatedPayment += benefit.getAmount();
+            if (benefit.getBenefitTitle() == BenefitTitle.GIFT) {
+                estimatedPayment -= 25000;
             }
-        }
-        if (!Benefits.contains(null)) {
-            for (Benefit benefit : Benefits) {
-                estimatedPayment += benefit.getAmount();
-            }
-            estimatedPayment -= 25000;
         }
         return estimatedPayment;
     }
