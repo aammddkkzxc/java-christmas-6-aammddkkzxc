@@ -36,7 +36,7 @@ public class OutputView {
 
         for (BenefitTitle benefitTitle : benefitTitles) {
             if (totalOrderPrice >= 10000 && allBenefit.get(benefitTitle) != 0) {
-                System.out.println(benefitTitle + " : " + (-allBenefit.get(benefitTitle)) + "원");
+                System.out.println(benefitTitle.getName() + " : " + (-allBenefit.get(benefitTitle)) + "원");
             }
         }
 

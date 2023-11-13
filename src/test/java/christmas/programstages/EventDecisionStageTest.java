@@ -1,9 +1,7 @@
 package christmas.programstages;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-import christmas.Benefit;
 import christmas.Date;
 import christmas.Order;
 import java.util.ArrayList;
