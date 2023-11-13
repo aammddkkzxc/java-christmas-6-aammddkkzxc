@@ -33,6 +33,7 @@ public class EventDecisionStage {
         Map<BenefitTitle, Integer> allBenefit = new HashMap<>();
         allBenefit.put(BenefitTitle.GIFT, takeGift(totalOrderPrice));
         allBenefit.put(BenefitTitle.D_DAY, takeDDayDiscount());
+        allBenefit.put(BenefitTitle.WEEKDAY, takeWeekdayDiscount());
         return allBenefit;
     }
 
@@ -53,7 +54,7 @@ public class EventDecisionStage {
         return discount;
     }
 
-    public Benefit takeWeekdayDiscount() {
+    public int takeWeekdayDiscount() {
         int discount = 0;
 
         for (Order order : orders) {
@@ -63,7 +64,7 @@ public class EventDecisionStage {
             }
         }
 
-        return new Benefit(BenefitTitle.WEEKDAY, discount);
+        return discount;
     }
 
     public Benefit takeWeekendDiscount() {
