@@ -26,7 +26,7 @@ public class ResultStage {
 
     public int calculateTotalBenefitPrice() {
         int totalBenefitPirce = 0;
-        BenefitTitle[] benefitTitles = BenefitTitle.values();
+        List<BenefitTitle> benefitTitles = BenefitTitle.findExistingBenefit(allBenefit);
 
         for (BenefitTitle benefitTitle : benefitTitles) {
             totalBenefitPirce += allBenefit.get(benefitTitle);
@@ -37,7 +37,7 @@ public class ResultStage {
 
     public int calculateEstimatedPayment() {
         int estimatedPayment = 0;
-        BenefitTitle[] benefitTitles = BenefitTitle.values();
+        List<BenefitTitle> benefitTitles = BenefitTitle.findExistingBenefit(allBenefit);
 
         for (BenefitTitle benefitTitle : benefitTitles) {
             estimatedPayment += allBenefit.get(benefitTitle);

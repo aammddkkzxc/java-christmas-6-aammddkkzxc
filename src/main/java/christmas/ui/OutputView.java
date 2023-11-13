@@ -2,6 +2,7 @@ package christmas.ui;
 
 import christmas.BenefitTitle;
 import christmas.menutable.Menu;
+import java.util.List;
 import java.util.Map;
 
 public class OutputView {
@@ -31,7 +32,7 @@ public class OutputView {
         if (totalOrderPrice < 10000 || allBenefit.isEmpty()) {
             System.out.println("없음");
         }
-        BenefitTitle[] benefitTitles = BenefitTitle.values();
+        List<BenefitTitle> benefitTitles = BenefitTitle.findExistingBenefit(allBenefit);
 
         for (BenefitTitle benefitTitle : benefitTitles) {
             if (totalOrderPrice >= 10000 && allBenefit.get(benefitTitle) != 0) {
