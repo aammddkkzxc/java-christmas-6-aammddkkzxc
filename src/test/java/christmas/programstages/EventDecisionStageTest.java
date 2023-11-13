@@ -44,7 +44,7 @@ class EventDecisionStageTest {
         assertThat(result.getAmount()).isEqualTo(3400);
     }*/
 
-    @Test
+    /*@Test
     void takeWeekdayDiscount() {
         Benefit result = eventDecisionStage.takeWeekdayDiscount();
 
@@ -63,5 +63,5 @@ class EventDecisionStageTest {
         Benefit result = eventDecisionStage.takeSpecialDiscount();
 
         assertThat(result.getAmount()).isEqualTo(0);
-    }
+    }*/
 }

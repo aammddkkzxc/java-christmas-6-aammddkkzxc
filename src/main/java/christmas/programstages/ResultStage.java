@@ -2,15 +2,15 @@ package christmas.programstages;
 
 import christmas.Benefit;
 import christmas.BenefitTitle;
-import java.util.List;
+import java.util.Map;
 
 public class ResultStage {
     private final int totalOrderPrice;
-    private final List<Benefit> Benefits;
+    private final Map<BenefitTitle, Integer> allBenefit;
 
-    public ResultStage(int totalOrderPrice, List<Benefit> benefits) {
+    public ResultStage(int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit) {
         this.totalOrderPrice = totalOrderPrice;
-        this.Benefits = benefits;
+        this.allBenefit = allBenefit;
     }
 
     public void run() {

@@ -4,6 +4,7 @@ import christmas.programstages.EventDecisionStage;
 import christmas.programstages.ReservationStage;
 import christmas.programstages.ResultStage;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
@@ -13,8 +14,8 @@ public class Application {
         List<Order> orders = reservationStage.runMakeOrdersStage();
         EventDecisionStage eventDecisionStage = new EventDecisionStage(date, orders);
         int totalOrderPrice = eventDecisionStage.calculateTotalOrderPrice();
-        List<Benefit> benefits = eventDecisionStage.takeAllBenefit(totalOrderPrice);
-        ResultStage resultStage = new ResultStage(totalOrderPrice, benefits);
+        Map<BenefitTitle, Integer> allBenefit = eventDecisionStage.takeAllBenefit(totalOrderPrice);
+        ResultStage resultStage = new ResultStage(totalOrderPrice, allBenefit);
         resultStage.run();
     }
 }
