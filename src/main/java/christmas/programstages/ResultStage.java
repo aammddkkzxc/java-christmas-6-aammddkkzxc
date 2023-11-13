@@ -74,7 +74,9 @@ public class ResultStage {
         if (totalOrderPrice < 10000) {
             System.out.println("<할인 후 예상 결제 금액>" + "\n" + totalOrderPrice + "원");
         }
-        System.out.println("<할인 후 예상 결제 금액>" + "\n" + (totalOrderPrice - calculateEstimatedPayment()) + "원");
+        if (totalOrderPrice >= 10000) {
+            System.out.println("<할인 후 예상 결제 금액>" + "\n" + (totalOrderPrice - calculateEstimatedPayment()) + "원");
+        }
         System.out.println();
     }
 
