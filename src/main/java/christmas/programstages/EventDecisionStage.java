@@ -6,7 +6,6 @@ import christmas.Date;
 import christmas.Order;
 import christmas.menutable.Menu;
 import christmas.menutable.MenuType;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,14 +30,9 @@ public class EventDecisionStage {
     }
 
     public Map<BenefitTitle, Integer> takeAllBenefit(int totalOrderPrice) {
-        /*List<Benefit> benefits = new ArrayList<>();
-        benefits.add(takeGift(totalOrderPrice));
-        benefits.add(takeDDayDiscount());
-        benefits.add(takeWeekdayDiscount());
-        benefits.add(takeWeekendDiscount());
-        benefits.add(takeSpecialDiscount());*/
         Map<BenefitTitle, Integer> allBenefit = new HashMap<>();
         allBenefit.put(BenefitTitle.GIFT, takeGift(totalOrderPrice));
+        allBenefit.put(BenefitTitle.D_DAY, takeDDayDiscount());
         return allBenefit;
     }
 
@@ -49,14 +43,14 @@ public class EventDecisionStage {
         return 0;
     }
 
-    public Benefit takeDDayDiscount() {
+    public int takeDDayDiscount() {
         int discount = 0;
 
         if (date.isBeforeChristmas()) {
             discount = 1000 + (date.getDayNumber() - 1) * 100;
         }
 
-        return new Benefit(BenefitTitle.D_DAY, discount);
+        return discount;
     }
 
     public Benefit takeWeekdayDiscount() {

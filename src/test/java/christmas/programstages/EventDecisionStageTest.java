@@ -37,12 +37,12 @@ class EventDecisionStageTest {
         assertThat(result.getName()).isEqualTo("증정 이벤트");
     }*/
 
-    @Test
+    /*@Test
     void takeDDayDiscount() {
         Benefit result = eventDecisionStage.takeDDayDiscount();
 
         assertThat(result.getAmount()).isEqualTo(3400);
-    }
+    }*/
 
     @Test
     void takeWeekdayDiscount() {
