@@ -42,6 +42,16 @@ public class OutputView {
         System.out.println();
     }
 
+    public static void printTotalBenefitPrice(int totalOrderPrice, int totalBenefitPrice) {
+        if (totalOrderPrice < 10000) {
+            System.out.println("<총혜택 금액>" + "\n" + 0 + "원");
+        }
+        if (totalOrderPrice >= 10000) {
+            System.out.println("<총혜택 금액>" + "\n" + (-totalBenefitPrice) + "원");
+        }
+        System.out.println();
+    }
+
     public static void printEstimatedPayment(int totalOrderPrice, int estimatedPayment) {
         if (totalOrderPrice < 10000) {
             System.out.println("<할인 후 예상 결제 금액>" + "\n" + totalOrderPrice + "원");

@@ -19,23 +19,12 @@ public class ResultStage {
         OutputView.printTotalOrderPrice(totalOrderPrice);
         OutputView.printGift(totalOrderPrice, allBenefit);
         OutputView.printBenefitStatistics(totalOrderPrice, allBenefit);
-        printBenefitPrice();
-        int estimatedPayment = calculateEstimatedPayment(allBenefit);
-        OutputView.printEstimatedPayment(totalOrderPrice, estimatedPayment);
+        OutputView.printTotalBenefitPrice(totalOrderPrice, calculateTotalBenefitPrice());
+        OutputView.printEstimatedPayment(totalOrderPrice, calculateEstimatedPayment());
         printBadge();
     }
 
-    public void printBenefitPrice() {
-        if (totalOrderPrice < 10000) {
-            System.out.println("<총혜택 금액>" + "\n" + 0 + "원");
-        }
-        if (totalOrderPrice >= 10000) {
-            System.out.println("<총혜택 금액>" + "\n" + (-calculateTotalBenefitPrice()) + "원");
-        }
-        System.out.println();
-    }
-
-    public int calculateTotalBenefitPrice(Map<BenefitTitle, Integer> allBenefit) {
+    public int calculateTotalBenefitPrice() {
         int totalBenefitPirce = 0;
         List<Integer> benefitPrices = (List<Integer>) allBenefit.values();
 
@@ -46,7 +35,7 @@ public class ResultStage {
         return totalBenefitPirce;
     }
 
-    public int calculateEstimatedPayment(Map<BenefitTitle, Integer> allBenefit) {
+    public int calculateEstimatedPayment() {
         int estimatedPayment = 0;
         BenefitTitle[] benefitTitles = BenefitTitle.values();
 
