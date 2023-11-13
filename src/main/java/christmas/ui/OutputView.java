@@ -25,4 +25,20 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    public static void printBenefitStatistics(int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit) {
+        System.out.println("<혜택 내역>");
+        if (totalOrderPrice < 10000 || allBenefit.isEmpty()) {
+            System.out.println("없음");
+        }
+        BenefitTitle[] benefitTitles = BenefitTitle.values();
+
+        for (BenefitTitle benefitTitle : benefitTitles) {
+            if (totalOrderPrice >= 10000 && allBenefit.get(benefitTitle) != 0) {
+                System.out.println(benefitTitle + " : " + (-allBenefit.get(benefitTitle)) + "원");
+            }
+        }
+
+        System.out.println();
+    }
 }

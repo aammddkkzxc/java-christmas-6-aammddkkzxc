@@ -17,23 +17,10 @@ public class ResultStage {
     public void run() {
         OutputView.printTotalOrderPrice(totalOrderPrice);
         OutputView.printGift(totalOrderPrice, allBenefit);
-        makeBenefitStatistics();
+        OutputView.printBenefitStatistics(totalOrderPrice, allBenefit);
         printBenefitPrice();
         printEstimatedPayment();
         printBadge();
-    }
-
-    public void makeBenefitStatistics() {
-        System.out.println("<혜택 내역>");
-        if (totalOrderPrice < 10000 || Benefits.isEmpty()) {
-            System.out.println("없음");
-        }
-        for (Benefit benefit : Benefits) {
-            if (totalOrderPrice >= 10000 && benefit.getAmount() != 0) {
-                System.out.println(benefit.getBenefitTitle().getName() + " : " + (-benefit.getAmount()) + "원");
-            }
-        }
-        System.out.println();
     }
 
     public void printBenefitPrice() {

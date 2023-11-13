@@ -1,5 +1,7 @@
 package christmas;
 
+import java.util.Objects;
+
 public enum BenefitTitle {
     GIFT("증정 이벤트"),
     D_DAY("크리스마스 디데이 할인"),
