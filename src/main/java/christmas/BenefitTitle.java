@@ -1,6 +1,8 @@
 package christmas;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public enum BenefitTitle {
     GIFT("증정 이벤트"),
@@ -14,6 +16,19 @@ public enum BenefitTitle {
 
     BenefitTitle(String name) {
         this.name = name;
+    }
+
+    public static List<BenefitTitle> findExistingBenefit(Map<BenefitTitle, Integer> allBenefit) {
+        BenefitTitle[] benefitTitles = BenefitTitle.values();
+        List<BenefitTitle> existingBenefit = new ArrayList<>();
+
+        for (BenefitTitle benefitTitle : benefitTitles) {
+            if (allBenefit.containsKey(benefitTitle)) {
+                existingBenefit.add(benefitTitle);
+            }
+        }
+
+        return existingBenefit;
     }
 
     public String getName() {
