@@ -1,9 +1,9 @@
 package christmas.programstages;
 
-import christmas.Benefit;
 import christmas.BenefitTitle;
 import christmas.menutable.Menu;
 import christmas.ui.OutputView;
+import java.util.List;
 import java.util.Map;
 
 public class ResultStage {
@@ -30,19 +30,20 @@ public class ResultStage {
             System.out.println("<총혜택 금액>" + "\n" + 0 + "원");
         }
         if (totalOrderPrice >= 10000) {
-            System.out.println("<총혜택 금액>" + "\n" + (-calculateBenefitPrice()) + "원");
+            System.out.println("<총혜택 금액>" + "\n" + (-calculateTotalBenefitPrice()) + "원");
         }
         System.out.println();
     }
 
-    public int calculateBenefitPrice(Map<BenefitTitle, Integer> allBenefit) {
-        int price = 0;
+    public int calculateTotalBenefitPrice(Map<BenefitTitle, Integer> allBenefit) {
+        int totalBenefitPirce = 0;
+        List<Integer> benefitPrices = (List<Integer>) allBenefit.values();
 
-        for (Benefit benefit : Benefits) {
-            price += benefit.getAmount();
+        for (Integer benefitPrice : benefitPrices) {
+            totalBenefitPirce += benefitPrice;
         }
 
-        return price;
+        return totalBenefitPirce;
     }
 
     public int calculateEstimatedPayment(Map<BenefitTitle, Integer> allBenefit) {
@@ -60,7 +61,7 @@ public class ResultStage {
     }
 
     public void printBadge() {
-        int price = calculateBenefitPrice();
+        int price = calculateTotalBenefitPrice();
         if (totalOrderPrice < 10000 || price < 5000) {
             System.out.println("<12월 이벤트 배지>" + "\n" + "없음");
         }
