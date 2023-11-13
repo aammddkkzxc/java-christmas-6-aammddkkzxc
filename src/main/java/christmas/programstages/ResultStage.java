@@ -44,7 +44,7 @@ public class ResultStage {
         }
         for (Benefit benefit : Benefits) {
             if (totalOrderPrice >= 10000 && benefit.getAmount() != 0) {
-                System.out.println(benefit.getBenefitTitle().getName() + " : -" + benefit.getAmount() + "원");
+                System.out.println(benefit.getBenefitTitle().getName() + " : " + (-benefit.getAmount()) + "원");
             }
         }
         System.out.println();
