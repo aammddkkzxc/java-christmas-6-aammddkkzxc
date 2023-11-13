@@ -2,6 +2,7 @@ package christmas.programstages;
 
 import christmas.Benefit;
 import christmas.BenefitTitle;
+import christmas.ui.OutputView;
 import java.util.Map;
 
 public class ResultStage {
@@ -14,17 +15,12 @@ public class ResultStage {
     }
 
     public void run() {
-        printTotalPrice();
+        OutputView.printTotalPrice(totalOrderPrice);
         makeGiftResult();
         makeBenefitStatistics();
         printBenefitPrice();
         printEstimatedPayment();
         printBadge();
-    }
-
-    public void printTotalPrice() {
-        System.out.println("<할인 전 총주문 금액>" + "\n" + totalOrderPrice + "원");
-        System.out.println();
     }
 
     public void makeGiftResult() {

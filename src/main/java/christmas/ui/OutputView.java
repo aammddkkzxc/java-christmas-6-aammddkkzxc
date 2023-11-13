@@ -7,31 +7,8 @@ public class OutputView {
         System.out.println(ERROR_PREFIX + e.getMessage());
     }
 
-    public void printOrder() {
-
-    }
-
-    public void printTotalOrderPriceWithoutDiscount() {
-
-    }
-
-    public void printGift() {
-
-    }
-
-    public void printBenefit() {
-
-    }
-
-    public void printTotalBenefitPrice() {
-
-    }
-
-    public void printTotalOrderPriceWithDiscount() {
-
-    }
-
-    public void printEventBadge() {
-
+    public static void printTotalPrice(int totalOrderPrice) {
+        System.out.println("<할인 전 총주문 금액>" + "\n" + totalOrderPrice + "원");
+        System.out.println();
     }
 }
