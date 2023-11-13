@@ -21,7 +21,7 @@ public class ResultStage {
         OutputView.printBenefitStatistics(totalOrderPrice, allBenefit);
         OutputView.printTotalBenefitPrice(totalOrderPrice, calculateTotalBenefitPrice());
         OutputView.printEstimatedPayment(totalOrderPrice, calculateEstimatedPayment());
-        printBadge();
+        OutputView.printBadge(totalOrderPrice, calculateTotalBenefitPrice());
     }
 
     public int calculateTotalBenefitPrice() {
@@ -47,21 +47,5 @@ public class ResultStage {
         }
 
         return estimatedPayment;
-    }
-
-    public void printBadge() {
-        int price = calculateTotalBenefitPrice();
-        if (totalOrderPrice < 10000 || price < 5000) {
-            System.out.println("<12월 이벤트 배지>" + "\n" + "없음");
-        }
-        if (price >= 5000 && price < 10000) {
-            System.out.println("<12월 이벤트 배지>" + "\n" + "별");
-        }
-        if (price >= 10000 && price < 20000) {
-            System.out.println("<12월 이벤트 배지>" + "\n" + "트리");
-        }
-        if (price >= 20000) {
-            System.out.println("<12월 이벤트 배지>" + "\n" + "산타");
-        }
     }
 }

@@ -61,4 +61,19 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    public static void printBadge(int totalOrderPrice, int totalBenefitPrice) {
+        if (totalOrderPrice < 10000 || totalBenefitPrice < 5000) {
+            System.out.println("<12월 이벤트 배지>" + "\n" + "없음");
+        }
+        if (totalBenefitPrice >= 5000 && totalBenefitPrice < 10000) {
+            System.out.println("<12월 이벤트 배지>" + "\n" + "별");
+        }
+        if (totalBenefitPrice >= 10000 && totalBenefitPrice < 20000) {
+            System.out.println("<12월 이벤트 배지>" + "\n" + "트리");
+        }
+        if (totalBenefitPrice >= 20000) {
+            System.out.println("<12월 이벤트 배지>" + "\n" + "산타");
+        }
+    }
 }
