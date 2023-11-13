@@ -17,7 +17,7 @@ public class OutputView {
     }
 
     public static void printGift(int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit) {
-        if (totalOrderPrice < 10000 || allBenefit.containsValue(0)) {
+        if (totalOrderPrice < 10000 || allBenefit.get(BenefitTitle.GIFT) == 0) {
             System.out.println("<증정 메뉴>" + "\n" + "없음");
         }
         if (allBenefit.containsValue(Menu.CHAMPAGNE.getPrice())) {
