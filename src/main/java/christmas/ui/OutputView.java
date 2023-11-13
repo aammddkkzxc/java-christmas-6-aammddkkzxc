@@ -20,7 +20,7 @@ public class OutputView {
         if (totalOrderPrice < 10000 || allBenefit.get(BenefitTitle.GIFT) == 0) {
             System.out.println("<증정 메뉴>" + "\n" + "없음");
         }
-        if (allBenefit.containsValue(Menu.CHAMPAGNE.getPrice())) {
+        if (allBenefit.get(BenefitTitle.GIFT) == Menu.CHAMPAGNE.getPrice()) {
             System.out.println("<증정 메뉴>" + "\n" + "샴페인 1개");
         }
         System.out.println();
