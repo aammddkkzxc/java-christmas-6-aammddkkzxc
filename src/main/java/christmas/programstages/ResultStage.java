@@ -26,10 +26,10 @@ public class ResultStage {
 
     public int calculateTotalBenefitPrice() {
         int totalBenefitPirce = 0;
-        List<Integer> benefitPrices = (List<Integer>) allBenefit.values();
+        BenefitTitle[] benefitTitles = BenefitTitle.values();
 
-        for (Integer benefitPrice : benefitPrices) {
-            totalBenefitPirce += benefitPrice;
+        for (BenefitTitle benefitTitle : benefitTitles) {
+            totalBenefitPirce += allBenefit.get(benefitTitle);
         }
 
         return totalBenefitPirce;
