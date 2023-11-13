@@ -15,22 +15,12 @@ public class ResultStage {
     }
 
     public void run() {
-        OutputView.printTotalPrice(totalOrderPrice);
-        makeGiftResult();
+        OutputView.printTotalOrderPrice(totalOrderPrice);
+        OutputView.printGift(totalOrderPrice, allBenefit);
         makeBenefitStatistics();
         printBenefitPrice();
         printEstimatedPayment();
         printBadge();
-    }
-
-    public void makeGiftResult() {
-        if (totalOrderPrice < 10000 || Benefits.get(0).getBenefitTitle() == BenefitTitle.NONE) {
-            System.out.println("<증정 메뉴>" + "\n" + "없음");
-        }
-        if (Benefits.get(0).getBenefitTitle() == BenefitTitle.GIFT) {
-            System.out.println("<증정 메뉴>" + "\n" + "샴페인 1개");
-        }
-        System.out.println();
     }
 
     public void makeBenefitStatistics() {
