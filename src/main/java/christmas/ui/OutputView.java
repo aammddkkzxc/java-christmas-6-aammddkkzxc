@@ -41,4 +41,14 @@ public class OutputView {
 
         System.out.println();
     }
+
+    public static void printEstimatedPayment(int totalOrderPrice, int estimatedPayment) {
+        if (totalOrderPrice < 10000) {
+            System.out.println("<할인 후 예상 결제 금액>" + "\n" + totalOrderPrice + "원");
+        }
+        if (totalOrderPrice >= 10000) {
+            System.out.println("<할인 후 예상 결제 금액>" + "\n" + (totalOrderPrice - estimatedPayment) + "원");
+        }
+        System.out.println();
+    }
 }
