@@ -2,6 +2,7 @@ package christmas.programstages;
 
 import christmas.Benefit;
 import christmas.BenefitTitle;
+import christmas.menutable.Menu;
 import christmas.ui.OutputView;
 import java.util.Map;
 
@@ -33,7 +34,7 @@ public class ResultStage {
         System.out.println();
     }
 
-    public int calculateBenefitPrice() {
+    public int calculateBenefitPrice(Map<BenefitTitle, Integer> allBenefit) {
         int price = 0;
 
         for (Benefit benefit : Benefits) {
@@ -53,14 +54,17 @@ public class ResultStage {
         System.out.println();
     }
 
-    public int calculateEstimatedPayment() {
+    public int calculateEstimatedPayment(Map<BenefitTitle, Integer> allBenefit) {
         int estimatedPayment = 0;
-        for (Benefit benefit : Benefits) {
-            estimatedPayment += benefit.getAmount();
-            if (benefit.getBenefitTitle() == BenefitTitle.GIFT) {
-                estimatedPayment -= 25000;
-            }
+        BenefitTitle[] benefitTitles = BenefitTitle.values();
+
+        for (BenefitTitle benefitTitle : benefitTitles) {
+            estimatedPayment += allBenefit.get(benefitTitle);
         }
+        if (allBenefit.get(BenefitTitle.GIFT) == Menu.CHAMPAGNE.getPrice()) {
+            estimatedPayment -= Menu.CHAMPAGNE.getPrice();
+        }
+
         return estimatedPayment;
     }
 
