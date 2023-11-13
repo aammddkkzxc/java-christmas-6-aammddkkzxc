@@ -52,9 +52,11 @@ public class ResultStage {
 
     public void printBenefitPrice() {
         if (totalOrderPrice < 10000) {
-            System.out.println("<총혜택 금액>" + "\n" + "-" + 0 + "원");
+            System.out.println("<총혜택 금액>" + "\n" + 0 + "원");
         }
-        System.out.println("<총혜택 금액>" + "\n" + "-" + calculateBenefitPrice() + "원");
+        if (totalOrderPrice >= 10000) {
+            System.out.println("<총혜택 금액>" + "\n" + (-calculateBenefitPrice()) + "원");
+        }
         System.out.println();
     }
 
