@@ -1,6 +1,5 @@
 package christmas.programstages;
 
-import christmas.Benefit;
 import christmas.BenefitTitle;
 import christmas.Date;
 import christmas.Order;
@@ -35,6 +34,7 @@ public class EventDecisionStage {
         allBenefit.put(BenefitTitle.D_DAY, takeDDayDiscount());
         allBenefit.put(BenefitTitle.WEEKDAY, takeWeekdayDiscount());
         allBenefit.put(BenefitTitle.WEEKEND, takeWeekendDiscount());
+        allBenefit.put(BenefitTitle.SPECIAL, takeSpecialDiscount());
 
         return allBenefit;
     }
@@ -82,13 +82,13 @@ public class EventDecisionStage {
         return discount;
     }
 
-    public Benefit takeSpecialDiscount() {
+    public int takeSpecialDiscount() {
         int discount = 0;
 
         if (date.isStarred()) {
             discount += 1000;
         }
 
-        return new Benefit(BenefitTitle.SPECIAL, discount);
+        return discount;
     }
 }
