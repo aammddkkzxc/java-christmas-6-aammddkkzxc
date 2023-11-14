@@ -2,7 +2,6 @@ package christmas;
 
 import christmas.menutable.Menu;
 import christmas.menutable.MenuType;
-import java.util.Objects;
 
 public class Order {
     public static final String ORDER_RE_READ_REQUEST_MESSAGE = "유효하지 않은 주문입니다. 다시 입력해 주세요.";
@@ -14,7 +13,7 @@ public class Order {
 
     public Order(String name, int amount) {
         validateOrderNameExistInMenu(name);
-        validateOrderAmountBiggerThanMinimumQuantity(amount);
+        validateOrderAmountQuantity(amount);
 
         this.name = name;
         this.amount = amount;
@@ -26,7 +25,7 @@ public class Order {
         }
     }
 
-    private void validateOrderAmountBiggerThanMinimumQuantity(int amount) {
+    private void validateOrderAmountQuantity(int amount) {
         if (amount < MINIMUM_QUANTITY) {
             throw new IllegalArgumentException(ORDER_RE_READ_REQUEST_MESSAGE);
         }
