@@ -51,7 +51,7 @@ public class EventManager {
 
         for (OrderedMenu orderedMenu : order.getOrder()) {
             Menu menu = Menu.decideMenu(orderedMenu.getMenuName());
-            if (date.isWeekday() && MenuType.decideMenuType(menu) == MenuType.DESSERT) {
+            if (date.isWeekdayDiscountActive() && MenuType.decideMenuType(menu) == MenuType.DESSERT) {
                 discount += orderedMenu.getQuantity() * WEEKDAY_DESSERT_DISCOUNT_PRICE;
             }
         }

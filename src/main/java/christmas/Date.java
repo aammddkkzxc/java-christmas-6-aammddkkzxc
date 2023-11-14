@@ -31,7 +31,7 @@ public class Date {
         return dayNumber <= CHRISTMAS_DAY;
     }
 
-    public boolean isWeekday() {
+    public boolean isWeekdayDiscountActive() {
         return WEEKDAY_CONDITION.contains(dayNumber % DAY_NUMBER_JUDGEMENT_FACTOR);
     }
 
