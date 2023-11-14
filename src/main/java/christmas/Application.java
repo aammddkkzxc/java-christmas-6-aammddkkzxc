@@ -1,6 +1,5 @@
 package christmas;
 
-import christmas.programstages.Result;
 import christmas.ui.InputView;
 import christmas.ui.OutputView;
 import java.util.Map;

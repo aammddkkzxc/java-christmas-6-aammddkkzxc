@@ -1,4 +1,4 @@
-package christmas.programstages;
+package christmas;
 
 import christmas.BenefitTitle;
 import christmas.menutable.Menu;
