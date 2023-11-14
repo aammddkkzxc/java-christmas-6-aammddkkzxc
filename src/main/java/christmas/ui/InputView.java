@@ -1,7 +1,6 @@
 package christmas.ui;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.Converter;
 import christmas.Date;
 import christmas.Order;
 import java.util.ArrayList;
@@ -23,6 +22,7 @@ public class InputView {
 
     private static Date makeDate() {
         System.out.println(DATE_REQUEST_MESSAGE);
+
         String dateInput = Console.readLine();
         int dayNumber = Converter.convertDateInput(dateInput);
 
@@ -40,6 +40,7 @@ public class InputView {
 
     private static List<Order> makeOrders() {
         System.out.println(ORDER_REQUEST_MESSAGE);
+
         String orderInput = Console.readLine();
         List<String> separatedOrder = Converter.separateOrder(orderInput);
         List<Order> orders = new ArrayList<>();
