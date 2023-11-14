@@ -91,4 +91,8 @@ public class EventDecision {
 
         return discount;
     }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
 }

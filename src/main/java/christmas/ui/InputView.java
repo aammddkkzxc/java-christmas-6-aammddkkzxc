@@ -3,6 +3,7 @@ package christmas.ui;
 import camp.nextstep.edu.missionutils.Console;
 import christmas.Date;
 import christmas.Order;
+import christmas.programstages.EventDecision;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,12 +32,12 @@ public class InputView {
         return new Date(dayNumber);
     }
 
-    public static List<Order> makeValidatedOrders() {
+    public static EventDecision makeEventDecisionWithValidatedOrders(Date date) {
         try {
-            return makeOrders();
+            return new EventDecision(date, makeOrders());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
-            return makeValidatedOrders();
+            return makeEventDecisionWithValidatedOrders(date);
         }
     }
 

@@ -11,12 +11,13 @@ public class Order {
 
 
     public Order(String name, int amount) {
+        validateOrderNameExistInMenu(name);
         this.name = name;
         this.amount = amount;
     }
 
     private void validateOrderNameExistInMenu(String name) {
-        if(Menu.decideMenu(name) == Menu.NONE) {
+        if (Menu.decideMenu(name) == Menu.NONE) {
             throw new IllegalArgumentException(ORDER_RE_READ_REQUEST_MESSAGE);
         }
     }
