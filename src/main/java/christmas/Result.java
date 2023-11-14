@@ -1,23 +1,22 @@
 package christmas;
 
-import christmas.BenefitTitle;
 import christmas.menutable.Menu;
 import java.util.List;
 import java.util.Map;
 
 public class Result {
-    private final Map<BenefitTitle, Integer> allBenefit;
+    private final Map<BenefitType, Integer> allBenefit;
 
-    public Result(Map<BenefitTitle, Integer> allBenefit) {
+    public Result(Map<BenefitType, Integer> allBenefit) {
         this.allBenefit = allBenefit;
     }
 
     public int calculateTotalBenefitPrice() {
         int totalBenefitPirce = 0;
-        List<BenefitTitle> benefitTitles = BenefitTitle.findExistingBenefit(allBenefit);
+        List<BenefitType> benefitTypes = BenefitType.findExistingBenefitType(allBenefit);
 
-        for (BenefitTitle benefitTitle : benefitTitles) {
-            totalBenefitPirce += allBenefit.get(benefitTitle);
+        for (BenefitType benefitType : benefitTypes) {
+            totalBenefitPirce += allBenefit.get(benefitType);
         }
 
         return totalBenefitPirce;
@@ -25,12 +24,12 @@ public class Result {
 
     public int calculateEstimatedPayment() {
         int estimatedPayment = 0;
-        List<BenefitTitle> benefitTitles = BenefitTitle.findExistingBenefit(allBenefit);
+        List<BenefitType> benefitTypes = BenefitType.findExistingBenefitType(allBenefit);
 
-        for (BenefitTitle benefitTitle : benefitTitles) {
-            estimatedPayment += allBenefit.get(benefitTitle);
+        for (BenefitType benefitType : benefitTypes) {
+            estimatedPayment += allBenefit.get(benefitType);
         }
-        if (allBenefit.get(BenefitTitle.GIFT) == Menu.CHAMPAGNE.getPrice()) {
+        if (allBenefit.get(BenefitType.GIFT) == Menu.CHAMPAGNE.getPrice()) {
             estimatedPayment -= Menu.CHAMPAGNE.getPrice();
         }
 

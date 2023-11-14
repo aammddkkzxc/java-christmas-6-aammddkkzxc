@@ -15,12 +15,12 @@ public class EventManager {
     private static final int FIRST_DAY_NUMBER = 1;
 
     public Result takeAllBenefit(Date date, Order order) {
-        Map<BenefitTitle, Integer> allBenefit = new HashMap<>();
-        allBenefit.put(BenefitTitle.GIFT, takeGift(order));
-        allBenefit.put(BenefitTitle.D_DAY, takeDDayDiscount(date));
-        allBenefit.put(BenefitTitle.WEEKDAY, takeWeekdayDiscount(date, order));
-        allBenefit.put(BenefitTitle.WEEKEND, takeWeekendDiscount(date, order));
-        allBenefit.put(BenefitTitle.SPECIAL, takeSpecialDiscount(date));
+        Map<BenefitType, Integer> allBenefit = new HashMap<>();
+        allBenefit.put(BenefitType.GIFT, takeGift(order));
+        allBenefit.put(BenefitType.D_DAY, takeDDayDiscount(date));
+        allBenefit.put(BenefitType.WEEKDAY, takeWeekdayDiscount(date, order));
+        allBenefit.put(BenefitType.WEEKEND, takeWeekendDiscount(date, order));
+        allBenefit.put(BenefitType.SPECIAL, takeSpecialDiscount(date));
 
         return new Result(allBenefit);
     }
