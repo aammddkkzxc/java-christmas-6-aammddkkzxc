@@ -17,8 +17,8 @@ public class OutputView {
     private static final String ESTIMATED_PAYMENT_HEADER = "<할인 후 예상 결제 금액>";
     private static final String BADGE_HEADER = "<12월 이벤트 배지>";
     private static final String STAR_BADGE = "별";
-    private static final String TREE_BADGE = "별";
-    private static final String SANTA_BADGE = "별";
+    private static final String TREE_BADGE = "트리";
+    private static final String SANTA_BADGE = "산타";
     private static final String NONE = "없음";
     private static final String PRICE = "%,d원";
     private static final String QUANTITY = "개";
@@ -26,7 +26,6 @@ public class OutputView {
     private static final String SPACE = " ";
     private static final String COLON = ":";
     private static final int EVENT_MINIMUM_PRICE = 10000;
-
 
     public static void printErrorMessage(IllegalArgumentException e) {
         System.out.println(ERROR_PREFIX + e.getMessage());
@@ -71,11 +70,12 @@ public class OutputView {
 
     private static void printBenefitStatistics(int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit) {
         System.out.println(BENEFIT_STATISTICS_HEADER);
+
         if (totalOrderPrice < EVENT_MINIMUM_PRICE || allBenefit.isEmpty()) {
             System.out.println(NONE);
         }
-        List<BenefitTitle> benefitTitles = BenefitTitle.findExistingBenefit(allBenefit);
 
+        List<BenefitTitle> benefitTitles = BenefitTitle.findExistingBenefit(allBenefit);
         for (BenefitTitle benefitTitle : benefitTitles) {
             if (totalOrderPrice >= EVENT_MINIMUM_PRICE && allBenefit.get(benefitTitle) != 0) {
                 System.out.println(benefitTitle.getTitle() + SPACE + COLON + SPACE + String.format(PRICE,
