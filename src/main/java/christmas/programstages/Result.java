@@ -2,7 +2,6 @@ package christmas.programstages;
 
 import christmas.BenefitTitle;
 import christmas.menutable.Menu;
-import christmas.ui.OutputView;
 import java.util.List;
 import java.util.Map;
 
@@ -13,15 +12,6 @@ public class Result {
     public Result(int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit) {
         this.totalOrderPrice = totalOrderPrice;
         this.allBenefit = allBenefit;
-    }
-
-    public void run() {
-        OutputView.printTotalOrderPrice(totalOrderPrice);
-        OutputView.printGift(totalOrderPrice, allBenefit);
-        OutputView.printBenefitStatistics(totalOrderPrice, allBenefit);
-        OutputView.printTotalBenefitPrice(totalOrderPrice, calculateTotalBenefitPrice());
-        OutputView.printEstimatedPayment(totalOrderPrice, calculateEstimatedPayment());
-        OutputView.printBadge(totalOrderPrice, calculateTotalBenefitPrice());
     }
 
     public int calculateTotalBenefitPrice() {

@@ -3,6 +3,7 @@ package christmas;
 import christmas.programstages.EventDecision;
 import christmas.programstages.Result;
 import christmas.ui.InputView;
+import christmas.ui.OutputView;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,8 @@ public class Application {
         int totalOrderPrice = eventDecision.calculateTotalOrderPrice();
         Map<BenefitTitle, Integer> allBenefit = eventDecision.takeAllBenefit(totalOrderPrice);
         Result result = new Result(totalOrderPrice, allBenefit);
-        result.run();
+        int totalBenefitPrice = result.calculateTotalBenefitPrice();
+        int estimatedPayment = result.calculateEstimatedPayment();
+        OutputView.printAllResult(totalOrderPrice, allBenefit, totalBenefitPrice, estimatedPayment);
     }
 }

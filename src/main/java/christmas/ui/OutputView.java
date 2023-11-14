@@ -12,6 +12,16 @@ public class OutputView {
         System.out.println(ERROR_PREFIX + e.getMessage());
     }
 
+    public static void printAllResult(int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit,
+                                      int totalBenefitPrice, int estimatedPayment) {
+        printTotalOrderPrice(totalOrderPrice);
+        printGift(totalOrderPrice, allBenefit);
+        printBenefitStatistics(totalOrderPrice, allBenefit);
+        printTotalBenefitPrice(totalOrderPrice, totalBenefitPrice);
+        printEstimatedPayment(totalOrderPrice, estimatedPayment);
+        printBadge(totalOrderPrice, totalBenefitPrice);
+    }
+
     public static void printTotalOrderPrice(int totalOrderPrice) {
         System.out.println("<할인 전 총주문 금액>" + "\n" + totalOrderPrice + "원");
         System.out.println();
