@@ -17,6 +17,8 @@ public class OutputView {
     public static void printAllResult(List<Order> orders, int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit,
                                       int totalBenefitPrice, int estimatedPayment) {
         System.out.println(RESULT_NOTIFY_MESSAGE);
+        System.out.println();
+
         printOrders(orders);
         printTotalOrderPrice(totalOrderPrice);
         printGift(totalOrderPrice, allBenefit);
