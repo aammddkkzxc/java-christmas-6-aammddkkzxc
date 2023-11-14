@@ -39,7 +39,7 @@ public class Date {
         return WEEKEND_CONDITION.contains(dayNumber % DAY_NUMBER_JUDGEMENT_FACTOR);
     }
 
-    public boolean isStarred() {
+    public boolean isSpecialDiscountActive() {
         return STARRED_CONDITION.contains(dayNumber % DAY_NUMBER_JUDGEMENT_FACTOR) || STARRED_CONDITION.contains(
                 dayNumber);
     }

@@ -73,7 +73,7 @@ public class EventManager {
     }
 
     private int takeSpecialDiscount(Date date) {
-        if (date.isStarred()) {
+        if (date.isSpecialDiscountActive()) {
             return SPECIAL_DISCOUNT_PRICE;
         }
 
