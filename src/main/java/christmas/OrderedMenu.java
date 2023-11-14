@@ -7,15 +7,15 @@ public class OrderedMenu {
     public static final String ORDER_RE_READ_REQUEST_MESSAGE = "유효하지 않은 주문입니다. 다시 입력해 주세요.";
     private static final int AMOUNT_MINIMUM_QUANTITY = 1;
 
-    private final String name;
+    private final String menuName;
     private final int amount;
 
 
-    public OrderedMenu(String name, int amount) {
-        validateOrderNameExistInMenu(name);
+    public OrderedMenu(String menuName, int amount) {
+        validateOrderNameExistInMenu(menuName);
         validateOrderAmountQuantity(amount);
 
-        this.name = name;
+        this.menuName = menuName;
         this.amount = amount;
     }
 
@@ -32,15 +32,15 @@ public class OrderedMenu {
     }
 
     public boolean isBeverage() {
-        return MenuType.decideMenuType(Menu.decideMenu(name)) == MenuType.BEVERAGE;
+        return MenuType.decideMenuType(Menu.decideMenu(menuName)) == MenuType.BEVERAGE;
     }
 
     public int calculatePrice() {
-        return Menu.decideMenu(name).getPrice() * amount;
+        return Menu.decideMenu(menuName).getPrice() * amount;
     }
 
-    public String getName() {
-        return name;
+    public String getMenuName() {
+        return menuName;
     }
 
     public int getAmount() {

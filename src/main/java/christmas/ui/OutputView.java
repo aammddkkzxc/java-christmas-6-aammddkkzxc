@@ -48,7 +48,7 @@ public class OutputView {
     private static void printOrders(List<OrderedMenu> orderedMenus) {
         System.out.println(ORDER_MENU_HEADER);
         for (OrderedMenu orderedMenu : orderedMenus) {
-            System.out.println(orderedMenu.getName() + SPACE + orderedMenu.getAmount() + QUANTITY);
+            System.out.println(orderedMenu.getMenuName() + SPACE + orderedMenu.getAmount() + QUANTITY);
         }
         System.out.println();
     }

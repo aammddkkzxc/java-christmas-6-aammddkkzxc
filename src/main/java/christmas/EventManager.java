@@ -51,7 +51,7 @@ public class EventManager {
         Set<String> duplicateMenuNameChecker = new HashSet<>();
 
         for (OrderedMenu orderedMenu : orderedMenus) {
-            duplicateMenuNameChecker.add(orderedMenu.getName());
+            duplicateMenuNameChecker.add(orderedMenu.getMenuName());
         }
         if (duplicateMenuNameChecker.size() != orderedMenus.size()) {
             throw new IllegalArgumentException(ORDER_RE_READ_REQUEST_MESSAGE);
@@ -111,7 +111,7 @@ public class EventManager {
         int discount = 0;
 
         for (OrderedMenu orderedMenu : orderedMenus) {
-            Menu menu = Menu.decideMenu(orderedMenu.getName());
+            Menu menu = Menu.decideMenu(orderedMenu.getMenuName());
             if (date.isWeekday() && MenuType.decideMenuType(menu) == MenuType.DESSERT) {
                 discount += orderedMenu.getAmount() * DESSERT_AND_MAIN_DISCOUNT_PRICE;
             }
@@ -124,7 +124,7 @@ public class EventManager {
         int discount = 0;
 
         for (OrderedMenu orderedMenu : orderedMenus) {
-            Menu menu = Menu.decideMenu(orderedMenu.getName());
+            Menu menu = Menu.decideMenu(orderedMenu.getMenuName());
             if (date.isWeekend() && MenuType.decideMenuType(menu) == MenuType.MAIN) {
                 discount += orderedMenu.getAmount() * DESSERT_AND_MAIN_DISCOUNT_PRICE;
             }
