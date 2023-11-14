@@ -1,6 +1,7 @@
 package christmas;
 
 import christmas.menutable.Menu;
+import christmas.menutable.MenuType;
 import java.util.Objects;
 
 public class Order {
@@ -20,6 +21,10 @@ public class Order {
         if (Menu.decideMenu(name) == Menu.NONE) {
             throw new IllegalArgumentException(ORDER_RE_READ_REQUEST_MESSAGE);
         }
+    }
+
+    public boolean isBeverage() {
+        return MenuType.decideMenuType(Menu.decideMenu(name)) == MenuType.BEVERAGE;
     }
 
     public int calculatePrice() {

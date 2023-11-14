@@ -26,7 +26,7 @@ public class EventDecision {
         List<Boolean> beverageChecker = new ArrayList<>();
 
         for (Order order : orders) {
-            if (MenuType.decideMenuType(Menu.decideMenu(order.getName())) == MenuType.BEVERAGE) {
+            if (order.isBeverage()) {
                 beverageChecker.add(true);
             }
         }
