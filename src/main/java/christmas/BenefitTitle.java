@@ -9,13 +9,12 @@ public enum BenefitTitle {
     D_DAY("크리스마스 디데이 할인"),
     WEEKDAY("평일 할인"),
     WEEKEND("주말 할인"),
-    SPECIAL("특별 할인"),
-    NONE("없음");
+    SPECIAL("특별 할인");
 
-    private final String name;
+    private final String title;
 
-    BenefitTitle(String name) {
-        this.name = name;
+    BenefitTitle(String title) {
+        this.title = title;
     }
 
     public static List<BenefitTitle> findExistingBenefit(Map<BenefitTitle, Integer> allBenefit) {
@@ -31,7 +30,7 @@ public enum BenefitTitle {
         return existingBenefit;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 }

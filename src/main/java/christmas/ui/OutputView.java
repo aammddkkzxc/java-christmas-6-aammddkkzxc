@@ -78,7 +78,7 @@ public class OutputView {
 
         for (BenefitTitle benefitTitle : benefitTitles) {
             if (totalOrderPrice >= EVENT_MINIMUM_PRICE && allBenefit.get(benefitTitle) != 0) {
-                System.out.println(benefitTitle.getName() + SPACE + COLON + SPACE + String.format(PRICE,
+                System.out.println(benefitTitle.getTitle() + SPACE + COLON + SPACE + String.format(PRICE,
                         -allBenefit.get(benefitTitle)));
             }
         }
