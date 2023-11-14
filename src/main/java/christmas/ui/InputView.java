@@ -2,8 +2,8 @@ package christmas.ui;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.Date;
+import christmas.Order;
 import christmas.OrderedMenu;
-import christmas.EventManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,29 +32,29 @@ public class InputView {
         return new Date(dayNumber);
     }
 
-    public static EventManager makeEventManagerWithValidatedOrders(Date date) {
+    public static Order inputOrder() {
         try {
-            return new EventManager(date, makeOrders());
+            return new Order(readOrder());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
-            return makeEventManagerWithValidatedOrders(date);
+            return inputOrder();
         }
     }
 
-    private static List<OrderedMenu> makeOrders() {
+    private static List<OrderedMenu> readOrder() {
         System.out.println(ORDER_REQUEST_MESSAGE);
 
         String orderInput = Console.readLine();
         List<String> separatedOrder = Converter.separateOrder(orderInput);
-        List<OrderedMenu> orderedMenus = new ArrayList<>();
+        List<OrderedMenu> order = new ArrayList<>();
 
-        for (String order : separatedOrder) {
-            List<String> separatedNameAndAmount = Converter.separateNameAndAmount(order);
+        for (String orderedMenu : separatedOrder) {
+            List<String> separatedNameAndAmount = Converter.separateNameAndAmount(orderedMenu);
             String name = separatedNameAndAmount.get(0);
             int amount = Converter.convertAmount(separatedNameAndAmount.get(1));
-            orderedMenus.add(new OrderedMenu(name, amount));
+            order.add(new OrderedMenu(name, amount));
         }
 
-        return orderedMenus;
+        return order;
     }
 }
