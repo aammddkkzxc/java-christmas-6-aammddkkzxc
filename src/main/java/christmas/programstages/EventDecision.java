@@ -15,12 +15,15 @@ import java.util.Map;
 import java.util.Set;
 
 public class EventDecision {
+    private static final int MAXIMUM_MENU_QUANTITY = 20;
     private final Date date;
     private final List<Order> orders;
 
     public EventDecision(Date date, List<Order> orders) {
         validateOrdersMenuNotAllBeverage(orders);
         validateOrdersMenuNotDuplicate(orders);
+        validateTotalMenuQuantity(orders);
+
         this.date = date;
         this.orders = orders;
     }
@@ -49,6 +52,17 @@ public class EventDecision {
             duplicateMenuNameChecker.add(order.getName());
         }
         if (duplicateMenuNameChecker.size() != orders.size()) {
+            throw new IllegalArgumentException(ORDER_RE_READ_REQUEST_MESSAGE);
+        }
+    }
+
+    private void validateTotalMenuQuantity(List<Order> orders) {
+        int totalMenuQuantity = 0;
+
+        for (Order order : orders) {
+            totalMenuQuantity += order.getAmount();
+        }
+        if (totalMenuQuantity > MAXIMUM_MENU_QUANTITY) {
             throw new IllegalArgumentException(ORDER_RE_READ_REQUEST_MESSAGE);
         }
     }
