@@ -8,15 +8,15 @@ public class OrderedMenu {
     private static final int AMOUNT_MINIMUM_QUANTITY = 1;
 
     private final String menuName;
-    private final int amount;
+    private final int quantity;
 
 
-    public OrderedMenu(String menuName, int amount) {
+    public OrderedMenu(String menuName, int quantity) {
         validateOrderNameExistInMenu(menuName);
-        validateOrderAmountQuantity(amount);
+        validateOrderAmountQuantity(quantity);
 
         this.menuName = menuName;
-        this.amount = amount;
+        this.quantity = quantity;
     }
 
     private void validateOrderNameExistInMenu(String name) {
@@ -36,14 +36,14 @@ public class OrderedMenu {
     }
 
     public int calculatePrice() {
-        return Menu.decideMenu(menuName).getPrice() * amount;
+        return Menu.decideMenu(menuName).getPrice() * quantity;
     }
 
     public String getMenuName() {
         return menuName;
     }
 
-    public int getAmount() {
-        return amount;
+    public int getQuantity() {
+        return quantity;
     }
 }
