@@ -2,7 +2,7 @@ package christmas.ui;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.Date;
-import christmas.Order;
+import christmas.OrderedMenu;
 import christmas.EventManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,20 +41,20 @@ public class InputView {
         }
     }
 
-    private static List<Order> makeOrders() {
+    private static List<OrderedMenu> makeOrders() {
         System.out.println(ORDER_REQUEST_MESSAGE);
 
         String orderInput = Console.readLine();
         List<String> separatedOrder = Converter.separateOrder(orderInput);
-        List<Order> orders = new ArrayList<>();
+        List<OrderedMenu> orderedMenus = new ArrayList<>();
 
         for (String order : separatedOrder) {
             List<String> separatedNameAndAmount = Converter.separateNameAndAmount(order);
             String name = separatedNameAndAmount.get(0);
             int amount = Converter.convertAmount(separatedNameAndAmount.get(1));
-            orders.add(new Order(name, amount));
+            orderedMenus.add(new OrderedMenu(name, amount));
         }
 
-        return orders;
+        return orderedMenus;
     }
 }

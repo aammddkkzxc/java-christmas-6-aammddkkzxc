@@ -1,7 +1,7 @@
 package christmas.ui;
 
 import static christmas.Date.DATE_RE_READ_REQUEST_MESSAGE;
-import static christmas.Order.ORDER_RE_READ_REQUEST_MESSAGE;
+import static christmas.OrderedMenu.ORDER_RE_READ_REQUEST_MESSAGE;
 
 import java.util.ArrayList;
 import java.util.List;

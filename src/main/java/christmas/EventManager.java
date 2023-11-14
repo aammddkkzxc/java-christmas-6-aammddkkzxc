@@ -1,10 +1,7 @@
 package christmas;
 
-import static christmas.Order.ORDER_RE_READ_REQUEST_MESSAGE;
+import static christmas.OrderedMenu.ORDER_RE_READ_REQUEST_MESSAGE;
 
-import christmas.BenefitTitle;
-import christmas.Date;
-import christmas.Order;
 import christmas.menutable.Menu;
 import christmas.menutable.MenuType;
 import java.util.ArrayList;
@@ -22,25 +19,25 @@ public class EventManager {
     private static final int DESSERT_AND_MAIN_DISCOUNT_PRICE = 2023;
 
     private final Date date;
-    private final List<Order> orders;
+    private final List<OrderedMenu> orderedMenus;
 
-    public EventManager(Date date, List<Order> orders) {
-        validateOrdersMenuNotAllBeverage(orders);
-        validateOrdersMenuNotDuplicate(orders);
-        validateTotalMenuQuantity(orders);
+    public EventManager(Date date, List<OrderedMenu> orderedMenus) {
+        validateOrdersMenuNotAllBeverage(orderedMenus);
+        validateOrdersMenuNotDuplicate(orderedMenus);
+        validateTotalMenuQuantity(orderedMenus);
 
         this.date = date;
-        this.orders = orders;
+        this.orderedMenus = orderedMenus;
     }
 
-    private void validateOrdersMenuNotAllBeverage(List<Order> orders) {
+    private void validateOrdersMenuNotAllBeverage(List<OrderedMenu> orderedMenus) {
         List<Boolean> beverageChecker = new ArrayList<>();
 
-        for (Order order : orders) {
-            if (order.isBeverage()) {
+        for (OrderedMenu orderedMenu : orderedMenus) {
+            if (orderedMenu.isBeverage()) {
                 beverageChecker.add(true);
             }
-            if (!order.isBeverage()) {
+            if (!orderedMenu.isBeverage()) {
                 beverageChecker.add(false);
             }
         }
@@ -50,22 +47,22 @@ public class EventManager {
         }
     }
 
-    private void validateOrdersMenuNotDuplicate(List<Order> orders) {
+    private void validateOrdersMenuNotDuplicate(List<OrderedMenu> orderedMenus) {
         Set<String> duplicateMenuNameChecker = new HashSet<>();
 
-        for (Order order : orders) {
-            duplicateMenuNameChecker.add(order.getName());
+        for (OrderedMenu orderedMenu : orderedMenus) {
+            duplicateMenuNameChecker.add(orderedMenu.getName());
         }
-        if (duplicateMenuNameChecker.size() != orders.size()) {
+        if (duplicateMenuNameChecker.size() != orderedMenus.size()) {
             throw new IllegalArgumentException(ORDER_RE_READ_REQUEST_MESSAGE);
         }
     }
 
-    private void validateTotalMenuQuantity(List<Order> orders) {
+    private void validateTotalMenuQuantity(List<OrderedMenu> orderedMenus) {
         int totalMenuQuantity = 0;
 
-        for (Order order : orders) {
-            totalMenuQuantity += order.getAmount();
+        for (OrderedMenu orderedMenu : orderedMenus) {
+            totalMenuQuantity += orderedMenu.getAmount();
         }
         if (totalMenuQuantity > MAXIMUM_MENU_QUANTITY) {
             throw new IllegalArgumentException(ORDER_RE_READ_REQUEST_MESSAGE);
@@ -75,8 +72,8 @@ public class EventManager {
     public int calculateTotalOrderPrice() {
         int totalOrderPrice = 0;
 
-        for (Order order : orders) {
-            totalOrderPrice += order.calculatePrice();
+        for (OrderedMenu orderedMenu : orderedMenus) {
+            totalOrderPrice += orderedMenu.calculatePrice();
         }
 
         return totalOrderPrice;
@@ -113,10 +110,10 @@ public class EventManager {
     public int takeWeekdayDiscount() {
         int discount = 0;
 
-        for (Order order : orders) {
-            Menu menu = Menu.decideMenu(order.getName());
+        for (OrderedMenu orderedMenu : orderedMenus) {
+            Menu menu = Menu.decideMenu(orderedMenu.getName());
             if (date.isWeekday() && MenuType.decideMenuType(menu) == MenuType.DESSERT) {
-                discount += order.getAmount() * DESSERT_AND_MAIN_DISCOUNT_PRICE;
+                discount += orderedMenu.getAmount() * DESSERT_AND_MAIN_DISCOUNT_PRICE;
             }
         }
 
@@ -126,10 +123,10 @@ public class EventManager {
     public int takeWeekendDiscount() {
         int discount = 0;
 
-        for (Order order : orders) {
-            Menu menu = Menu.decideMenu(order.getName());
+        for (OrderedMenu orderedMenu : orderedMenus) {
+            Menu menu = Menu.decideMenu(orderedMenu.getName());
             if (date.isWeekend() && MenuType.decideMenuType(menu) == MenuType.MAIN) {
-                discount += order.getAmount() * DESSERT_AND_MAIN_DISCOUNT_PRICE;
+                discount += orderedMenu.getAmount() * DESSERT_AND_MAIN_DISCOUNT_PRICE;
             }
         }
 
@@ -146,7 +143,7 @@ public class EventManager {
         return discount;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public List<OrderedMenu> getOrders() {
+        return orderedMenus;
     }
 }

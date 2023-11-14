@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.Date;
 import christmas.EventManager;
-import christmas.Order;
+import christmas.OrderedMenu;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,12 +15,12 @@ class EventManagerTest {
 
     @BeforeEach
     void setUP() {
-        List<Order> orders = new ArrayList<>();
-        orders.add(new Order("해산물파스타", 2));
-        orders.add(new Order("레드와인", 1));
-        orders.add(new Order("초코케이크", 1));
+        List<OrderedMenu> orderedMenus = new ArrayList<>();
+        orderedMenus.add(new OrderedMenu("해산물파스타", 2));
+        orderedMenus.add(new OrderedMenu("레드와인", 1));
+        orderedMenus.add(new OrderedMenu("초코케이크", 1));
 
-        eventManager = new EventManager(new Date(26), orders);
+        eventManager = new EventManager(new Date(26), orderedMenus);
     }
     @Test
     void calculateTotalOrderPrice() {

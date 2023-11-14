@@ -1,7 +1,7 @@
 package christmas.ui;
 
 import christmas.BenefitTitle;
-import christmas.Order;
+import christmas.OrderedMenu;
 import christmas.menutable.Menu;
 import java.util.List;
 import java.util.Map;
@@ -31,12 +31,12 @@ public class OutputView {
         System.out.println(ERROR_PREFIX + e.getMessage());
     }
 
-    public static void printAllResult(List<Order> orders, int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit,
+    public static void printAllResult(List<OrderedMenu> orderedMenus, int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit,
                                       int totalBenefitPrice, int estimatedPayment) {
         System.out.println(RESULT_NOTIFY_MESSAGE);
         System.out.println();
 
-        printOrders(orders);
+        printOrders(orderedMenus);
         printTotalOrderPrice(totalOrderPrice);
         printGift(totalOrderPrice, allBenefit);
         printBenefitStatistics(totalOrderPrice, allBenefit);
@@ -45,10 +45,10 @@ public class OutputView {
         printBadge(totalOrderPrice, totalBenefitPrice);
     }
 
-    private static void printOrders(List<Order> orders) {
+    private static void printOrders(List<OrderedMenu> orderedMenus) {
         System.out.println(ORDER_MENU_HEADER);
-        for (Order order : orders) {
-            System.out.println(order.getName() + SPACE + order.getAmount() + QUANTITY);
+        for (OrderedMenu orderedMenu : orderedMenus) {
+            System.out.println(orderedMenu.getName() + SPACE + orderedMenu.getAmount() + QUANTITY);
         }
         System.out.println();
     }

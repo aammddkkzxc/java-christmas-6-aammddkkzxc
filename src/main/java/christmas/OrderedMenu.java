@@ -3,7 +3,7 @@ package christmas;
 import christmas.menutable.Menu;
 import christmas.menutable.MenuType;
 
-public class Order {
+public class OrderedMenu {
     public static final String ORDER_RE_READ_REQUEST_MESSAGE = "유효하지 않은 주문입니다. 다시 입력해 주세요.";
     private static final int AMOUNT_MINIMUM_QUANTITY = 1;
 
@@ -11,7 +11,7 @@ public class Order {
     private final int amount;
 
 
-    public Order(String name, int amount) {
+    public OrderedMenu(String name, int amount) {
         validateOrderNameExistInMenu(name);
         validateOrderAmountQuantity(amount);
 
