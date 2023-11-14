@@ -3,6 +3,7 @@ package christmas;
 import static christmas.OrderedMenu.ORDER_RE_READ_REQUEST_MESSAGE;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,14 +11,14 @@ import java.util.Set;
 public class Order {
     private static final int MAXIMUM_MENU_QUANTITY = 20;
 
-    private final List<OrderedMenu> Order;
+    private final List<OrderedMenu> order;
 
     public Order(List<OrderedMenu> order) {
         validateOrderedMenuNamesNotAllBeverage(order);
         validateOrderedMenuNamesNotDuplicate(order);
         validateTotalOrderedMenuQuantity(order);
 
-        Order = order;
+        this.order = order;
     }
 
     private void validateOrderedMenuNamesNotAllBeverage(List<OrderedMenu> order) {
@@ -67,5 +68,9 @@ public class Order {
         }
 
         return totalOrderPrice;
+    }
+
+    public List<OrderedMenu> getOrder() {
+        return Collections.unmodifiableList(order);
     }
 }

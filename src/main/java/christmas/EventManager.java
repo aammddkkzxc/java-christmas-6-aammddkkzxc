@@ -10,14 +10,14 @@ public class EventManager {
     private static final int MINIMUM_TOTAL_ORDER_PRICE_FOR_GIFT = 120000;
     private static final int D_DAY_DISCOUNT_PRICE_PER_DAY = 100;
     private static final int D_DAY_DISCOUNT_DEFAULT_PRICE = 1000;
-    private static final int DESSERT_AND_MAIN_DISCOUNT_PRICE = 2023;
+    private static final int DESSERT_DISCOUNT_PRICE = 2023;
     private static final int FIRST_DAY_NUMBER = 1;
 
-    public Map<BenefitTitle, Integer> takeAllBenefit(int totalOrderPrice, Date date) {
+    public Map<BenefitTitle, Integer> takeAllBenefit(int totalOrderPrice, Date date, Order order) {
         Map<BenefitTitle, Integer> allBenefit = new HashMap<>();
         allBenefit.put(BenefitTitle.GIFT, takeGift(totalOrderPrice));
         allBenefit.put(BenefitTitle.D_DAY, takeDDayDiscount(date));
-        allBenefit.put(BenefitTitle.WEEKDAY, takeWeekdayDiscount());
+        allBenefit.put(BenefitTitle.WEEKDAY, takeWeekdayDiscount(date, order));
         allBenefit.put(BenefitTitle.WEEKEND, takeWeekendDiscount());
         allBenefit.put(BenefitTitle.SPECIAL, takeSpecialDiscount());
 
@@ -28,6 +28,7 @@ public class EventManager {
         if (totalOrderPrice >= MINIMUM_TOTAL_ORDER_PRICE_FOR_GIFT) {
             return Menu.CHAMPAGNE.getPrice();
         }
+        
         return 0;
     }
 
@@ -44,13 +45,13 @@ public class EventManager {
         return date.getDayNumber() - FIRST_DAY_NUMBER;
     }
 
-    public int takeWeekdayDiscount() {
+    private int takeWeekdayDiscount(Date date, Order order) {
         int discount = 0;
 
-        for (OrderedMenu orderedMenu : orderedMenus) {
+        for (OrderedMenu orderedMenu : order.getOrder()) {
             Menu menu = Menu.decideMenu(orderedMenu.getMenuName());
             if (date.isWeekday() && MenuType.decideMenuType(menu) == MenuType.DESSERT) {
-                discount += orderedMenu.getQuantity() * DESSERT_AND_MAIN_DISCOUNT_PRICE;
+                discount += orderedMenu.getQuantity() * DESSERT_DISCOUNT_PRICE;
             }
         }
 
@@ -63,7 +64,7 @@ public class EventManager {
         for (OrderedMenu orderedMenu : orderedMenus) {
             Menu menu = Menu.decideMenu(orderedMenu.getMenuName());
             if (date.isWeekend() && MenuType.decideMenuType(menu) == MenuType.MAIN) {
-                discount += orderedMenu.getQuantity() * DESSERT_AND_MAIN_DISCOUNT_PRICE;
+                discount += orderedMenu.getQuantity() * DESSERT_DISCOUNT_PRICE;
             }
         }
 
