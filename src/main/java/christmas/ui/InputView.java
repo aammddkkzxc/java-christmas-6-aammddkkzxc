@@ -3,7 +3,7 @@ package christmas.ui;
 import camp.nextstep.edu.missionutils.Console;
 import christmas.Date;
 import christmas.Order;
-import christmas.programstages.EventDecision;
+import christmas.EventManager;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,12 +32,12 @@ public class InputView {
         return new Date(dayNumber);
     }
 
-    public static EventDecision makeEventDecisionWithValidatedOrders(Date date) {
+    public static EventManager makeEventManagerWithValidatedOrders(Date date) {
         try {
-            return new EventDecision(date, makeOrders());
+            return new EventManager(date, makeOrders());
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
-            return makeEventDecisionWithValidatedOrders(date);
+            return makeEventManagerWithValidatedOrders(date);
         }
     }
 

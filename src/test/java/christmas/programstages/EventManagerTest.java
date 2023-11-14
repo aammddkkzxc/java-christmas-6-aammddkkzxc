@@ -3,14 +3,15 @@ package christmas.programstages;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.Date;
+import christmas.EventManager;
 import christmas.Order;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class EventDecisionTest {
-    EventDecision eventDecision;
+class EventManagerTest {
+    EventManager eventManager;
 
     @BeforeEach
     void setUP() {
@@ -19,11 +20,11 @@ class EventDecisionTest {
         orders.add(new Order("레드와인", 1));
         orders.add(new Order("초코케이크", 1));
 
-        eventDecision = new EventDecision(new Date(26), orders);
+        eventManager = new EventManager(new Date(26), orders);
     }
     @Test
     void calculateTotalOrderPrice() {
-        int result = eventDecision.calculateTotalOrderPrice();
+        int result = eventManager.calculateTotalOrderPrice();
 
         assertThat(result).isEqualTo(145000);
     }

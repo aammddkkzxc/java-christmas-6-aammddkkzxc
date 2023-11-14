@@ -1,4 +1,4 @@
-package christmas.programstages;
+package christmas;
 
 import static christmas.Order.ORDER_RE_READ_REQUEST_MESSAGE;
 
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class EventDecision {
+public class EventManager {
     private static final int MAXIMUM_MENU_QUANTITY = 20;
     private static final int MINIMUM_TOTAL_ORDER_PRICE_FOR_GIFT = 120000;
     private static final int D_DAY_DISCOUNT_PER_DAY = 100;
@@ -24,7 +24,7 @@ public class EventDecision {
     private final Date date;
     private final List<Order> orders;
 
-    public EventDecision(Date date, List<Order> orders) {
+    public EventManager(Date date, List<Order> orders) {
         validateOrdersMenuNotAllBeverage(orders);
         validateOrdersMenuNotDuplicate(orders);
         validateTotalMenuQuantity(orders);
