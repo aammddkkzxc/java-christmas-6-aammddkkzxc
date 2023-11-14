@@ -15,6 +15,7 @@ public class Application {
         Result result = new Result(allBenefit);
         int totalBenefitPrice = result.calculateTotalBenefitPrice();
         int estimatedPayment = result.calculateEstimatedPayment();
-        OutputView.printAllResult(eventDecision.getOrders(), totalOrderPrice, allBenefit, totalBenefitPrice, estimatedPayment);
+        OutputView.printAllResult(eventDecision.getOrders(), totalOrderPrice, allBenefit, totalBenefitPrice,
+                estimatedPayment);
     }
 }

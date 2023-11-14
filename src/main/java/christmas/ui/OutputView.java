@@ -9,6 +9,24 @@ import java.util.Map;
 public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String RESULT_NOTIFY_MESSAGE = "12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
+    private static final String ORDER_MENU_HEADER = "<주문 메뉴>";
+    private static final String TOTAL_ORDER_PRICE_HEADER = "<할인 전 총주문 금액>";
+    private static final String GIFT_MENU_HEADER = "<증정 메뉴>";
+    private static final String BENEFIT_STATISTICS_HEADER = "<혜택 내역>";
+    private static final String TOTAL_BENEFIT_PRICE_HEADER = "<총혜택 금액>";
+    private static final String ESTIMATED_PAYMENT_HEADER = "<할인 후 예상 결제 금액>";
+    private static final String BADGE_HEADER = "<12월 이벤트 배지>";
+    private static final String STAR_BADGE = "별";
+    private static final String TREE_BADGE = "별";
+    private static final String SANTA_BADGE = "별";
+    private static final String NONE = "없음";
+    private static final String PRICE = "%,d원";
+    private static final String QUANTITY = "개";
+    private static final String NEW_LINE = "\n";
+    private static final String SPACE = " ";
+    private static final String COLON = ":";
+    private static final int EVENT_MINIMUM_PRICE = 10000;
+
 
     public static void printErrorMessage(IllegalArgumentException e) {
         System.out.println(ERROR_PREFIX + e.getMessage());
@@ -29,38 +47,39 @@ public class OutputView {
     }
 
     private static void printOrders(List<Order> orders) {
-        System.out.println("<주문 메뉴>");
+        System.out.println(ORDER_MENU_HEADER);
         for (Order order : orders) {
-            System.out.println(order.getName() + " " + order.getAmount() + "개");
+            System.out.println(order.getName() + SPACE + order.getAmount() + QUANTITY);
         }
         System.out.println();
     }
 
     private static void printTotalOrderPrice(int totalOrderPrice) {
-        System.out.println("<할인 전 총주문 금액>" + "\n" + totalOrderPrice + "원");
+        System.out.println(TOTAL_ORDER_PRICE_HEADER + NEW_LINE + String.format(PRICE, totalOrderPrice));
         System.out.println();
     }
 
     private static void printGift(int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit) {
-        if (totalOrderPrice < 10000 || allBenefit.get(BenefitTitle.GIFT) == 0) {
-            System.out.println("<증정 메뉴>" + "\n" + "없음");
+        if (totalOrderPrice < EVENT_MINIMUM_PRICE || allBenefit.get(BenefitTitle.GIFT) == 0) {
+            System.out.println(GIFT_MENU_HEADER + NEW_LINE + NONE);
         }
         if (allBenefit.get(BenefitTitle.GIFT) == Menu.CHAMPAGNE.getPrice()) {
-            System.out.println("<증정 메뉴>" + "\n" + "샴페인 1개");
+            System.out.println(GIFT_MENU_HEADER + NEW_LINE + Menu.CHAMPAGNE.getName() + 1 + QUANTITY);
         }
         System.out.println();
     }
 
     private static void printBenefitStatistics(int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit) {
-        System.out.println("<혜택 내역>");
-        if (totalOrderPrice < 10000 || allBenefit.isEmpty()) {
-            System.out.println("없음");
+        System.out.println(BENEFIT_STATISTICS_HEADER);
+        if (totalOrderPrice < EVENT_MINIMUM_PRICE || allBenefit.isEmpty()) {
+            System.out.println(NONE);
         }
         List<BenefitTitle> benefitTitles = BenefitTitle.findExistingBenefit(allBenefit);
 
         for (BenefitTitle benefitTitle : benefitTitles) {
-            if (totalOrderPrice >= 10000 && allBenefit.get(benefitTitle) != 0) {
-                System.out.println(benefitTitle.getName() + " : " + (-allBenefit.get(benefitTitle)) + "원");
+            if (totalOrderPrice >= EVENT_MINIMUM_PRICE && allBenefit.get(benefitTitle) != 0) {
+                System.out.println(benefitTitle.getName() + SPACE + COLON + SPACE + String.format(PRICE,
+                        -allBenefit.get(benefitTitle)));
             }
         }
 
@@ -68,37 +87,38 @@ public class OutputView {
     }
 
     private static void printTotalBenefitPrice(int totalOrderPrice, int totalBenefitPrice) {
-        if (totalOrderPrice < 10000) {
-            System.out.println("<총혜택 금액>" + "\n" + 0 + "원");
+        if (totalOrderPrice < EVENT_MINIMUM_PRICE) {
+            System.out.println(TOTAL_BENEFIT_PRICE_HEADER + NEW_LINE + String.format(PRICE, 0));
         }
-        if (totalOrderPrice >= 10000) {
-            System.out.println("<총혜택 금액>" + "\n" + (-totalBenefitPrice) + "원");
+        if (totalOrderPrice >= EVENT_MINIMUM_PRICE) {
+            System.out.println(TOTAL_BENEFIT_PRICE_HEADER + NEW_LINE + String.format(PRICE, (-totalBenefitPrice)));
         }
         System.out.println();
     }
 
     private static void printEstimatedPayment(int totalOrderPrice, int estimatedPayment) {
-        if (totalOrderPrice < 10000) {
-            System.out.println("<할인 후 예상 결제 금액>" + "\n" + totalOrderPrice + "원");
+        if (totalOrderPrice < EVENT_MINIMUM_PRICE) {
+            System.out.println(ESTIMATED_PAYMENT_HEADER + NEW_LINE + String.format(PRICE, totalOrderPrice));
         }
-        if (totalOrderPrice >= 10000) {
-            System.out.println("<할인 후 예상 결제 금액>" + "\n" + (totalOrderPrice - estimatedPayment) + "원");
+        if (totalOrderPrice >= EVENT_MINIMUM_PRICE) {
+            System.out.println(
+                    ESTIMATED_PAYMENT_HEADER + NEW_LINE + String.format(PRICE, (totalOrderPrice - estimatedPayment)));
         }
         System.out.println();
     }
 
     private static void printBadge(int totalOrderPrice, int totalBenefitPrice) {
-        if (totalOrderPrice < 10000 || totalBenefitPrice < 5000) {
-            System.out.println("<12월 이벤트 배지>" + "\n" + "없음");
+        if (totalOrderPrice < EVENT_MINIMUM_PRICE || totalBenefitPrice < 5000) {
+            System.out.println(BADGE_HEADER + NEW_LINE + NONE);
         }
         if (totalBenefitPrice >= 5000 && totalBenefitPrice < 10000) {
-            System.out.println("<12월 이벤트 배지>" + "\n" + "별");
+            System.out.println(BADGE_HEADER + NEW_LINE + STAR_BADGE);
         }
         if (totalBenefitPrice >= 10000 && totalBenefitPrice < 20000) {
-            System.out.println("<12월 이벤트 배지>" + "\n" + "트리");
+            System.out.println(BADGE_HEADER + NEW_LINE + TREE_BADGE);
         }
         if (totalBenefitPrice >= 20000) {
-            System.out.println("<12월 이벤트 배지>" + "\n" + "산타");
+            System.out.println(BADGE_HEADER + NEW_LINE + SANTA_BADGE);
         }
     }
 }
