@@ -1,10 +1,13 @@
 package christmas.programstages;
 
+import static christmas.Order.ORDER_RE_READ_REQUEST_MESSAGE;
+
 import christmas.BenefitTitle;
 import christmas.Date;
 import christmas.Order;
 import christmas.menutable.Menu;
 import christmas.menutable.MenuType;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +17,23 @@ public class EventDecision {
     private final List<Order> orders;
 
     public EventDecision(Date date, List<Order> orders) {
+        validateOrdersMenuNotAllBeverage(orders);
         this.date = date;
         this.orders = orders;
+    }
+
+    private void validateOrdersMenuNotAllBeverage(List<Order> orders) {
+        List<Boolean> beverageChecker = new ArrayList<>();
+
+        for (Order order : orders) {
+            if (MenuType.decideMenuType(Menu.decideMenu(order.getName())) == MenuType.BEVERAGE) {
+                beverageChecker.add(true);
+            }
+        }
+
+        if (!beverageChecker.contains(false)) {
+            throw new IllegalArgumentException(ORDER_RE_READ_REQUEST_MESSAGE);
+        }
     }
 
     public int calculateTotalOrderPrice() {
