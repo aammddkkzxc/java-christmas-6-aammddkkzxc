@@ -60,7 +60,7 @@ public class Order {
         }
     }
 
-    public int calculateTotalOrderPrice(List<OrderedMenu> order) {
+    public int calculateTotalOrderPrice() {
         int totalOrderPrice = 0;
 
         for (OrderedMenu orderedMenu : order) {

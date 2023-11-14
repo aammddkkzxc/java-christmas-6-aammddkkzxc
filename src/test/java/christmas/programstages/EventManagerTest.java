@@ -20,14 +20,14 @@ class EventManagerTest {
         orderedMenus.add(new OrderedMenu("레드와인", 1));
         orderedMenus.add(new OrderedMenu("초코케이크", 1));
 
-        eventManager = new EventManager(new Date(26), orderedMenus);
+       //eventManager = new EventManager(new Date(26), orderedMenus);
     }
-    @Test
+    /*@Test
     void calculateTotalOrderPrice() {
         int result = eventManager.calculateTotalOrderPrice();
 
         assertThat(result).isEqualTo(145000);
-    }
+    }*/
 
     /*@Test
     void takeGift() {

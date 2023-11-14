@@ -8,9 +8,9 @@ public class Application {
     public static void main(String[] args) {
         Date date = InputView.inputDate();
         Order order = InputView.inputOrder();
-        int totalOrderPrice = eventManager.calculateTotalOrderPrice();
-        Map<BenefitTitle, Integer> allBenefit = eventManager.takeAllBenefit(totalOrderPrice);
-        Result result = new Result(allBenefit);
+        int totalOrderPrice = order.calculateTotalOrderPrice();
+        EventManager eventManager = new EventManager();
+        Result result = eventManager.takeAllBenefit(totalOrderPrice, date, order);
         int totalBenefitPrice = result.calculateTotalBenefitPrice();
         int estimatedPayment = result.calculateEstimatedPayment();
 
