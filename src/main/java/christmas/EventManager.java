@@ -16,11 +16,14 @@ public class EventManager {
 
     public Result takeAllBenefit(Date date, Order order) {
         Map<BenefitType, Integer> allBenefit = new HashMap<>();
+
         allBenefit.put(BenefitType.GIFT, takeGift(order));
         allBenefit.put(BenefitType.D_DAY, takeDDayDiscount(date));
         allBenefit.put(BenefitType.WEEKDAY, takeWeekdayDiscount(date, order));
         allBenefit.put(BenefitType.WEEKEND, takeWeekendDiscount(date, order));
         allBenefit.put(BenefitType.SPECIAL, takeSpecialDiscount(date));
+
+        cancelAllBenefitIfInsufficientTotalOrderPrice(order, allBenefit);
 
         return new Result(allBenefit);
     }
@@ -78,5 +81,20 @@ public class EventManager {
         }
 
         return 0;
+    }
+    private Map<BenefitType, Integer> cancelAllBenefitIfInsufficientTotalOrderPrice(Order order, Map<BenefitType, Integer> allBenefit) {
+        if(isInsufficientTotalOrderPriceForEvent(order)) {
+            allBenefit.replace(BenefitType.GIFT, 0);
+            allBenefit.replace(BenefitType.D_DAY, 0);
+            allBenefit.replace(BenefitType.WEEKDAY, 0);
+            allBenefit.replace(BenefitType.WEEKEND, 0);
+            allBenefit.replace(BenefitType.SPECIAL, 0);
+        }
+
+        return allBenefit;
+    }
+
+    private boolean isInsufficientTotalOrderPriceForEvent(Order order) {
+        return order.calculateTotalOrderPrice() < 10000;
     }
 }
