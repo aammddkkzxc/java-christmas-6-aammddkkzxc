@@ -1,6 +1,7 @@
 package christmas.ui;
 
 import christmas.BenefitTitle;
+import christmas.Order;
 import christmas.menutable.Menu;
 import java.util.List;
 import java.util.Map;
@@ -12,14 +13,23 @@ public class OutputView {
         System.out.println(ERROR_PREFIX + e.getMessage());
     }
 
-    public static void printAllResult(int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit,
+    public static void printAllResult(List<Order> orders, int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit,
                                       int totalBenefitPrice, int estimatedPayment) {
+        printOrders(orders);
         printTotalOrderPrice(totalOrderPrice);
         printGift(totalOrderPrice, allBenefit);
         printBenefitStatistics(totalOrderPrice, allBenefit);
         printTotalBenefitPrice(totalOrderPrice, totalBenefitPrice);
         printEstimatedPayment(totalOrderPrice, estimatedPayment);
         printBadge(totalOrderPrice, totalBenefitPrice);
+    }
+
+    private static void printOrders(List<Order> orders) {
+        System.out.println("<주문 메뉴>");
+        for (Order order : orders) {
+            System.out.println(order.getName() + " " + order.getAmount() + "개");
+        }
+        System.out.println();
     }
 
     public static void printTotalOrderPrice(int totalOrderPrice) {
