@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String RESULT_NOTIFY_MESSAGE = "12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
 
     public static void printErrorMessage(IllegalArgumentException e) {
         System.out.println(ERROR_PREFIX + e.getMessage());
@@ -15,6 +16,7 @@ public class OutputView {
 
     public static void printAllResult(List<Order> orders, int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit,
                                       int totalBenefitPrice, int estimatedPayment) {
+        System.out.println(RESULT_NOTIFY_MESSAGE);
         printOrders(orders);
         printTotalOrderPrice(totalOrderPrice);
         printGift(totalOrderPrice, allBenefit);
