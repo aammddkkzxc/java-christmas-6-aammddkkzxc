@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
-        Date date = InputView.makeValidatedDate();
+        Date date = InputView.inputDate();
         EventManager eventManager = InputView.inputOrder(date);
         int totalOrderPrice = eventManager.calculateTotalOrderPrice();
         Map<BenefitTitle, Integer> allBenefit = eventManager.takeAllBenefit(totalOrderPrice);
