@@ -22,22 +22,10 @@ public class EventManager {
     private final List<OrderedMenu> orderedMenus;
 
     public EventManager(Date date, List<OrderedMenu> orderedMenus) {
-        validateOrdersMenuNotDuplicate(orderedMenus);
         validateTotalMenuQuantity(orderedMenus);
 
         this.date = date;
         this.orderedMenus = orderedMenus;
-    }
-
-    private void validateOrdersMenuNotDuplicate(List<OrderedMenu> orderedMenus) {
-        Set<String> duplicateMenuNameChecker = new HashSet<>();
-
-        for (OrderedMenu orderedMenu : orderedMenus) {
-            duplicateMenuNameChecker.add(orderedMenu.getMenuName());
-        }
-        if (duplicateMenuNameChecker.size() != orderedMenus.size()) {
-            throw new IllegalArgumentException(ORDER_RE_READ_REQUEST_MESSAGE);
-        }
     }
 
     private void validateTotalMenuQuantity(List<OrderedMenu> orderedMenus) {
