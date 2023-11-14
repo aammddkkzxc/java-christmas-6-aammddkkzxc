@@ -32,12 +32,12 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printTotalOrderPrice(int totalOrderPrice) {
+    private static void printTotalOrderPrice(int totalOrderPrice) {
         System.out.println("<할인 전 총주문 금액>" + "\n" + totalOrderPrice + "원");
         System.out.println();
     }
 
-    public static void printGift(int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit) {
+    private static void printGift(int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit) {
         if (totalOrderPrice < 10000 || allBenefit.get(BenefitTitle.GIFT) == 0) {
             System.out.println("<증정 메뉴>" + "\n" + "없음");
         }
@@ -47,7 +47,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printBenefitStatistics(int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit) {
+    private static void printBenefitStatistics(int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit) {
         System.out.println("<혜택 내역>");
         if (totalOrderPrice < 10000 || allBenefit.isEmpty()) {
             System.out.println("없음");
@@ -63,7 +63,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printTotalBenefitPrice(int totalOrderPrice, int totalBenefitPrice) {
+    private static void printTotalBenefitPrice(int totalOrderPrice, int totalBenefitPrice) {
         if (totalOrderPrice < 10000) {
             System.out.println("<총혜택 금액>" + "\n" + 0 + "원");
         }
@@ -73,7 +73,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printEstimatedPayment(int totalOrderPrice, int estimatedPayment) {
+    private static void printEstimatedPayment(int totalOrderPrice, int estimatedPayment) {
         if (totalOrderPrice < 10000) {
             System.out.println("<할인 후 예상 결제 금액>" + "\n" + totalOrderPrice + "원");
         }
@@ -83,7 +83,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printBadge(int totalOrderPrice, int totalBenefitPrice) {
+    private static void printBadge(int totalOrderPrice, int totalBenefitPrice) {
         if (totalOrderPrice < 10000 || totalBenefitPrice < 5000) {
             System.out.println("<12월 이벤트 배지>" + "\n" + "없음");
         }
