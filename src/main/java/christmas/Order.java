@@ -58,4 +58,14 @@ public class Order {
             throw new IllegalArgumentException(ORDER_RE_READ_REQUEST_MESSAGE);
         }
     }
+
+    public int calculateTotalOrderPrice(List<OrderedMenu> order) {
+        int totalOrderPrice = 0;
+
+        for (OrderedMenu orderedMenu : order) {
+            totalOrderPrice += orderedMenu.calculatePrice();
+        }
+
+        return totalOrderPrice;
+    }
 }

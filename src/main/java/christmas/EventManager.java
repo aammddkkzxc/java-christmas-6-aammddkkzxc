@@ -26,16 +26,6 @@ public class EventManager {
         this.orderedMenus = orderedMenus;
     }
 
-    public int calculateTotalOrderPrice() {
-        int totalOrderPrice = 0;
-
-        for (OrderedMenu orderedMenu : orderedMenus) {
-            totalOrderPrice += orderedMenu.calculatePrice();
-        }
-
-        return totalOrderPrice;
-    }
-
     public Map<BenefitTitle, Integer> takeAllBenefit(int totalOrderPrice) {
         Map<BenefitTitle, Integer> allBenefit = new HashMap<>();
         allBenefit.put(BenefitTitle.GIFT, takeGift(totalOrderPrice));
