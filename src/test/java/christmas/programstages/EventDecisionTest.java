@@ -9,8 +9,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class EventDecisionStageTest {
-    EventDecisionStage eventDecisionStage;
+class EventDecisionTest {
+    EventDecision eventDecision;
 
     @BeforeEach
     void setUP() {
@@ -19,11 +19,11 @@ class EventDecisionStageTest {
         orders.add(new Order("레드와인", 1));
         orders.add(new Order("초코케이크", 1));
 
-        eventDecisionStage = new EventDecisionStage(new Date(26), orders);
+        eventDecision = new EventDecision(new Date(26), orders);
     }
     @Test
     void calculateTotalOrderPrice() {
-        int result = eventDecisionStage.calculateTotalOrderPrice();
+        int result = eventDecision.calculateTotalOrderPrice();
 
         assertThat(result).isEqualTo(145000);
     }

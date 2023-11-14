@@ -9,11 +9,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EventDecisionStage {
+public class EventDecision {
     private final Date date;
     private final List<Order> orders;
 
-    public EventDecisionStage(Date date, List<Order> orders) {
+    public EventDecision(Date date, List<Order> orders) {
         this.date = date;
         this.orders = orders;
     }

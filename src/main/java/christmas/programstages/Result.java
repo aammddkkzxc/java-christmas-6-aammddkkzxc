@@ -6,11 +6,11 @@ import christmas.ui.OutputView;
 import java.util.List;
 import java.util.Map;
 
-public class ResultStage {
+public class Result {
     private final int totalOrderPrice;
     private final Map<BenefitTitle, Integer> allBenefit;
 
-    public ResultStage(int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit) {
+    public Result(int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit) {
         this.totalOrderPrice = totalOrderPrice;
         this.allBenefit = allBenefit;
     }
