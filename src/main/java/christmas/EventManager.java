@@ -14,7 +14,7 @@ public class EventManager {
     private static final int SPECIAL_DISCOUNT_PRICE = 1000;
     private static final int FIRST_DAY_NUMBER = 1;
 
-    public Map<BenefitTitle, Integer> takeAllBenefit(int totalOrderPrice, Date date, Order order) {
+    public Result takeAllBenefit(int totalOrderPrice, Date date, Order order) {
         Map<BenefitTitle, Integer> allBenefit = new HashMap<>();
         allBenefit.put(BenefitTitle.GIFT, takeGift(totalOrderPrice));
         allBenefit.put(BenefitTitle.D_DAY, takeDDayDiscount(date));
@@ -22,7 +22,7 @@ public class EventManager {
         allBenefit.put(BenefitTitle.WEEKEND, takeWeekendDiscount(date, order));
         allBenefit.put(BenefitTitle.SPECIAL, takeSpecialDiscount(date));
 
-        return allBenefit;
+        return new Result(allBenefit);
     }
 
     private int takeGift(int totalOrderPrice) {
