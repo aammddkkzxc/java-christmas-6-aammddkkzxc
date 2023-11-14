@@ -22,29 +22,11 @@ public class EventManager {
     private final List<OrderedMenu> orderedMenus;
 
     public EventManager(Date date, List<OrderedMenu> orderedMenus) {
-        validateOrdersMenuNotAllBeverage(orderedMenus);
         validateOrdersMenuNotDuplicate(orderedMenus);
         validateTotalMenuQuantity(orderedMenus);
 
         this.date = date;
         this.orderedMenus = orderedMenus;
-    }
-
-    private void validateOrdersMenuNotAllBeverage(List<OrderedMenu> orderedMenus) {
-        List<Boolean> beverageChecker = new ArrayList<>();
-
-        for (OrderedMenu orderedMenu : orderedMenus) {
-            if (orderedMenu.isBeverage()) {
-                beverageChecker.add(true);
-            }
-            if (!orderedMenu.isBeverage()) {
-                beverageChecker.add(false);
-            }
-        }
-
-        if (!beverageChecker.contains(false)) {
-            throw new IllegalArgumentException(ORDER_RE_READ_REQUEST_MESSAGE);
-        }
     }
 
     private void validateOrdersMenuNotDuplicate(List<OrderedMenu> orderedMenus) {
