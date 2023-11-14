@@ -9,8 +9,10 @@ import christmas.menutable.Menu;
 import christmas.menutable.MenuType;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class EventDecision {
     private final Date date;
@@ -32,6 +34,17 @@ public class EventDecision {
         }
 
         if (!beverageChecker.contains(false)) {
+            throw new IllegalArgumentException(ORDER_RE_READ_REQUEST_MESSAGE);
+        }
+    }
+
+    private void validateOrdersMenuNotDuplicate(List<Order> orders) {
+        Set<String> duplicateMenuNameChecker = new HashSet<>();
+
+        for (Order order : orders) {
+            duplicateMenuNameChecker.add(order.getName());
+        }
+        if (duplicateMenuNameChecker.size() != orders.size()) {
             throw new IllegalArgumentException(ORDER_RE_READ_REQUEST_MESSAGE);
         }
     }
