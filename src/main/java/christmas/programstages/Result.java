@@ -6,11 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 public class Result {
-    private final int totalOrderPrice;
     private final Map<BenefitTitle, Integer> allBenefit;
 
-    public Result(int totalOrderPrice, Map<BenefitTitle, Integer> allBenefit) {
-        this.totalOrderPrice = totalOrderPrice;
+    public Result(Map<BenefitTitle, Integer> allBenefit) {
         this.allBenefit = allBenefit;
     }
 

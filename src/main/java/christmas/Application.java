@@ -14,7 +14,7 @@ public class Application {
         EventDecision eventDecision = new EventDecision(date, orders);
         int totalOrderPrice = eventDecision.calculateTotalOrderPrice();
         Map<BenefitTitle, Integer> allBenefit = eventDecision.takeAllBenefit(totalOrderPrice);
-        Result result = new Result(totalOrderPrice, allBenefit);
+        Result result = new Result(allBenefit);
         int totalBenefitPrice = result.calculateTotalBenefitPrice();
         int estimatedPayment = result.calculateEstimatedPayment();
         OutputView.printAllResult(totalOrderPrice, allBenefit, totalBenefitPrice, estimatedPayment);
