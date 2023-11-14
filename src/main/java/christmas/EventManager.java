@@ -14,9 +14,9 @@ public class EventManager {
     private static final int SPECIAL_DISCOUNT_PRICE = 1000;
     private static final int FIRST_DAY_NUMBER = 1;
 
-    public Result takeAllBenefit(int totalOrderPrice, Date date, Order order) {
+    public Result takeAllBenefit(Date date, Order order) {
         Map<BenefitTitle, Integer> allBenefit = new HashMap<>();
-        allBenefit.put(BenefitTitle.GIFT, takeGift(totalOrderPrice));
+        allBenefit.put(BenefitTitle.GIFT, takeGift(order));
         allBenefit.put(BenefitTitle.D_DAY, takeDDayDiscount(date));
         allBenefit.put(BenefitTitle.WEEKDAY, takeWeekdayDiscount(date, order));
         allBenefit.put(BenefitTitle.WEEKEND, takeWeekendDiscount(date, order));
@@ -25,8 +25,8 @@ public class EventManager {
         return new Result(allBenefit);
     }
 
-    private int takeGift(int totalOrderPrice) {
-        if (totalOrderPrice >= MINIMUM_TOTAL_ORDER_PRICE_FOR_GIFT) {
+    private int takeGift(Order order) {
+        if (order.calculateTotalOrderPrice() >= MINIMUM_TOTAL_ORDER_PRICE_FOR_GIFT) {
             return Menu.CHAMPAGNE.getPrice();
         }
 
