@@ -26,8 +26,8 @@ public class InputView {
         System.out.println(OPENING_MESSAGE);
         System.out.println(DATE_REQUEST_MESSAGE);
 
-        String dateInput = Console.readLine();
-        int dayNumber = Converter.convertDateInput(dateInput);
+        String input = Console.readLine();
+        int dayNumber = Converter.convertDateNumeric(input);
 
         return new Date(dayNumber);
     }
@@ -44,14 +44,14 @@ public class InputView {
     private static List<OrderedMenu> readOrder() {
         System.out.println(ORDER_REQUEST_MESSAGE);
 
-        String orderInput = Console.readLine();
-        List<String> separatedOrder = Converter.separateOrder(orderInput);
+        String input = Console.readLine();
+        List<String> separatedOrder = Converter.separateOrder(input);
         List<OrderedMenu> order = new ArrayList<>();
 
         for (String orderedMenu : separatedOrder) {
             List<String> separatedNameAndAmount = Converter.separateNameAndAmount(orderedMenu);
             String name = separatedNameAndAmount.get(0);
-            int amount = Converter.convertAmount(separatedNameAndAmount.get(1));
+            int amount = Converter.convertAmountNumeric(separatedNameAndAmount.get(1));
             order.add(new OrderedMenu(name, amount));
         }
 
