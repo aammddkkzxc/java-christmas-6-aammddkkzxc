@@ -37,7 +37,7 @@ public class Order {
     }
 
     public int calculatePrice() {
-        return Objects.requireNonNull(Menu.decideMenu(name)).getPrice() * amount;
+        return Menu.decideMenu(name).getPrice() * amount;
     }
 
     public String getName() {
