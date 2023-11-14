@@ -16,6 +16,11 @@ import java.util.Set;
 
 public class EventDecision {
     private static final int MAXIMUM_MENU_QUANTITY = 20;
+    private static final int MINIMUM_TOTAL_ORDER_PRICE_FOR_GIFT = 120000;
+    private static final int D_DAY_DISCOUNT_PER_DAY = 100;
+    private static final int ONE_THOUSAND_WON_DISCOUNT = 1000;
+    private static final int DESSERT_AND_MAIN_DISCOUNT_PRICE = 2023;
+
     private final Date date;
     private final List<Order> orders;
 
@@ -89,7 +94,7 @@ public class EventDecision {
     }
 
     public int takeGift(int totalOrderPrice) {
-        if (totalOrderPrice >= 120000) {
+        if (totalOrderPrice >= MINIMUM_TOTAL_ORDER_PRICE_FOR_GIFT) {
             return Menu.CHAMPAGNE.getPrice();
         }
         return 0;
@@ -99,7 +104,7 @@ public class EventDecision {
         int discount = 0;
 
         if (date.isBeforeChristmas()) {
-            discount = 1000 + (date.getDayNumber() - 1) * 100;
+            discount = ONE_THOUSAND_WON_DISCOUNT + (date.getDayNumber() - 1) * D_DAY_DISCOUNT_PER_DAY;
         }
 
         return discount;
@@ -111,7 +116,7 @@ public class EventDecision {
         for (Order order : orders) {
             Menu menu = Menu.decideMenu(order.getName());
             if (date.isWeekday() && MenuType.decideMenuType(menu) == MenuType.DESSERT) {
-                discount += order.getAmount() * 2023;
+                discount += order.getAmount() * DESSERT_AND_MAIN_DISCOUNT_PRICE;
             }
         }
 
@@ -124,7 +129,7 @@ public class EventDecision {
         for (Order order : orders) {
             Menu menu = Menu.decideMenu(order.getName());
             if (date.isWeekend() && MenuType.decideMenuType(menu) == MenuType.MAIN) {
-                discount += order.getAmount() * 2023;
+                discount += order.getAmount() * DESSERT_AND_MAIN_DISCOUNT_PRICE;
             }
         }
 
@@ -135,7 +140,7 @@ public class EventDecision {
         int discount = 0;
 
         if (date.isStarred()) {
-            discount += 1000;
+            discount += ONE_THOUSAND_WON_DISCOUNT;
         }
 
         return discount;
