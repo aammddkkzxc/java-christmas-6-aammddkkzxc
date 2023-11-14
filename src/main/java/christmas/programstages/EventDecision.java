@@ -20,6 +20,7 @@ public class EventDecision {
 
     public EventDecision(Date date, List<Order> orders) {
         validateOrdersMenuNotAllBeverage(orders);
+        validateOrdersMenuNotDuplicate(orders);
         this.date = date;
         this.orders = orders;
     }
@@ -30,6 +31,9 @@ public class EventDecision {
         for (Order order : orders) {
             if (order.isBeverage()) {
                 beverageChecker.add(true);
+            }
+            if (!order.isBeverage()) {
+                beverageChecker.add(false);
             }
         }
 
