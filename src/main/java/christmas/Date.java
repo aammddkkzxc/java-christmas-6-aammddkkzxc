@@ -35,7 +35,7 @@ public class Date {
         return WEEKDAY_CONDITION.contains(dayNumber % DAY_NUMBER_JUDGEMENT_FACTOR);
     }
 
-    public boolean isWeekend() {
+    public boolean isWeekendDiscountActive() {
         return WEEKEND_CONDITION.contains(dayNumber % DAY_NUMBER_JUDGEMENT_FACTOR);
     }
 
