@@ -9,6 +9,7 @@ public class Date {
     private static final List<Integer> WEEKDAY_CONDITION = new ArrayList<>(Arrays.asList(0, 3, 4, 5, 6));
     private static final List<Integer> WEEKEND_CONDITION = new ArrayList<>(Arrays.asList(1, 2));
     private static final List<Integer> STARRED_CONDITION = new ArrayList<>(Arrays.asList(3, 25));
+    private static final int CHRISTMAS_DAY = 25;
     private static final int DAY_NUMBER_JUDGEMENT_FACTOR = 7;
     private static final int DATE_MIN_NUMBER = 1;
     private static final int DATE_MAX_NUMBER = 31;
@@ -27,7 +28,7 @@ public class Date {
     }
 
     public boolean isBeforeChristmas() {
-        return dayNumber <= 25;
+        return dayNumber <= CHRISTMAS_DAY;
     }
 
     public boolean isWeekday() {
