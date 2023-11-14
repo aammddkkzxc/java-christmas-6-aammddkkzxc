@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.Set;
 
 public class EventManager {
-    private static final int MAXIMUM_MENU_QUANTITY = 20;
     private static final int MINIMUM_TOTAL_ORDER_PRICE_FOR_GIFT = 120000;
     private static final int D_DAY_DISCOUNT_PER_DAY = 100;
     private static final int ONE_THOUSAND_WON_DISCOUNT = 1000;
@@ -22,21 +21,9 @@ public class EventManager {
     private final List<OrderedMenu> orderedMenus;
 
     public EventManager(Date date, List<OrderedMenu> orderedMenus) {
-        validateTotalMenuQuantity(orderedMenus);
 
         this.date = date;
         this.orderedMenus = orderedMenus;
-    }
-
-    private void validateTotalMenuQuantity(List<OrderedMenu> orderedMenus) {
-        int totalMenuQuantity = 0;
-
-        for (OrderedMenu orderedMenu : orderedMenus) {
-            totalMenuQuantity += orderedMenu.getQuantity();
-        }
-        if (totalMenuQuantity > MAXIMUM_MENU_QUANTITY) {
-            throw new IllegalArgumentException(ORDER_RE_READ_REQUEST_MESSAGE);
-        }
     }
 
     public int calculateTotalOrderPrice() {

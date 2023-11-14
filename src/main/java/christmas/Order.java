@@ -8,11 +8,15 @@ import java.util.List;
 import java.util.Set;
 
 public class Order {
+    private static final int MAXIMUM_MENU_QUANTITY = 20;
+
     private final List<OrderedMenu> Order;
 
     public Order(List<OrderedMenu> order) {
         validateOrderedMenuNamesNotAllBeverage(order);
-        validateOrdersMenuNotDuplicate(order);
+        validateOrderedMenuNamesNotDuplicate(order);
+        validateTotalOrderedMenuQuantity(order);
+
         Order = order;
     }
 
@@ -33,13 +37,24 @@ public class Order {
         }
     }
 
-    private void validateOrdersMenuNotDuplicate(List<OrderedMenu> orderedMenus) {
-        Set<String> duplicateMenuNameChecker = new HashSet<>();
+    private void validateOrderedMenuNamesNotDuplicate(List<OrderedMenu> order) {
+        Set<String> duplicateChecker = new HashSet<>();
 
-        for (OrderedMenu orderedMenu : orderedMenus) {
-            duplicateMenuNameChecker.add(orderedMenu.getMenuName());
+        for (OrderedMenu orderedMenu : order) {
+            duplicateChecker.add(orderedMenu.getMenuName());
         }
-        if (duplicateMenuNameChecker.size() != orderedMenus.size()) {
+        if (duplicateChecker.size() != order.size()) {
+            throw new IllegalArgumentException(ORDER_RE_READ_REQUEST_MESSAGE);
+        }
+    }
+
+    private void validateTotalOrderedMenuQuantity(List<OrderedMenu> order) {
+        int totalQuantity = 0;
+
+        for (OrderedMenu orderedMenu : order) {
+            totalQuantity += orderedMenu.getQuantity();
+        }
+        if (totalQuantity > MAXIMUM_MENU_QUANTITY) {
             throw new IllegalArgumentException(ORDER_RE_READ_REQUEST_MESSAGE);
         }
     }
