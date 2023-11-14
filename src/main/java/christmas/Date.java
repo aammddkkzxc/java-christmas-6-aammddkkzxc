@@ -27,7 +27,7 @@ public class Date {
         }
     }
 
-    public boolean isBeforeChristmas() {
+    public boolean isDDayDiscountActive() {
         return dayNumber <= CHRISTMAS_DAY;
     }
 

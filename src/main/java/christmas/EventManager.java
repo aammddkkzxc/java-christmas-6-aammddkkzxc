@@ -34,7 +34,7 @@ public class EventManager {
     }
 
     private int takeDDayDiscount(Date date) {
-        if (date.isBeforeChristmas()) {
+        if (date.isDDayDiscountActive()) {
             return D_DAY_DISCOUNT_DEFAULT_PRICE
                     + (calculateDifferenceBetweenFirstDay(date) * D_DAY_DISCOUNT_PRICE_PER_DAY);
         }
