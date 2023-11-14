@@ -3,7 +3,6 @@ package christmas;
 import christmas.menutable.Menu;
 import christmas.menutable.MenuType;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class EventManager {
@@ -12,6 +11,7 @@ public class EventManager {
     private static final int D_DAY_DISCOUNT_DEFAULT_PRICE = 1000;
     private static final int WEEKDAY_DESSERT_DISCOUNT_PRICE = 2023;
     private static final int WEEKEND_MAIN_DISCOUNT_PRICE = 2023;
+    private static final int SPECIAL_DISCOUNT_PRICE = 1000;
     private static final int FIRST_DAY_NUMBER = 1;
 
     public Map<BenefitTitle, Integer> takeAllBenefit(int totalOrderPrice, Date date, Order order) {
@@ -20,7 +20,7 @@ public class EventManager {
         allBenefit.put(BenefitTitle.D_DAY, takeDDayDiscount(date));
         allBenefit.put(BenefitTitle.WEEKDAY, takeWeekdayDiscount(date, order));
         allBenefit.put(BenefitTitle.WEEKEND, takeWeekendDiscount(date, order));
-        allBenefit.put(BenefitTitle.SPECIAL, takeSpecialDiscount());
+        allBenefit.put(BenefitTitle.SPECIAL, takeSpecialDiscount(date));
 
         return allBenefit;
     }
@@ -72,17 +72,11 @@ public class EventManager {
         return discount;
     }
 
-    public int takeSpecialDiscount() {
-        int discount = 0;
-
+    private int takeSpecialDiscount(Date date) {
         if (date.isStarred()) {
-            discount += ONE_THOUSAND_WON_DISCOUNT;
+            return SPECIAL_DISCOUNT_PRICE;
         }
 
-        return discount;
-    }
-
-    public List<OrderedMenu> getOrders() {
-        return orderedMenus;
+        return 0;
     }
 }
