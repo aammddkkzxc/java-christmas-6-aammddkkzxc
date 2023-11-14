@@ -7,7 +7,7 @@ import java.util.Map;
 public class Application {
     public static void main(String[] args) {
         Date date = InputView.inputDate();
-        EventManager eventManager = InputView.inputOrder(date);
+        Order order = InputView.inputOrder();
         int totalOrderPrice = eventManager.calculateTotalOrderPrice();
         Map<BenefitTitle, Integer> allBenefit = eventManager.takeAllBenefit(totalOrderPrice);
         Result result = new Result(allBenefit);

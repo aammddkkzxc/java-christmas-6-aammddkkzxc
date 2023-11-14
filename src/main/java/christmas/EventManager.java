@@ -17,15 +17,6 @@ public class EventManager {
     private static final int ONE_THOUSAND_WON_DISCOUNT = 1000;
     private static final int DESSERT_AND_MAIN_DISCOUNT_PRICE = 2023;
 
-    private final Date date;
-    private final List<OrderedMenu> orderedMenus;
-
-    public EventManager(Date date, List<OrderedMenu> orderedMenus) {
-
-        this.date = date;
-        this.orderedMenus = orderedMenus;
-    }
-
     public Map<BenefitTitle, Integer> takeAllBenefit(int totalOrderPrice) {
         Map<BenefitTitle, Integer> allBenefit = new HashMap<>();
         allBenefit.put(BenefitTitle.GIFT, takeGift(totalOrderPrice));
