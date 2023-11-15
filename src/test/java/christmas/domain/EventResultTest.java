@@ -37,12 +37,12 @@ class EventResultTest {
         assertThat(result).isEqualTo(31246);
     }
 
-    @DisplayName("주어진 날짜와 주문으로 결제 예상 금액을 계산한다.")
+    @DisplayName("주어진 날짜와 주문으로 전체 할인 금액을 계산한다.")
     @Test
-    void calculateEstimatedPayment() {
+    void calculateTotalDiscountAmount() {
         int result = eventResult.calculateTotalDiscountAmount();
 
-        assertThat(result).isEqualTo(135754);
+        assertThat(result).isEqualTo(6246);
     }
 
     @Test
