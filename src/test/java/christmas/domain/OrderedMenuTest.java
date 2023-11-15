@@ -34,7 +34,12 @@ class OrderedMenuTest {
         assertThat(result).isEqualTo(true);
     }
 
+    @DisplayName("주문메뉴로 해당 주문의 가격을 알 수 있다.")
     @Test
     void calculatePrice() {
+        OrderedMenu input = new OrderedMenu("제로콜라", 3);
+        int result = input.calculatePrice();
+
+        assertThat(result).isEqualTo(9000);
     }
 }
