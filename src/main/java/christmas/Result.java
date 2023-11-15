@@ -18,15 +18,15 @@ public class Result {
         this.allBenefit = allBenefit;
     }
 
-    public int calculateTotalBenefitPrice() {
-        int totalBenefitPirce = 0;
-        List<BenefitType> benefitTypes = BenefitType.findExistingBenefitType(allBenefit);
+    public int calculateTotalBenefitAmount() {
+        int totalBenefitAmount = 0;
+        List<BenefitType> benefitTypes = List.of(BenefitType.values());
 
         for (BenefitType benefitType : benefitTypes) {
-            totalBenefitPirce += allBenefit.get(benefitType);
+            totalBenefitAmount += allBenefit.get(benefitType);
         }
 
-        return totalBenefitPirce;
+        return totalBenefitAmount;
     }
 
     public int calculateEstimatedPayment() {
@@ -61,7 +61,7 @@ public class Result {
     }
 
     public String decideEventBadge() {
-        int totalBenefitPrice = calculateTotalBenefitPrice();
+        int totalBenefitPrice = calculateTotalBenefitAmount();
 
         if (totalBenefitPrice >= 5000 && totalBenefitPrice < 10000) {
             return STAR_BADGE;

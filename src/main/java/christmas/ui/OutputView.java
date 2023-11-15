@@ -86,7 +86,7 @@ public class OutputView {
 
     private static OrderResult makeTotalBenefitAmountResult(Result result) {
         return new OrderResult(OrderResultType.TOTAL_BENEFIT_AMOUNT,
-                String.format(PRICE, (-result.calculateTotalBenefitPrice())) + NEW_LINE);
+                String.format(PRICE, (-result.calculateTotalBenefitAmount())) + NEW_LINE);
     }
 
     private static OrderResult makeEstimatedPaymentResult(Order order, Result result) {
