@@ -1,8 +1,13 @@
 package christmas.ui;
 
 import christmas.BenefitType;
+import christmas.Order;
+import christmas.OrderResult;
+import christmas.OrderResultType;
 import christmas.OrderedMenu;
+import christmas.Result;
 import christmas.menutable.Menu;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -31,18 +36,21 @@ public class OutputView {
         System.out.println(ERROR_PREFIX + e.getMessage());
     }
 
-    public static void printAllResult(List<OrderedMenu> orderedMenus, int totalOrderPrice, Map<BenefitType, Integer> allBenefit,
-                                      int totalBenefitPrice, int estimatedPayment) {
+    public static void printAllResult(Order order, Result result) {
         System.out.println(RESULT_NOTIFY_MESSAGE);
         System.out.println();
 
-        printOrders(orderedMenus);
-        printTotalOrderPrice(totalOrderPrice);
-        printGift(totalOrderPrice, allBenefit);
-        printBenefitStatistics(totalOrderPrice, allBenefit);
-        printTotalBenefitPrice(totalOrderPrice, totalBenefitPrice);
-        printEstimatedPayment(totalOrderPrice, estimatedPayment);
-        printBadge(totalOrderPrice, totalBenefitPrice);
+        List<OrderResult> orderResults = makeOrderResults(order, result);
+        for (OrderResult orderResult : orderResults) {
+            System.out.println();
+            System.out.println(orderResult.getOrderResultType());
+            System.out.println(orderResult.getResultDetails());
+        }
+    }
+
+    private static List<OrderResult> makeOrderResults (Order order, Result result) {
+        List<OrderResult> orderResults = new ArrayList<>();
+        orderResults.add(makeGiftResult(result));
     }
 
     private static void printOrders(List<OrderedMenu> orderedMenus) {
@@ -58,14 +66,11 @@ public class OutputView {
         System.out.println();
     }
 
-    private static void printGift(int totalOrderPrice, Map<BenefitType, Integer> allBenefit) {
-        if (totalOrderPrice < EVENT_MINIMUM_PRICE || allBenefit.get(BenefitType.GIFT) == 0) {
-            System.out.println(GIFT_MENU_HEADER + NEW_LINE + NONE);
+    private static OrderResult makeGiftResult(Result result) {
+        if(result.isReceivedGiftBenefit()) {
+            return new OrderResult(OrderResultType.GIFT_MENU, Menu.CHAMPAGNE.getName() + 1 + QUANTITY);
         }
-        if (allBenefit.get(BenefitType.GIFT) == Menu.CHAMPAGNE.getPrice()) {
-            System.out.println(GIFT_MENU_HEADER + NEW_LINE + Menu.CHAMPAGNE.getName() + 1 + QUANTITY);
-        }
-        System.out.println();
+        return new OrderResult(OrderResultType.GIFT_MENU, NONE);
     }
 
     private static void printBenefitStatistics(int totalOrderPrice, Map<BenefitType, Integer> allBenefit) {

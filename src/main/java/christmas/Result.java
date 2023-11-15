@@ -1,6 +1,7 @@
 package christmas;
 
 import christmas.menutable.Menu;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -34,5 +35,13 @@ public class Result {
         }
 
         return estimatedPayment;
+    }
+
+    public boolean isReceivedGiftBenefit() {
+        return allBenefit.get(BenefitType.GIFT) == Menu.CHAMPAGNE.getPrice();
+    }
+
+    public Map<BenefitType, Integer> getAllBenefit() {
+        return Collections.unmodifiableMap(allBenefit);
     }
 }
