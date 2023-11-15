@@ -31,6 +31,7 @@ public class OutputView {
         System.out.println();
 
         List<OrderResult> orderResults = makeTotalOrderResults(order, eventResult);
+
         for (OrderResult orderResult : orderResults) {
             System.out.println(orderResult.getOrderResultType().getName());
             System.out.println(orderResult.getResultDetails());
@@ -52,6 +53,7 @@ public class OutputView {
 
     private static OrderResult makeOrderStatisticsResult(Order order) {
         StringBuilder orderDetails = new StringBuilder();
+
         for (OrderedMenu orderedMenu : order.getOrder()) {
             orderDetails.append(orderedMenu.getMenuName()).append(SPACE).append(orderedMenu.getQuantity())
                     .append(QUANTITY).append(NEW_LINE);
@@ -62,7 +64,6 @@ public class OutputView {
     private static OrderResult makeTotalOrderPriceResult(Order order) {
         StringBuilder totalOrderPriceDetails = new StringBuilder();
         totalOrderPriceDetails.append(String.format(PRICE, order.calculateTotalOrderPrice())).append(NEW_LINE);
-
         return new OrderResult(OrderResultType.TOTAL_ORDER_PRICE, totalOrderPriceDetails.toString());
     }
 
@@ -73,6 +74,7 @@ public class OutputView {
             giftDetails.append(NONE).append(NEW_LINE);
             return new OrderResult(OrderResultType.GIFT_MENU, giftDetails.toString());
         }
+
         giftDetails.append(Menu.CHAMPAGNE.getName()).append(SPACE).append(GIFT_QUANTITY).append(QUANTITY)
                 .append(NEW_LINE);
         return new OrderResult(OrderResultType.GIFT_MENU, giftDetails.toString());
@@ -98,7 +100,6 @@ public class OutputView {
         StringBuilder totalBenefitAmountDetails = new StringBuilder();
         totalBenefitAmountDetails.append(String.format(PRICE, (-eventResult.calculateTotalBenefitAmount())))
                 .append(NEW_LINE);
-
         return new OrderResult(OrderResultType.TOTAL_BENEFIT_AMOUNT, totalBenefitAmountDetails.toString());
     }
 
@@ -106,8 +107,8 @@ public class OutputView {
         int totalOrderPrice = order.calculateTotalOrderPrice();
         int totalDiscountAmount = eventResult.calculateTotalDiscountAmount();
         StringBuilder estimatedPaymentDetails = new StringBuilder();
-        estimatedPaymentDetails.append(String.format(PRICE, (totalOrderPrice - totalDiscountAmount))).append(NEW_LINE);
 
+        estimatedPaymentDetails.append(String.format(PRICE, (totalOrderPrice - totalDiscountAmount))).append(NEW_LINE);
         return new OrderResult(OrderResultType.ESTIMATED_PAYMENT, estimatedPaymentDetails.toString());
     }
 
