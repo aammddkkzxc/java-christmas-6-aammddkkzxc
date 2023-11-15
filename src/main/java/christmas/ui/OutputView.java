@@ -79,17 +79,18 @@ public class OutputView {
     }
 
     private static OrderResult makeBenefitStatisticsResult(EventResult eventResult) {
+        StringBuilder benefitDetails = new StringBuilder();
+        List<BenefitType> existingBenefit = eventResult.checkWhichBenefitExist();
+
         if (eventResult.checkWhichBenefitExist().isEmpty()) {
-            return new OrderResult(OrderResultType.BENEFIT_STATISTICS, NONE + NEW_LINE);
+            benefitDetails.append(NONE).append(NEW_LINE);
+            return new OrderResult(OrderResultType.BENEFIT_STATISTICS, benefitDetails.toString());
         }
 
-        List<BenefitType> existingBenefit = eventResult.checkWhichBenefitExist();
-        StringBuilder benefitDetails = new StringBuilder();
         for (BenefitType benefitType : existingBenefit) {
             benefitDetails.append(benefitType.getName()).append(SPACE + COLON + SPACE).append(String.format(PRICE,
                     -eventResult.getAllBenefit().get(benefitType))).append(NEW_LINE);
         }
-
         return new OrderResult(OrderResultType.BENEFIT_STATISTICS, benefitDetails.toString());
     }
 
