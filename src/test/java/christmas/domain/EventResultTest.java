@@ -45,8 +45,12 @@ class EventResultTest {
         assertThat(result).isEqualTo(6246);
     }
 
+    @DisplayName("증정 메뉴 혜택을 받는지 알 수 있다.")
     @Test
     void isReceivedGiftBenefit() {
+        boolean result = eventResult.isReceivedGiftBenefit();
+
+        assertThat(result).isEqualTo(true);
     }
 
     @Test
