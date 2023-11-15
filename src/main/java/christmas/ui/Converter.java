@@ -23,7 +23,23 @@ public class Converter {
     }
 
     public static List<String> separateNameAndAmount(String orderedMenu) {
-        return new ArrayList<>(List.of(orderedMenu.split(NAME_AND_AMOUNT_DELIMITER)));
+        validateAppropriateDelimiter(orderedMenu);
+        List<String> separatedNameAndAmount = new ArrayList<>(List.of(orderedMenu.split(NAME_AND_AMOUNT_DELIMITER)));
+        validateAppropriateForm(separatedNameAndAmount);
+
+        return separatedNameAndAmount;
+    }
+
+    private static void validateAppropriateDelimiter(String orderedMenu) {
+        if (!orderedMenu.contains(NAME_AND_AMOUNT_DELIMITER)) {
+            throw new IllegalArgumentException(ORDER_RE_READ_REQUEST_MESSAGE);
+        }
+    }
+
+    private static void validateAppropriateForm(List<String> separatedNameAndAmount) {
+        if (separatedNameAndAmount.size() != 2) {
+            throw new IllegalArgumentException(ORDER_RE_READ_REQUEST_MESSAGE);
+        }
     }
 
     public static int convertAmountNumeric(String input) {
