@@ -18,7 +18,7 @@ public enum MenuType {
     }
 
     public static MenuType decideMenuType(Menu menu) {
-        MenuType[] menuTypes = MenuType.values();
+        MenuType[] menuTypes = values();
 
         for (MenuType menuType : menuTypes) {
             if (menuType.getMenus().contains(menu)) {
