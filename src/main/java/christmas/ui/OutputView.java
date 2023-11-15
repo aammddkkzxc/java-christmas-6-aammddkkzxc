@@ -74,14 +74,14 @@ public class OutputView {
 
     private static OrderResult makeGiftResult(Result result) {
         if (!result.isReceivedGiftBenefit()) {
-            return new OrderResult(OrderResultType.GIFT_MENU, NONE);
+            return new OrderResult(OrderResultType.GIFT_MENU, NONE + NEW_LINE);
         }
         return new OrderResult(OrderResultType.GIFT_MENU, Menu.CHAMPAGNE.getName() + SPACE + 1 + QUANTITY + NEW_LINE);
     }
 
     private static OrderResult makeBenefitStatisticsResult(Result result) {
         if (result.isReceivedBenefit().isEmpty()) {
-            return new OrderResult(OrderResultType.BENEFIT_STATISTICS, NONE);
+            return new OrderResult(OrderResultType.BENEFIT_STATISTICS, NONE + NEW_LINE);
         }
 
         List<BenefitType> existingBenefit = result.isReceivedBenefit();
