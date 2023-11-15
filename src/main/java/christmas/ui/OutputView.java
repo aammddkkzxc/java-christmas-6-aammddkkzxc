@@ -54,6 +54,7 @@ public class OutputView {
         orderResults.add(makeBenefitStatisticsResult(result));
         orderResults.add(makeTotalBenefitAmountResult(result));
         orderResults.add(makeEstimatedPaymentResult(order, result));
+        orderResults.add(makeBadgeResult(result));
 
         return orderResults;
     }
@@ -104,21 +105,10 @@ public class OutputView {
         int estimatedPayment = result.calculateEstimatedPayment();
 
         return new OrderResult(OrderResultType.ESTIMATED_PAYMENT,
-                String.format(PRICE, (totalOrderPrice - estimatedPayment)));
+                String.format(PRICE, (totalOrderPrice - estimatedPayment)) + NEW_LINE);
     }
 
-    private static void printBadge(int totalOrderPrice, int totalBenefitPrice) {
-        if (totalOrderPrice < EVENT_MINIMUM_PRICE || totalBenefitPrice < 5000) {
-            System.out.println(BADGE_HEADER + NEW_LINE + NONE);
-        }
-        if (totalBenefitPrice >= 5000 && totalBenefitPrice < 10000) {
-            System.out.println(BADGE_HEADER + NEW_LINE + STAR_BADGE);
-        }
-        if (totalBenefitPrice >= 10000 && totalBenefitPrice < 20000) {
-            System.out.println(BADGE_HEADER + NEW_LINE + TREE_BADGE);
-        }
-        if (totalBenefitPrice >= 20000) {
-            System.out.println(BADGE_HEADER + NEW_LINE + SANTA_BADGE);
-        }
+    private static OrderResult makeBadgeResult(Result result) {
+        return new OrderResult(OrderResultType.EVENT_BADGE, result.decideEventBadge());
     }
 }

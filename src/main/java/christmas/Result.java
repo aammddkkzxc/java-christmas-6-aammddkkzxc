@@ -7,6 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 public class Result {
+    private static final String NON_BADGE = "없음";
+    private static final String STAR_BADGE = "별";
+    private static final String TREE_BADGE = "트리";
+    private static final String SANTA_BADGE = "산타";
+
     private final Map<BenefitType, Integer> allBenefit;
 
     public Result(Map<BenefitType, Integer> allBenefit) {
@@ -53,6 +58,21 @@ public class Result {
         }
 
         return existingBenefit;
+    }
+
+    public String decideEventBadge() {
+        int totalBenefitPrice = calculateTotalBenefitPrice();
+
+        if (totalBenefitPrice >= 5000 && totalBenefitPrice < 10000) {
+            return STAR_BADGE;
+        }
+        if (totalBenefitPrice >= 10000 && totalBenefitPrice < 20000) {
+            return TREE_BADGE;
+        }
+        if (totalBenefitPrice >= 20000) {
+            return SANTA_BADGE;
+        }
+        return NON_BADGE;
     }
 
     public Map<BenefitType, Integer> getAllBenefit() {
