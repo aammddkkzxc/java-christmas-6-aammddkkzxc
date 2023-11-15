@@ -105,9 +105,10 @@ public class OutputView {
     private static OrderResult makeEstimatedPaymentResult(Order order, EventResult eventResult) {
         int totalOrderPrice = order.calculateTotalOrderPrice();
         int totalDiscountAmount = eventResult.calculateTotalDiscountAmount();
+        StringBuilder estimatedPaymentDetails = new StringBuilder();
+        estimatedPaymentDetails.append(String.format(PRICE, (totalOrderPrice - totalDiscountAmount))).append(NEW_LINE);
 
-        return new OrderResult(OrderResultType.ESTIMATED_PAYMENT,
-                String.format(PRICE, (totalOrderPrice - totalDiscountAmount)) + NEW_LINE);
+        return new OrderResult(OrderResultType.ESTIMATED_PAYMENT, estimatedPaymentDetails.toString());
     }
 
     private static OrderResult makeBadgeResult(EventResult eventResult) {
