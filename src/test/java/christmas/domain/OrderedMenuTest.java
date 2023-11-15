@@ -1,7 +1,7 @@
 package christmas.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,8 +25,13 @@ class OrderedMenuTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("주문 메뉴의 메뉴 타입이 음료에 해당하는지 알 수 있다.")
     @Test
     void isBeverage() {
+        OrderedMenu input = new OrderedMenu("제로콜라", 3);
+        boolean result = input.isBeverage();
+
+        assertThat(result).isEqualTo(true);
     }
 
     @Test
