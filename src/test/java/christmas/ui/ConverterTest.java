@@ -44,6 +44,15 @@ class ConverterTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("주문 메뉴를 구분자로 구분한 값에 형식에 맞지 않는 값이 있을 경우 예외가 발생한다.")
+    @Test
+    void checkSeparatedNameAndAmountHasRightValue() {
+        String input = "타파스-1-맥주";
+
+        assertThatThrownBy(() -> Converter.separateNameAndAmount(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("수량을 숫자로 변환한다.")
     @Test
     void convertAmountNumeric() {
