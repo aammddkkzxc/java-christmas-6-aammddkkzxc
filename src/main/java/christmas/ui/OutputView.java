@@ -50,7 +50,7 @@ public class OutputView {
     private static List<OrderResult> makeOrderResults(Order order, Result result) {
         List<OrderResult> orderResults = new ArrayList<>();
         orderResults.add(makeGiftResult(result));
-        orderResults.add(makeBenefitStatistics(order, result));
+        orderResults.add(makeBenefitStatisticsResult(result));
 
         return orderResults;
     }
@@ -75,7 +75,7 @@ public class OutputView {
         return new OrderResult(OrderResultType.GIFT_MENU, NONE);
     }
 
-    private static OrderResult makeBenefitStatistics(Order order, Result result) {
+    private static OrderResult makeBenefitStatisticsResult(Result result) {
         if (result.isReceivedBenefit().isEmpty()) {
             return new OrderResult(OrderResultType.BENEFIT_STATISTICS, NONE);
         }
