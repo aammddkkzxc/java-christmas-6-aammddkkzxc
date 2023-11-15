@@ -13,23 +13,12 @@ import java.util.List;
 public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
     private static final String RESULT_NOTIFY_MESSAGE = "12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
-    private static final String ORDER_MENU_HEADER = "<주문 메뉴>";
-    private static final String TOTAL_ORDER_PRICE_HEADER = "<할인 전 총주문 금액>";
-    private static final String GIFT_MENU_HEADER = "<증정 메뉴>";
-    private static final String BENEFIT_STATISTICS_HEADER = "<혜택 내역>";
-    private static final String TOTAL_BENEFIT_PRICE_HEADER = "<총혜택 금액>";
-    private static final String ESTIMATED_PAYMENT_HEADER = "<할인 후 예상 결제 금액>";
-    private static final String BADGE_HEADER = "<12월 이벤트 배지>";
-    private static final String STAR_BADGE = "별";
-    private static final String TREE_BADGE = "트리";
-    private static final String SANTA_BADGE = "산타";
     private static final String NONE = "없음";
     private static final String PRICE = "%,d원";
     private static final String QUANTITY = "개";
     private static final String NEW_LINE = "\n";
     private static final String SPACE = " ";
     private static final String COLON = ":";
-    private static final int EVENT_MINIMUM_PRICE = 10000;
 
     public static void printErrorMessage(IllegalArgumentException e) {
         System.out.println(ERROR_PREFIX + e.getMessage());
