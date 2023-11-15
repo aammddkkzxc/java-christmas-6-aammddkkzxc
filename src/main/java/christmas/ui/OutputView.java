@@ -52,6 +52,7 @@ public class OutputView {
         orderResults.add(makeGiftResult(result));
         orderResults.add(makeBenefitStatisticsResult(result));
         orderResults.add(makeTotalBenefitAmountResult(result));
+        orderResults.add(makeEstimatedPaymentResult(order, result));
 
         return orderResults;
     }
@@ -96,15 +97,12 @@ public class OutputView {
                 String.format(PRICE, (-result.calculateTotalBenefitPrice())));
     }
 
-    private static void printEstimatedPayment(int totalOrderPrice, int estimatedPayment) {
-        if (totalOrderPrice < EVENT_MINIMUM_PRICE) {
-            System.out.println(ESTIMATED_PAYMENT_HEADER + NEW_LINE + String.format(PRICE, totalOrderPrice));
-        }
-        if (totalOrderPrice >= EVENT_MINIMUM_PRICE) {
-            System.out.println(
-                    ESTIMATED_PAYMENT_HEADER + NEW_LINE + String.format(PRICE, (totalOrderPrice - estimatedPayment)));
-        }
-        System.out.println();
+    private static OrderResult makeEstimatedPaymentResult(Order order, Result result) {
+        int totalOrderPrice = order.calculateTotalOrderPrice();
+        int estimatedPayment = result.calculateEstimatedPayment();
+
+        return new OrderResult(OrderResultType.ESTIMATED_PAYMENT,
+                String.format(PRICE, (totalOrderPrice - estimatedPayment)));
     }
 
     private static void printBadge(int totalOrderPrice, int totalBenefitPrice) {
