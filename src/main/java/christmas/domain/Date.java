@@ -24,18 +24,14 @@ public class Date {
         }
     }
 
-    public LocalDate createLocalDate() {
-        return LocalDate.of(YEAR, MONTH, dayNumber);
-    }
-
     public boolean isDDayDiscountActive() {
-        LocalDate localDate = createLocalDate();
+        LocalDate localDate = LocalDate.of(YEAR, MONTH, dayNumber);
 
         return localDate.isBefore(CHRISTMAS_DAY.plusDays(1));
     }
 
     public boolean isWeekdayDiscountActive() {
-        LocalDate localDate = createLocalDate();
+        LocalDate localDate = LocalDate.of(YEAR, MONTH, dayNumber);
         DayOfWeek day = localDate.getDayOfWeek();
 
         return (day.equals(DayOfWeek.MONDAY) || day.equals(DayOfWeek.TUESDAY) || day.equals(DayOfWeek.WEDNESDAY)
@@ -43,14 +39,14 @@ public class Date {
     }
 
     public boolean isWeekendDiscountActive() {
-        LocalDate localDate = createLocalDate();
+        LocalDate localDate = LocalDate.of(YEAR, MONTH, dayNumber);
         DayOfWeek day = localDate.getDayOfWeek();
 
         return (day.equals(DayOfWeek.FRIDAY) || day.equals(DayOfWeek.SATURDAY));
     }
 
     public boolean isSpecialDiscountActive() {
-        LocalDate localDate = createLocalDate();
+        LocalDate localDate = LocalDate.of(YEAR, MONTH, dayNumber);
         DayOfWeek day = localDate.getDayOfWeek();
 
         return (day.equals(DayOfWeek.SUNDAY) || localDate.equals(CHRISTMAS_DAY));
