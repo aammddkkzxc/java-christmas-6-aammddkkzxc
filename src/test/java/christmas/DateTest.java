@@ -11,10 +11,10 @@ class DateTest {
 
     @BeforeEach
     void setUP() {
-        date = new Date(24);
+        date = new Date(25);
     }
 
-    @DisplayName("주어진 날짜가 크리스마스 이전일 경우 디데이 할인에 해당한다.")
+    @DisplayName("주어진 날짜가 크리스마스 까지의 날짜일 경우 디데이 할인에 해당한다.")
     @Test
     void isDDayDiscountActive() {
         boolean result = date.isDDayDiscountActive();
@@ -36,5 +36,13 @@ class DateTest {
         boolean result = date.isWeekendDiscountActive();
 
         assertThat(result).isEqualTo(false);
+    }
+
+    @DisplayName("주어진 날짜가 별표친 날에 해당할 경우 스페셜 할인에 해당한다.")
+    @Test
+    void isSpecialDiscountActive() {
+        boolean result = date.isSpecialDiscountActive();
+
+        assertThat(result).isEqualTo(true);
     }
 }
