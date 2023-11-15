@@ -17,6 +17,13 @@ class OrderedMenuTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("주문 메뉴의 최소수량 미만의 수량이면 예외가 발생한다.")
+    @ValueSource(strings = {"-3", "-1", "0"})
+    @ParameterizedTest
+    void createOrderedMenuWithUnderQuantityLimit(Integer input) {
+        assertThatThrownBy(() -> new OrderedMenu("피자", input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @Test
     void isBeverage() {
