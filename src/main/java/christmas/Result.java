@@ -31,7 +31,7 @@ public class Result {
 
     public int calculateEstimatedPayment() {
         int estimatedPayment = 0;
-        List<BenefitType> benefitTypes = BenefitType.findExistingBenefitType(allBenefit);
+        List<BenefitType> benefitTypes = List.of(BenefitType.values());
 
         for (BenefitType benefitType : benefitTypes) {
             estimatedPayment += allBenefit.get(benefitType);
