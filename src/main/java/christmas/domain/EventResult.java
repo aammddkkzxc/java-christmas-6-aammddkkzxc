@@ -10,6 +10,11 @@ public class EventResult {
     private static final String STAR_BADGE = "별";
     private static final String TREE_BADGE = "트리";
     private static final String SANTA_BADGE = "산타";
+    private static final int STAR_BADGE_MINIMUM_AMOUNT = 5000;
+    private static final int STAR_BADGE_MAXIMUM_AMOUNT = 10000;
+    private static final int TREE_BADGE_MINIMUM_AMOUNT = 10000;
+    private static final int TREE_BADGE_MAXIMUM_AMOUNT = 20000;
+    private static final int SANTA_BADGE_MINIMUM_AMOUNT = 20000;
 
     private final Map<BenefitType, Integer> allBenefit;
 
@@ -60,15 +65,15 @@ public class EventResult {
     }
 
     public String decideEventBadge() {
-        int totalBenefitPrice = calculateTotalBenefitAmount();
+        int totalBenefitAmount = calculateTotalBenefitAmount();
 
-        if (totalBenefitPrice >= 5000 && totalBenefitPrice < 10000) {
+        if ((totalBenefitAmount >= STAR_BADGE_MINIMUM_AMOUNT) && (totalBenefitAmount < STAR_BADGE_MAXIMUM_AMOUNT)) {
             return STAR_BADGE;
         }
-        if (totalBenefitPrice >= 10000 && totalBenefitPrice < 20000) {
+        if ((totalBenefitAmount >= TREE_BADGE_MINIMUM_AMOUNT) && (totalBenefitAmount < TREE_BADGE_MAXIMUM_AMOUNT)) {
             return TREE_BADGE;
         }
-        if (totalBenefitPrice >= 20000) {
+        if ((totalBenefitAmount >= SANTA_BADGE_MINIMUM_AMOUNT)) {
             return SANTA_BADGE;
         }
         return NON_BADGE;
