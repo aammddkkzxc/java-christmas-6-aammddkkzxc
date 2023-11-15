@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class EventProcess {
     private static final int MINIMUM_TOTAL_ORDER_PRICE_FOR_GIFT = 120000;
+    private static final int MINIMUM_TOTAL_ORDER_PRICE_FOR_ALL_EVENT = 10000;
     private static final int D_DAY_DISCOUNT_AMOUNT_PER_DAY = 100;
     private static final int D_DAY_DISCOUNT_DEFAULT_AMOUNT = 1000;
     private static final int FIRST_DAY_NUMBER = 1;
@@ -14,7 +15,6 @@ public class EventProcess {
 
     public EventResult takeAllBenefit(Date date, Order order) {
         Map<BenefitType, Integer> allBenefit = new HashMap<>();
-
         allBenefit.put(BenefitType.GIFT, takeGift(order));
         allBenefit.put(BenefitType.D_DAY, takeDDayDiscount(date));
         allBenefit.put(BenefitType.WEEKDAY, takeWeekdayDiscount(date, order));
@@ -95,6 +95,6 @@ public class EventProcess {
     }
 
     private boolean isInsufficientTotalOrderPriceForEvent(Order order) {
-        return order.calculateTotalOrderPrice() < 10000;
+        return order.calculateTotalOrderPrice() < MINIMUM_TOTAL_ORDER_PRICE_FOR_ALL_EVENT;
     }
 }
