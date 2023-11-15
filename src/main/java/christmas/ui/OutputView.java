@@ -9,7 +9,6 @@ import christmas.Result;
 import christmas.menutable.Menu;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
@@ -43,12 +42,12 @@ public class OutputView {
         List<OrderResult> orderResults = makeOrderResults(order, result);
         for (OrderResult orderResult : orderResults) {
             System.out.println();
-            System.out.println(orderResult.getOrderResultType());
+            System.out.println(orderResult.getOrderResultType().getName());
             System.out.println(orderResult.getResultDetails());
         }
     }
 
-    private static List<OrderResult> makeOrderResults (Order order, Result result) {
+    private static List<OrderResult> makeOrderResults(Order order, Result result) {
         List<OrderResult> orderResults = new ArrayList<>();
         orderResults.add(makeGiftResult(result));
         orderResults.add(makeBenefitStatistics(order, result));
@@ -70,14 +69,14 @@ public class OutputView {
     }
 
     private static OrderResult makeGiftResult(Result result) {
-        if(result.isReceivedGiftBenefit()) {
-            return new OrderResult(OrderResultType.GIFT_MENU, Menu.CHAMPAGNE.getName() + 1 + QUANTITY);
+        if (result.isReceivedGiftBenefit()) {
+            return new OrderResult(OrderResultType.GIFT_MENU, Menu.CHAMPAGNE.getName() + SPACE + 1 + QUANTITY);
         }
         return new OrderResult(OrderResultType.GIFT_MENU, NONE);
     }
 
     private static OrderResult makeBenefitStatistics(Order order, Result result) {
-        if(result.isReceivedBenefit().isEmpty()) {
+        if (result.isReceivedBenefit().isEmpty()) {
             return new OrderResult(OrderResultType.BENEFIT_STATISTICS, NONE);
         }
 
@@ -89,22 +88,6 @@ public class OutputView {
         }
 
         return new OrderResult(OrderResultType.BENEFIT_STATISTICS, stringBuilder.toString());
-
-        /*System.out.println(BENEFIT_STATISTICS_HEADER);
-
-        if (totalOrderPrice < EVENT_MINIMUM_PRICE || allBenefit.isEmpty()) {
-            System.out.println(NONE);
-        }
-
-        List<BenefitType> benefitTypes = BenefitType.findExistingBenefitType(allBenefit);
-        for (BenefitType benefitType : benefitTypes) {
-            if (totalOrderPrice >= EVENT_MINIMUM_PRICE && allBenefit.get(benefitType) != 0) {
-                System.out.println(benefitType.getName() + SPACE + COLON + SPACE + String.format(PRICE,
-                        -allBenefit.get(benefitType)));
-            }
-        }
-
-        System.out.println();*/
     }
 
     private static void printTotalBenefitPrice(int totalOrderPrice, int totalBenefitPrice) {
