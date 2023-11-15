@@ -10,11 +10,23 @@ import org.junit.jupiter.api.Test;
 class OrderTest {
     @DisplayName("주문 메뉴들이 전부 음료에 해당하면 예외가 발생한다.")
     @Test
-    void createLottoByOverSize() {
+    void createOrderByAllBeverage() {
         List<OrderedMenu> orderedMenus = new ArrayList<>();
         orderedMenus.add(new OrderedMenu("제로콜라", 1));
         orderedMenus.add(new OrderedMenu("레드와인", 1));
         orderedMenus.add(new OrderedMenu("샴페인", 2));
+
+        assertThatThrownBy(() -> new Order(orderedMenus))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("주문 메뉴들에 중복된 메뉴가 존재하면 예외가 발생한다.")
+    @Test
+    void createOrderByDuplicatingMenu() {
+        List<OrderedMenu> orderedMenus = new ArrayList<>();
+        orderedMenus.add(new OrderedMenu("양송이수프", 2));
+        orderedMenus.add(new OrderedMenu("레드와인", 1));
+        orderedMenus.add(new OrderedMenu("양송이수프", 3));
 
         assertThatThrownBy(() -> new Order(orderedMenus))
                 .isInstanceOf(IllegalArgumentException.class);
