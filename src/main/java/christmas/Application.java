@@ -5,6 +5,7 @@ import christmas.ui.OutputView;
 
 public class Application {
     public static void main(String[] args) {
+        InputView.notifyProgramStarted();
         Date date = InputView.inputDate();
         Order order = InputView.inputOrder();
         EventProcess eventProcess = new EventProcess();
