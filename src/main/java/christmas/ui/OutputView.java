@@ -1,6 +1,7 @@
 package christmas.ui;
 
 import christmas.BenefitType;
+import christmas.Date;
 import christmas.Order;
 import christmas.OrderResult;
 import christmas.OrderResultType;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class OutputView {
     private static final String ERROR_PREFIX = "[ERROR] ";
-    private static final String RESULT_NOTIFY_MESSAGE = "12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
+    private static final String RESULT_NOTIFY_MESSAGE = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
     private static final String NONE = "없음";
     private static final String PRICE = "%,d원";
     private static final String QUANTITY = "개";
@@ -24,8 +25,8 @@ public class OutputView {
         System.out.println(ERROR_PREFIX + e.getMessage());
     }
 
-    public static void printAllResult(Order order, EventResult eventResult) {
-        System.out.println(RESULT_NOTIFY_MESSAGE);
+    public static void printAllResult(Date date, Order order, EventResult eventResult) {
+        System.out.println(String.format(RESULT_NOTIFY_MESSAGE, date.getDayNumber()));
         System.out.println();
 
         List<OrderResult> orderResults = makeOrderResults(order, eventResult);

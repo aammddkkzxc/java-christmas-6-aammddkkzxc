@@ -10,6 +10,6 @@ public class Application {
         EventProcess eventProcess = new EventProcess();
         EventResult eventResult = eventProcess.takeAllBenefit(date, order);
 
-        OutputView.printAllResult(order, eventResult);
+        OutputView.printAllResult(date, order, eventResult);
     }
 }
