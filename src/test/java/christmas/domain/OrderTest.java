@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
@@ -43,12 +44,21 @@ class OrderTest {
         orderedMenus.add(new OrderedMenu("바비큐립", 4));
         orderedMenus.add(new OrderedMenu("아이스크림", 4));
 
-
         assertThatThrownBy(() -> new Order(orderedMenus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("총 주문 금액을 계산할 수 있다.")
     @Test
     void calculateTotalOrderPrice() {
+        List<OrderedMenu> orderedMenus = new ArrayList<>();
+        orderedMenus.add(new OrderedMenu("타파스", 3));
+        orderedMenus.add(new OrderedMenu("양송이수프", 2));
+        orderedMenus.add(new OrderedMenu("레드와인", 3));
+        orderedMenus.add(new OrderedMenu("제로콜라", 5));
+        Order order = new Order(orderedMenus);
+        int result = order.calculateTotalOrderPrice();
+
+        assertThat(result).isEqualTo(223500);
     }
 }
