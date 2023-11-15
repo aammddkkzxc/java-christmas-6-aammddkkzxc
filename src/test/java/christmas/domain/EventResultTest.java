@@ -53,9 +53,13 @@ class EventResultTest {
         assertThat(result).isEqualTo(true);
     }
 
-    @DisplayName("증정 메뉴 혜택을 받는지 알 수 있다.")
+    @DisplayName("제공 받는 혜택에 어떠한 혜택들이 존재 하는지 알 수 있다.")
     @Test
     void checkWhichBenefitExist() {
+        List<BenefitType> result = eventResult.checkWhichBenefitExist();
+
+        assertThat(result).isEqualTo(
+                List.of(BenefitType.GIFT, BenefitType.D_DAY, BenefitType.WEEKDAY, BenefitType.SPECIAL));
     }
 
     @Test
