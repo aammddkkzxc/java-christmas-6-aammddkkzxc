@@ -1,4 +1,4 @@
-package christmas;
+package christmas.domain;
 
 public enum BenefitType {
     GIFT("증정 이벤트"),

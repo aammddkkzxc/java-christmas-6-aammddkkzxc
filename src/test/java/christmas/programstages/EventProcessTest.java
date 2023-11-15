@@ -2,8 +2,8 @@ package christmas.programstages;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import christmas.EventProcess;
-import christmas.OrderedMenu;
+import christmas.domain.EventProcess;
+import christmas.domain.OrderedMenu;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;

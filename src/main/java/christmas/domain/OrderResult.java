@@ -1,4 +1,4 @@
-package christmas;
+package christmas.domain;
 
 public class OrderResult {
     private final OrderResultType orderResultType;

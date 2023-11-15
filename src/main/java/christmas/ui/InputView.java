@@ -1,9 +1,9 @@
 package christmas.ui;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.Date;
-import christmas.Order;
-import christmas.OrderedMenu;
+import christmas.domain.Date;
+import christmas.domain.Order;
+import christmas.domain.OrderedMenu;
 import java.util.ArrayList;
 import java.util.List;
 

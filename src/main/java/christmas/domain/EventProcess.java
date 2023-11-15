@@ -1,7 +1,5 @@
-package christmas;
+package christmas.domain;
 
-import christmas.menutable.Menu;
-import christmas.menutable.MenuType;
 import java.util.HashMap;
 import java.util.Map;
 

@@ -1,13 +1,13 @@
 package christmas.ui;
 
-import christmas.BenefitType;
-import christmas.Date;
-import christmas.Order;
-import christmas.OrderResult;
-import christmas.OrderResultType;
-import christmas.OrderedMenu;
-import christmas.EventResult;
-import christmas.menutable.Menu;
+import christmas.domain.BenefitType;
+import christmas.domain.Date;
+import christmas.domain.Order;
+import christmas.domain.OrderResult;
+import christmas.domain.OrderResultType;
+import christmas.domain.OrderedMenu;
+import christmas.domain.EventResult;
+import christmas.domain.Menu;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package christmas;
+package christmas.domain;
 
-import static christmas.OrderedMenu.ORDER_RE_READ_REQUEST_MESSAGE;
+import static christmas.domain.OrderedMenu.ORDER_RE_READ_REQUEST_MESSAGE;
 
 import java.util.ArrayList;
 import java.util.Collections;

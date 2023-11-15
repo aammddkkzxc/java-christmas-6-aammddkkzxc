@@ -1,4 +1,4 @@
-package christmas.menutable;
+package christmas.domain;
 
 import java.util.Objects;
 

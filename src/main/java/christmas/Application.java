@@ -1,5 +1,9 @@
 package christmas;
 
+import christmas.domain.Date;
+import christmas.domain.EventProcess;
+import christmas.domain.EventResult;
+import christmas.domain.Order;
 import christmas.ui.InputView;
 import christmas.ui.OutputView;
 
