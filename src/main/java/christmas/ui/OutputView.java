@@ -41,7 +41,6 @@ public class OutputView {
 
         List<OrderResult> orderResults = makeOrderResults(order, result);
         for (OrderResult orderResult : orderResults) {
-            System.out.println();
             System.out.println(orderResult.getOrderResultType().getName());
             System.out.println(orderResult.getResultDetails());
         }
@@ -49,6 +48,7 @@ public class OutputView {
 
     private static List<OrderResult> makeOrderResults(Order order, Result result) {
         List<OrderResult> orderResults = new ArrayList<>();
+        orderResults.add(makeOrderStatisticsResult(order));
         orderResults.add(makeGiftResult(result));
         orderResults.add(makeBenefitStatisticsResult(result));
         orderResults.add(makeTotalBenefitAmountResult(result));
@@ -57,12 +57,13 @@ public class OutputView {
         return orderResults;
     }
 
-    private static void printOrders(List<OrderedMenu> orderedMenus) {
-        System.out.println(ORDER_MENU_HEADER);
-        for (OrderedMenu orderedMenu : orderedMenus) {
-            System.out.println(orderedMenu.getMenuName() + SPACE + orderedMenu.getQuantity() + QUANTITY);
+    private static OrderResult makeOrderStatisticsResult(Order order) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (OrderedMenu orderedMenu : order.getOrder()) {
+            stringBuilder.append(orderedMenu.getMenuName()).append(SPACE).append(orderedMenu.getQuantity())
+                    .append(QUANTITY).append(NEW_LINE);
         }
-        System.out.println();
+        return new OrderResult(OrderResultType.ORDER_MENU, stringBuilder.toString());
     }
 
     private static void printTotalOrderPrice(int totalOrderPrice) {
@@ -74,7 +75,7 @@ public class OutputView {
         if (!result.isReceivedGiftBenefit()) {
             return new OrderResult(OrderResultType.GIFT_MENU, NONE);
         }
-        return new OrderResult(OrderResultType.GIFT_MENU, Menu.CHAMPAGNE.getName() + SPACE + 1 + QUANTITY);
+        return new OrderResult(OrderResultType.GIFT_MENU, Menu.CHAMPAGNE.getName() + SPACE + 1 + QUANTITY + NEW_LINE);
     }
 
     private static OrderResult makeBenefitStatisticsResult(Result result) {
@@ -94,7 +95,7 @@ public class OutputView {
 
     private static OrderResult makeTotalBenefitAmountResult(Result result) {
         return new OrderResult(OrderResultType.TOTAL_BENEFIT_AMOUNT,
-                String.format(PRICE, (-result.calculateTotalBenefitPrice())));
+                String.format(PRICE, (-result.calculateTotalBenefitPrice())) + NEW_LINE);
     }
 
     private static OrderResult makeEstimatedPaymentResult(Order order, Result result) {
