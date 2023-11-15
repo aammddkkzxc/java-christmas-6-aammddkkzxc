@@ -21,4 +21,12 @@ class DateTest {
 
         assertThat(result).isEqualTo(true);
     }
+
+    @DisplayName("주어진 날짜가 평일일 경우 평일 할인에 해당한다.")
+    @Test
+    void isWeekdayDiscountActive() {
+        boolean result = date.isWeekdayDiscountActive();
+
+        assertThat(result).isEqualTo(true);
+    }
 }
