@@ -69,10 +69,10 @@ public class OutputView {
     }
 
     private static OrderResult makeGiftResult(Result result) {
-        if (result.isReceivedGiftBenefit()) {
-            return new OrderResult(OrderResultType.GIFT_MENU, Menu.CHAMPAGNE.getName() + SPACE + 1 + QUANTITY);
+        if (!result.isReceivedGiftBenefit()) {
+            return new OrderResult(OrderResultType.GIFT_MENU, NONE);
         }
-        return new OrderResult(OrderResultType.GIFT_MENU, NONE);
+        return new OrderResult(OrderResultType.GIFT_MENU, Menu.CHAMPAGNE.getName() + SPACE + 1 + QUANTITY);
     }
 
     private static OrderResult makeBenefitStatisticsResult(Result result) {
