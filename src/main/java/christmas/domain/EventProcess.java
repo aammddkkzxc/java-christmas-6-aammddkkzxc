@@ -21,7 +21,7 @@ public class EventProcess {
         allBenefit.put(BenefitType.WEEKEND, takeWeekendDiscount(date, order));
         allBenefit.put(BenefitType.SPECIAL, takeSpecialDiscount(date));
 
-        cancelAllBenefitIfInsufficientTotalOrderPrice(order, allBenefit);
+        cancelAllBenefitIfMeetCondition(order, allBenefit);
 
         return new EventResult(allBenefit);
     }
@@ -80,8 +80,10 @@ public class EventProcess {
 
         return 0;
     }
-    private Map<BenefitType, Integer> cancelAllBenefitIfInsufficientTotalOrderPrice(Order order, Map<BenefitType, Integer> allBenefit) {
-        if(isInsufficientTotalOrderPriceForEvent(order)) {
+
+    private Map<BenefitType, Integer> cancelAllBenefitIfMeetCondition(Order order,
+                                                                      Map<BenefitType, Integer> allBenefit) {
+        if (isInsufficientTotalOrderPriceForEvent(order)) {
             allBenefit.replace(BenefitType.GIFT, 0);
             allBenefit.replace(BenefitType.D_DAY, 0);
             allBenefit.replace(BenefitType.WEEKDAY, 0);
