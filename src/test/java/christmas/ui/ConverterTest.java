@@ -1,13 +1,13 @@
 package christmas.ui;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ConverterTest {
-
     @DisplayName("입력된 날짜를 숫자로 변환한다")
     @Test
     void convertDateNumeric() {
@@ -35,7 +35,21 @@ class ConverterTest {
         assertThat(result).isEqualTo(List.of("타파스", "1"));
     }
 
+    @DisplayName("이름과 수량 구분자가 존재하지 않을 경우 예외가 발생한다")
+    @Test
+    void trySeparateNameAndAmountWithoutDelimiter() {
+        String input = "타파스1";
+
+        assertThatThrownBy(() -> Converter.separateNameAndAmount(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("수량을 숫자로 변환한다.")
     @Test
     void convertAmountNumeric() {
+        String input = "1";
+        int result = Converter.convertAmountNumeric(input);
+
+        assertThat(result).isEqualTo(1);
     }
 }
