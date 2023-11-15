@@ -50,24 +50,27 @@ public class OutputView {
     }
 
     private static OrderResult makeOrderStatisticsResult(Order order) {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder orderDetails = new StringBuilder();
         for (OrderedMenu orderedMenu : order.getOrder()) {
-            stringBuilder.append(orderedMenu.getMenuName()).append(SPACE).append(orderedMenu.getQuantity())
+            orderDetails.append(orderedMenu.getMenuName()).append(SPACE).append(orderedMenu.getQuantity())
                     .append(QUANTITY).append(NEW_LINE);
         }
-        return new OrderResult(OrderResultType.ORDER_MENU, stringBuilder.toString());
+        return new OrderResult(OrderResultType.ORDER_MENU, orderDetails.toString());
     }
 
     private static OrderResult makeTotalOrderPriceResult(Order order) {
-        return new OrderResult(OrderResultType.TOTAL_ORDER_PRICE,
-                String.format(PRICE, order.calculateTotalOrderPrice()) + NEW_LINE);
+        StringBuilder totalOrderPriceDetails = new StringBuilder();
+        totalOrderPriceDetails.append(String.format(PRICE, order.calculateTotalOrderPrice())).append(NEW_LINE);
+
+        return new OrderResult(OrderResultType.TOTAL_ORDER_PRICE, totalOrderPriceDetails.toString());
     }
 
     private static OrderResult makeGiftResult(EventResult eventResult) {
         if (!eventResult.isReceivedGiftBenefit()) {
             return new OrderResult(OrderResultType.GIFT_MENU, NONE + NEW_LINE);
         }
-        return new OrderResult(OrderResultType.GIFT_MENU, Menu.CHAMPAGNE.getName() + SPACE + 1 + QUANTITY + NEW_LINE);
+        return new OrderResult(OrderResultType.GIFT_MENU,
+                Menu.CHAMPAGNE.getName() + SPACE + 1 + QUANTITY + NEW_LINE);
     }
 
     private static OrderResult makeBenefitStatisticsResult(EventResult eventResult) {
@@ -76,13 +79,13 @@ public class OutputView {
         }
 
         List<BenefitType> existingBenefit = eventResult.checkWhichBenefitExist();
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder benefitDetails = new StringBuilder();
         for (BenefitType benefitType : existingBenefit) {
-            stringBuilder.append(benefitType.getName()).append(SPACE + COLON + SPACE).append(String.format(PRICE,
+            benefitDetails.append(benefitType.getName()).append(SPACE + COLON + SPACE).append(String.format(PRICE,
                     -eventResult.getAllBenefit().get(benefitType))).append(NEW_LINE);
         }
 
-        return new OrderResult(OrderResultType.BENEFIT_STATISTICS, stringBuilder.toString());
+        return new OrderResult(OrderResultType.BENEFIT_STATISTICS, benefitDetails.toString());
     }
 
     private static OrderResult makeTotalBenefitAmountResult(EventResult eventResult) {
