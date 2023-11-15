@@ -25,18 +25,18 @@ public class OutputView {
         System.out.println(ERROR_PREFIX + e.getMessage());
     }
 
-    public static void printAllResult(Date date, Order order, EventResult eventResult) {
+    public static void printTotalOrderResults(Date date, Order order, EventResult eventResult) {
         System.out.println(String.format(RESULT_NOTIFY_MESSAGE, date.getDayNumber()));
         System.out.println();
 
-        List<OrderResult> orderResults = makeOrderResults(order, eventResult);
+        List<OrderResult> orderResults = makeTotalOrderResults(order, eventResult);
         for (OrderResult orderResult : orderResults) {
             System.out.println(orderResult.getOrderResultType().getName());
             System.out.println(orderResult.getResultDetails());
         }
     }
 
-    private static List<OrderResult> makeOrderResults(Order order, EventResult eventResult) {
+    private static List<OrderResult> makeTotalOrderResults(Order order, EventResult eventResult) {
         List<OrderResult> orderResults = new ArrayList<>();
         orderResults.add(makeOrderStatisticsResult(order));
         orderResults.add(makeTotalOrderPriceResult(order));
