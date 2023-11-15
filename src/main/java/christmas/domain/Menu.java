@@ -26,7 +26,7 @@ public enum Menu {
     }
 
     public static Menu decideMenu(String name) {
-        Menu[] menus = Menu.values();
+        Menu[] menus = values();
 
         for (Menu menu : menus) {
             if (Objects.equals(name, menu.getName())) {
