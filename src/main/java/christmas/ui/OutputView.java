@@ -2,12 +2,12 @@ package christmas.ui;
 
 import christmas.domain.BenefitType;
 import christmas.domain.Date;
+import christmas.domain.EventResult;
+import christmas.domain.Menu;
 import christmas.domain.Order;
 import christmas.domain.OrderResult;
 import christmas.domain.OrderResultType;
 import christmas.domain.OrderedMenu;
-import christmas.domain.EventResult;
-import christmas.domain.Menu;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +20,7 @@ public class OutputView {
     private static final String NEW_LINE = "\n";
     private static final String SPACE = " ";
     private static final String COLON = ":";
+    private static final int GIFT_QUANTITY = 1;
 
     public static void printErrorMessage(IllegalArgumentException e) {
         System.out.println(ERROR_PREFIX + e.getMessage());
@@ -66,11 +67,15 @@ public class OutputView {
     }
 
     private static OrderResult makeGiftResult(EventResult eventResult) {
+        StringBuilder giftDetails = new StringBuilder();
+
         if (!eventResult.isReceivedGiftBenefit()) {
-            return new OrderResult(OrderResultType.GIFT_MENU, NONE + NEW_LINE);
+            giftDetails.append(NONE).append(NEW_LINE);
+            return new OrderResult(OrderResultType.GIFT_MENU, giftDetails.toString());
         }
-        return new OrderResult(OrderResultType.GIFT_MENU,
-                Menu.CHAMPAGNE.getName() + SPACE + 1 + QUANTITY + NEW_LINE);
+        giftDetails.append(Menu.CHAMPAGNE.getName()).append(SPACE).append(GIFT_QUANTITY).append(QUANTITY)
+                .append(NEW_LINE);
+        return new OrderResult(OrderResultType.GIFT_MENU, giftDetails.toString());
     }
 
     private static OrderResult makeBenefitStatisticsResult(EventResult eventResult) {
