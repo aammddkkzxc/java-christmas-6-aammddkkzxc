@@ -7,9 +7,9 @@ public class Application {
     public static void main(String[] args) {
         Date date = InputView.inputDate();
         Order order = InputView.inputOrder();
-        EventManager eventManager = new EventManager();
-        Result result = eventManager.takeAllBenefit(date, order);
+        EventProcess eventProcess = new EventProcess();
+        EventResult eventResult = eventProcess.takeAllBenefit(date, order);
 
-        OutputView.printAllResult(order, result);
+        OutputView.printAllResult(order, eventResult);
     }
 }

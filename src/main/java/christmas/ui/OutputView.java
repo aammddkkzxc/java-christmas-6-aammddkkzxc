@@ -5,7 +5,7 @@ import christmas.Order;
 import christmas.OrderResult;
 import christmas.OrderResultType;
 import christmas.OrderedMenu;
-import christmas.Result;
+import christmas.EventResult;
 import christmas.menutable.Menu;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,26 +24,26 @@ public class OutputView {
         System.out.println(ERROR_PREFIX + e.getMessage());
     }
 
-    public static void printAllResult(Order order, Result result) {
+    public static void printAllResult(Order order, EventResult eventResult) {
         System.out.println(RESULT_NOTIFY_MESSAGE);
         System.out.println();
 
-        List<OrderResult> orderResults = makeOrderResults(order, result);
+        List<OrderResult> orderResults = makeOrderResults(order, eventResult);
         for (OrderResult orderResult : orderResults) {
             System.out.println(orderResult.getOrderResultType().getName());
             System.out.println(orderResult.getResultDetails());
         }
     }
 
-    private static List<OrderResult> makeOrderResults(Order order, Result result) {
+    private static List<OrderResult> makeOrderResults(Order order, EventResult eventResult) {
         List<OrderResult> orderResults = new ArrayList<>();
         orderResults.add(makeOrderStatisticsResult(order));
         orderResults.add(makeTotalOrderPriceResult(order));
-        orderResults.add(makeGiftResult(result));
-        orderResults.add(makeBenefitStatisticsResult(result));
-        orderResults.add(makeTotalBenefitAmountResult(result));
-        orderResults.add(makeEstimatedPaymentResult(order, result));
-        orderResults.add(makeBadgeResult(result));
+        orderResults.add(makeGiftResult(eventResult));
+        orderResults.add(makeBenefitStatisticsResult(eventResult));
+        orderResults.add(makeTotalBenefitAmountResult(eventResult));
+        orderResults.add(makeEstimatedPaymentResult(order, eventResult));
+        orderResults.add(makeBadgeResult(eventResult));
 
         return orderResults;
     }
@@ -62,42 +62,42 @@ public class OutputView {
                 String.format(PRICE, order.calculateTotalOrderPrice()) + NEW_LINE);
     }
 
-    private static OrderResult makeGiftResult(Result result) {
-        if (!result.isReceivedGiftBenefit()) {
+    private static OrderResult makeGiftResult(EventResult eventResult) {
+        if (!eventResult.isReceivedGiftBenefit()) {
             return new OrderResult(OrderResultType.GIFT_MENU, NONE + NEW_LINE);
         }
         return new OrderResult(OrderResultType.GIFT_MENU, Menu.CHAMPAGNE.getName() + SPACE + 1 + QUANTITY + NEW_LINE);
     }
 
-    private static OrderResult makeBenefitStatisticsResult(Result result) {
-        if (result.isReceivedBenefit().isEmpty()) {
+    private static OrderResult makeBenefitStatisticsResult(EventResult eventResult) {
+        if (eventResult.isReceivedBenefit().isEmpty()) {
             return new OrderResult(OrderResultType.BENEFIT_STATISTICS, NONE + NEW_LINE);
         }
 
-        List<BenefitType> existingBenefit = result.isReceivedBenefit();
+        List<BenefitType> existingBenefit = eventResult.isReceivedBenefit();
         StringBuilder stringBuilder = new StringBuilder();
         for (BenefitType benefitType : existingBenefit) {
             stringBuilder.append(benefitType.getName()).append(SPACE + COLON + SPACE).append(String.format(PRICE,
-                    -result.getAllBenefit().get(benefitType))).append(NEW_LINE);
+                    -eventResult.getAllBenefit().get(benefitType))).append(NEW_LINE);
         }
 
         return new OrderResult(OrderResultType.BENEFIT_STATISTICS, stringBuilder.toString());
     }
 
-    private static OrderResult makeTotalBenefitAmountResult(Result result) {
+    private static OrderResult makeTotalBenefitAmountResult(EventResult eventResult) {
         return new OrderResult(OrderResultType.TOTAL_BENEFIT_AMOUNT,
-                String.format(PRICE, (-result.calculateTotalBenefitAmount())) + NEW_LINE);
+                String.format(PRICE, (-eventResult.calculateTotalBenefitAmount())) + NEW_LINE);
     }
 
-    private static OrderResult makeEstimatedPaymentResult(Order order, Result result) {
+    private static OrderResult makeEstimatedPaymentResult(Order order, EventResult eventResult) {
         int totalOrderPrice = order.calculateTotalOrderPrice();
-        int estimatedPayment = result.calculateEstimatedPayment();
+        int estimatedPayment = eventResult.calculateEstimatedPayment();
 
         return new OrderResult(OrderResultType.ESTIMATED_PAYMENT,
                 String.format(PRICE, (totalOrderPrice - estimatedPayment)) + NEW_LINE);
     }
 
-    private static OrderResult makeBadgeResult(Result result) {
-        return new OrderResult(OrderResultType.EVENT_BADGE, result.decideEventBadge());
+    private static OrderResult makeBadgeResult(EventResult eventResult) {
+        return new OrderResult(OrderResultType.EVENT_BADGE, eventResult.decideEventBadge());
     }
 }

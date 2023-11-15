@@ -5,7 +5,7 @@ import christmas.menutable.MenuType;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EventManager {
+public class EventProcess {
     private static final int MINIMUM_TOTAL_ORDER_PRICE_FOR_GIFT = 120000;
     private static final int D_DAY_DISCOUNT_AMOUNT_PER_DAY = 100;
     private static final int D_DAY_DISCOUNT_DEFAULT_AMOUNT = 1000;
@@ -14,7 +14,7 @@ public class EventManager {
     private static final int WEEKEND_MAIN_DISCOUNT_AMOUNT = 2023;
     private static final int SPECIAL_DISCOUNT_AMOUNT = 1000;
 
-    public Result takeAllBenefit(Date date, Order order) {
+    public EventResult takeAllBenefit(Date date, Order order) {
         Map<BenefitType, Integer> allBenefit = new HashMap<>();
 
         allBenefit.put(BenefitType.GIFT, takeGift(order));
@@ -25,7 +25,7 @@ public class EventManager {
 
         cancelAllBenefitIfInsufficientTotalOrderPrice(order, allBenefit);
 
-        return new Result(allBenefit);
+        return new EventResult(allBenefit);
     }
 
     private int takeGift(Order order) {

@@ -2,16 +2,14 @@ package christmas.programstages;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import christmas.Date;
-import christmas.EventManager;
+import christmas.EventProcess;
 import christmas.OrderedMenu;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
-class EventManagerTest {
-    EventManager eventManager;
+class EventProcessTest {
+    EventProcess eventProcess;
 
     @BeforeEach
     void setUP() {

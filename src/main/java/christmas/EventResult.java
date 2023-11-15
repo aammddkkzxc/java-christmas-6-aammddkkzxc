@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class Result {
+public class EventResult {
     private static final String NON_BADGE = "없음";
     private static final String STAR_BADGE = "별";
     private static final String TREE_BADGE = "트리";
@@ -14,7 +14,7 @@ public class Result {
 
     private final Map<BenefitType, Integer> allBenefit;
 
-    public Result(Map<BenefitType, Integer> allBenefit) {
+    public EventResult(Map<BenefitType, Integer> allBenefit) {
         this.allBenefit = allBenefit;
     }
 
