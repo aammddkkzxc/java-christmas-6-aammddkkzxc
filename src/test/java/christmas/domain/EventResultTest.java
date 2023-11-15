@@ -1,11 +1,9 @@
 package christmas.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,7 +40,7 @@ class EventResultTest {
     @DisplayName("주어진 날짜와 주문으로 결제 예상 금액을 계산한다.")
     @Test
     void calculateEstimatedPayment() {
-        int result = eventResult.calculateEstimatedPayment();
+        int result = eventResult.calculateTotalDiscountAmount();
 
         assertThat(result).isEqualTo(135754);
     }

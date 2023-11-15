@@ -28,18 +28,18 @@ public class EventResult {
         return totalBenefitAmount;
     }
 
-    public int calculateEstimatedPayment() {
-        int estimatedPayment = 0;
+    public int calculateTotalDiscountAmount() {
+        int totalDiscountAmount = 0;
         List<BenefitType> benefitTypes = List.of(BenefitType.values());
 
         for (BenefitType benefitType : benefitTypes) {
-            estimatedPayment += allBenefit.get(benefitType);
+            totalDiscountAmount += allBenefit.get(benefitType);
         }
         if (allBenefit.get(BenefitType.GIFT) == Menu.CHAMPAGNE.getPrice()) {
-            estimatedPayment -= Menu.CHAMPAGNE.getPrice();
+            totalDiscountAmount -= Menu.CHAMPAGNE.getPrice();
         }
 
-        return estimatedPayment;
+        return totalDiscountAmount;
     }
 
     public boolean isReceivedGiftBenefit() {
