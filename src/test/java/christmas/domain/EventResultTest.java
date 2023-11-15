@@ -29,7 +29,7 @@ class EventResultTest {
         return orderedMenus;
     }
 
-    @DisplayName("주어진 날짜와 주문으로 전체 혜택 금액을 계산한다.")
+    @DisplayName("전체 혜택 금액을 계산할 수 있다.")
     @Test
     void calculateTotalBenefitAmount() {
         int result = eventResult.calculateTotalBenefitAmount();
@@ -37,7 +37,7 @@ class EventResultTest {
         assertThat(result).isEqualTo(31246);
     }
 
-    @DisplayName("주어진 날짜와 주문으로 전체 할인 금액을 계산한다.")
+    @DisplayName("전체 할인 금액을 계산할 수 있다.")
     @Test
     void calculateTotalDiscountAmount() {
         int result = eventResult.calculateTotalDiscountAmount();
