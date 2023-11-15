@@ -57,8 +57,10 @@ public class Date {
     }
 
     public boolean isSpecialDiscountActive() {
-        return STARRED_CONDITION.contains(dayNumber % DAY_NUMBER_JUDGEMENT_FACTOR) || STARRED_CONDITION.contains(
-                dayNumber);
+        LocalDate localDate = createLocalDate();
+        DayOfWeek day = localDate.getDayOfWeek();
+
+        return (day.equals(DayOfWeek.SUNDAY) || localDate.equals(CHRISTMAS_DAY));
     }
 
     public int getDayNumber() {
