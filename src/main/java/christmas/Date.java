@@ -46,11 +46,14 @@ public class Date {
         DayOfWeek day = localDate.getDayOfWeek();
 
         return (day.equals(DayOfWeek.MONDAY) || day.equals(DayOfWeek.TUESDAY) || day.equals(DayOfWeek.WEDNESDAY)
-                || day.equals(DayOfWeek.THURSDAY) || day.equals(DayOfWeek.FRIDAY));
+                || day.equals(DayOfWeek.THURSDAY) || day.equals(DayOfWeek.SUNDAY));
     }
 
     public boolean isWeekendDiscountActive() {
-        return WEEKEND_CONDITION.contains(dayNumber % DAY_NUMBER_JUDGEMENT_FACTOR);
+        LocalDate localDate = createLocalDate();
+        DayOfWeek day = localDate.getDayOfWeek();
+
+        return (day.equals(DayOfWeek.FRIDAY) || day.equals(DayOfWeek.SATURDAY));
     }
 
     public boolean isSpecialDiscountActive() {
