@@ -7,7 +7,6 @@ public class OrderedMenu {
     private final String menuName;
     private final int quantity;
 
-
     public OrderedMenu(String menuName, int quantity) {
         validateOrderNameExistInMenu(menuName);
         validateOrderAmountQuantity(quantity);
