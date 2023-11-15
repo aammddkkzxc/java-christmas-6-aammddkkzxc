@@ -26,8 +26,13 @@ class ConverterTest {
         assertThat(result).isEqualTo(List.of("타파스-1", "제로콜라-1"));
     }
 
+    @DisplayName("주문메뉴를 이름과 수량으로 나눈다.")
     @Test
     void separateNameAndAmount() {
+        String input = "타파스-1";
+        List<String> result = Converter.separateNameAndAmount(input);
+
+        assertThat(result).isEqualTo(List.of("타파스", "1"));
     }
 
     @Test
