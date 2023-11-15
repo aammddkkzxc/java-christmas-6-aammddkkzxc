@@ -49,6 +49,7 @@ public class OutputView {
     private static List<OrderResult> makeOrderResults(Order order, Result result) {
         List<OrderResult> orderResults = new ArrayList<>();
         orderResults.add(makeOrderStatisticsResult(order));
+        orderResults.add(makeTotalOrderPriceResult(order));
         orderResults.add(makeGiftResult(result));
         orderResults.add(makeBenefitStatisticsResult(result));
         orderResults.add(makeTotalBenefitAmountResult(result));
@@ -66,9 +67,9 @@ public class OutputView {
         return new OrderResult(OrderResultType.ORDER_MENU, stringBuilder.toString());
     }
 
-    private static void printTotalOrderPrice(int totalOrderPrice) {
-        System.out.println(TOTAL_ORDER_PRICE_HEADER + NEW_LINE + String.format(PRICE, totalOrderPrice));
-        System.out.println();
+    private static OrderResult makeTotalOrderPriceResult(Order order) {
+        return new OrderResult(OrderResultType.TOTAL_ORDER_PRICE,
+                String.format(PRICE, order.calculateTotalOrderPrice()) + NEW_LINE);
     }
 
     private static OrderResult makeGiftResult(Result result) {
