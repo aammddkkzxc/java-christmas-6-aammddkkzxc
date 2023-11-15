@@ -31,12 +31,14 @@ public class Date {
         }
     }
 
-    public LocalDate createdLocalDate() {
+    public LocalDate createLocalDate() {
         return LocalDate.of(YEAR, MONTH, dayNumber);
     }
 
     public boolean isDDayDiscountActive() {
-        return dayNumber <= CHRISTMAS_DAY.getDayOfWeek().getValue();
+        LocalDate localDate = createLocalDate();
+
+        return localDate.isBefore(CHRISTMAS_DAY.plusDays(1));
     }
 
     public boolean isWeekdayDiscountActive() {
