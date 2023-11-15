@@ -1,6 +1,7 @@
 package christmas;
 
 import christmas.menutable.Menu;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,19 @@ public class Result {
 
     public boolean isReceivedGiftBenefit() {
         return allBenefit.get(BenefitType.GIFT) == Menu.CHAMPAGNE.getPrice();
+    }
+
+    public List<BenefitType> isReceivedBenefit() {
+        List<BenefitType> existingBenefit = new ArrayList<>();
+        BenefitType[] benefitTypes = BenefitType.values();
+
+        for (BenefitType benefitType : benefitTypes) {
+            if (allBenefit.get(benefitType) != 0) {
+                existingBenefit.add(benefitType);
+            }
+        }
+
+        return existingBenefit;
     }
 
     public Map<BenefitType, Integer> getAllBenefit() {

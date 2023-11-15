@@ -13,7 +13,6 @@ public class Application {
         int totalBenefitPrice = result.calculateTotalBenefitPrice();
         int estimatedPayment = result.calculateEstimatedPayment();
 
-        OutputView.printAllResult(eventManager.getOrders(), totalOrderPrice, allBenefit, totalBenefitPrice,
-                estimatedPayment);
+        OutputView.printAllResult(order, result);
     }
 }

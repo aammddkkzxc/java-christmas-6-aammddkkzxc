@@ -51,6 +51,9 @@ public class OutputView {
     private static List<OrderResult> makeOrderResults (Order order, Result result) {
         List<OrderResult> orderResults = new ArrayList<>();
         orderResults.add(makeGiftResult(result));
+        orderResults.add(makeBenefitStatistics(order, result));
+
+        return orderResults;
     }
 
     private static void printOrders(List<OrderedMenu> orderedMenus) {
@@ -73,8 +76,21 @@ public class OutputView {
         return new OrderResult(OrderResultType.GIFT_MENU, NONE);
     }
 
-    private static void printBenefitStatistics(int totalOrderPrice, Map<BenefitType, Integer> allBenefit) {
-        System.out.println(BENEFIT_STATISTICS_HEADER);
+    private static OrderResult makeBenefitStatistics(Order order, Result result) {
+        if(result.isReceivedBenefit().isEmpty()) {
+            return new OrderResult(OrderResultType.BENEFIT_STATISTICS, NONE);
+        }
+
+        List<BenefitType> existingBenefit = result.isReceivedBenefit();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (BenefitType benefitType : existingBenefit) {
+            stringBuilder.append(benefitType.getName()).append(SPACE + COLON + SPACE).append(String.format(PRICE,
+                    -result.getAllBenefit().get(benefitType))).append(NEW_LINE);
+        }
+
+        return new OrderResult(OrderResultType.BENEFIT_STATISTICS, stringBuilder.toString());
+
+        /*System.out.println(BENEFIT_STATISTICS_HEADER);
 
         if (totalOrderPrice < EVENT_MINIMUM_PRICE || allBenefit.isEmpty()) {
             System.out.println(NONE);
@@ -88,7 +104,7 @@ public class OutputView {
             }
         }
 
-        System.out.println();
+        System.out.println();*/
     }
 
     private static void printTotalBenefitPrice(int totalOrderPrice, int totalBenefitPrice) {
