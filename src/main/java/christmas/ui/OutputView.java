@@ -95,8 +95,11 @@ public class OutputView {
     }
 
     private static OrderResult makeTotalBenefitAmountResult(EventResult eventResult) {
-        return new OrderResult(OrderResultType.TOTAL_BENEFIT_AMOUNT,
-                String.format(PRICE, (-eventResult.calculateTotalBenefitAmount())) + NEW_LINE);
+        StringBuilder totalBenefitAmountDetails = new StringBuilder();
+        totalBenefitAmountDetails.append(String.format(PRICE, (-eventResult.calculateTotalBenefitAmount())))
+                .append(NEW_LINE);
+
+        return new OrderResult(OrderResultType.TOTAL_BENEFIT_AMOUNT, totalBenefitAmountDetails.toString());
     }
 
     private static OrderResult makeEstimatedPaymentResult(Order order, EventResult eventResult) {
