@@ -71,11 +71,11 @@ public class OutputView {
     }
 
     private static OrderResult makeBenefitStatisticsResult(EventResult eventResult) {
-        if (eventResult.isReceivedBenefit().isEmpty()) {
+        if (eventResult.checkWhichBenefitExist().isEmpty()) {
             return new OrderResult(OrderResultType.BENEFIT_STATISTICS, NONE + NEW_LINE);
         }
 
-        List<BenefitType> existingBenefit = eventResult.isReceivedBenefit();
+        List<BenefitType> existingBenefit = eventResult.checkWhichBenefitExist();
         StringBuilder stringBuilder = new StringBuilder();
         for (BenefitType benefitType : existingBenefit) {
             stringBuilder.append(benefitType.getName()).append(SPACE + COLON + SPACE).append(String.format(PRICE,

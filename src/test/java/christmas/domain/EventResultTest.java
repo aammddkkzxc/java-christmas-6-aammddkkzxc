@@ -53,8 +53,9 @@ class EventResultTest {
         assertThat(result).isEqualTo(true);
     }
 
+    @DisplayName("증정 메뉴 혜택을 받는지 알 수 있다.")
     @Test
-    void isReceivedBenefit() {
+    void checkWhichBenefitExist() {
     }
 
     @Test

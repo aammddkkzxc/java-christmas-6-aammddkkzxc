@@ -46,7 +46,7 @@ public class EventResult {
         return allBenefit.get(BenefitType.GIFT) == Menu.CHAMPAGNE.getPrice();
     }
 
-    public List<BenefitType> isReceivedBenefit() {
+    public List<BenefitType> checkWhichBenefitExist() {
         List<BenefitType> existingBenefit = new ArrayList<>();
         BenefitType[] benefitTypes = BenefitType.values();
 
