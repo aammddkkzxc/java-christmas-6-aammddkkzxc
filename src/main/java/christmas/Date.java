@@ -1,5 +1,7 @@
 package christmas;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +11,9 @@ public class Date {
     private static final List<Integer> WEEKDAY_CONDITION = new ArrayList<>(Arrays.asList(0, 3, 4, 5, 6));
     private static final List<Integer> WEEKEND_CONDITION = new ArrayList<>(Arrays.asList(1, 2));
     private static final List<Integer> STARRED_CONDITION = new ArrayList<>(Arrays.asList(3, 25));
-    private static final int CHRISTMAS_DAY = 25;
+    private static final int YEAR = 2023;
+    private static final int MONTH = 12;
+    private static final LocalDate CHRISTMAS_DAY = LocalDate.of(YEAR, MONTH, 25);
     private static final int DAY_NUMBER_JUDGEMENT_FACTOR = 7;
     private static final int DATE_MIN_NUMBER = 1;
     private static final int DATE_MAX_NUMBER = 31;
@@ -27,8 +31,12 @@ public class Date {
         }
     }
 
+    public LocalDate createdLocalDate() {
+        return LocalDate.of(YEAR, MONTH, dayNumber);
+    }
+
     public boolean isDDayDiscountActive() {
-        return dayNumber <= CHRISTMAS_DAY;
+        return dayNumber <= CHRISTMAS_DAY.getDayOfWeek().getValue();
     }
 
     public boolean isWeekdayDiscountActive() {
