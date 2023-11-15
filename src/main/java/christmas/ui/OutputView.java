@@ -51,6 +51,7 @@ public class OutputView {
         List<OrderResult> orderResults = new ArrayList<>();
         orderResults.add(makeGiftResult(result));
         orderResults.add(makeBenefitStatisticsResult(result));
+        orderResults.add(makeTotalBenefitAmountResult(result));
 
         return orderResults;
     }
@@ -90,14 +91,9 @@ public class OutputView {
         return new OrderResult(OrderResultType.BENEFIT_STATISTICS, stringBuilder.toString());
     }
 
-    private static void printTotalBenefitPrice(int totalOrderPrice, int totalBenefitPrice) {
-        if (totalOrderPrice < EVENT_MINIMUM_PRICE) {
-            System.out.println(TOTAL_BENEFIT_PRICE_HEADER + NEW_LINE + String.format(PRICE, 0));
-        }
-        if (totalOrderPrice >= EVENT_MINIMUM_PRICE) {
-            System.out.println(TOTAL_BENEFIT_PRICE_HEADER + NEW_LINE + String.format(PRICE, (-totalBenefitPrice)));
-        }
-        System.out.println();
+    private static OrderResult makeTotalBenefitAmountResult(Result result) {
+        return new OrderResult(OrderResultType.TOTAL_BENEFIT_AMOUNT,
+                String.format(PRICE, (-result.calculateTotalBenefitPrice())));
     }
 
     private static void printEstimatedPayment(int totalOrderPrice, int estimatedPayment) {
