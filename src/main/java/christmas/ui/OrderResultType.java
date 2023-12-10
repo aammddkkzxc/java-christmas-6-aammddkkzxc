@@ -1,4 +1,4 @@
-package christmas.domain;
+package christmas.ui;
 
 public enum OrderResultType {
     ORDER_MENU("<주문 메뉴>"),

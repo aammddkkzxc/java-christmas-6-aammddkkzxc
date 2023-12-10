@@ -2,24 +2,34 @@ package christmas.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class EventResult {
-    private static final String NON_BADGE = "없음";
-    private static final String STAR_BADGE = "별";
-    private static final String TREE_BADGE = "트리";
-    private static final String SANTA_BADGE = "산타";
-    private static final int STAR_BADGE_MINIMUM_AMOUNT = 5000;
-    private static final int STAR_BADGE_MAXIMUM_AMOUNT = 10000;
-    private static final int TREE_BADGE_MINIMUM_AMOUNT = 10000;
-    private static final int TREE_BADGE_MAXIMUM_AMOUNT = 20000;
-    private static final int SANTA_BADGE_MINIMUM_AMOUNT = 20000;
+    private final Map<BenefitType, Integer> allBenefit = new HashMap<>();
 
-    private final Map<BenefitType, Integer> allBenefit;
+    public EventResult() {
+        initialize();
+    }
 
-    public EventResult(Map<BenefitType, Integer> allBenefit) {
-        this.allBenefit = allBenefit;
+    private void initialize() {
+        allBenefit.put(BenefitType.GIFT, 0);
+        allBenefit.put(BenefitType.D_DAY, 0);
+        allBenefit.put(BenefitType.WEEKDAY, 0);
+        allBenefit.put(BenefitType.WEEKEND, 0);
+        allBenefit.put(BenefitType.SPECIAL, 0);
+    }
+
+    public void takeAllBenefit(Date date, Order order, EventProcess eventProcess) {
+        if (!eventProcess.isInsufficientTotalOrderPriceForEvent(order)) {
+            allBenefit.replace(BenefitType.GIFT, eventProcess.takeGift(order));
+            allBenefit.replace(BenefitType.D_DAY, eventProcess.takeDDayDiscount(date));
+            allBenefit.replace(BenefitType.WEEKDAY, eventProcess.takeWeekdayDiscount(date, order));
+            allBenefit.replace(BenefitType.WEEKEND, eventProcess.takeWeekendDiscount(date, order));
+            allBenefit.replace(BenefitType.SPECIAL, eventProcess.takeSpecialDiscount(date));
+        }
+
     }
 
     public int calculateTotalBenefitAmount() {
@@ -64,20 +74,6 @@ public class EventResult {
         return existingBenefit;
     }
 
-    public String decideEventBadge() {
-        int totalBenefitAmount = calculateTotalBenefitAmount();
-
-        if ((totalBenefitAmount >= STAR_BADGE_MINIMUM_AMOUNT) && (totalBenefitAmount < STAR_BADGE_MAXIMUM_AMOUNT)) {
-            return STAR_BADGE;
-        }
-        if ((totalBenefitAmount >= TREE_BADGE_MINIMUM_AMOUNT) && (totalBenefitAmount < TREE_BADGE_MAXIMUM_AMOUNT)) {
-            return TREE_BADGE;
-        }
-        if ((totalBenefitAmount >= SANTA_BADGE_MINIMUM_AMOUNT)) {
-            return SANTA_BADGE;
-        }
-        return NON_BADGE;
-    }
 
     public Map<BenefitType, Integer> getAllBenefit() {
         return Collections.unmodifiableMap(allBenefit);

@@ -14,7 +14,8 @@ public class Application {
         Order order = InputView.inputOrder();
 
         EventProcess eventProcess = new EventProcess();
-        EventResult eventResult = eventProcess.takeAllBenefit(date, order);
+        EventResult eventResult = new EventResult();
+        eventResult.takeAllBenefit(date, order, eventProcess);
 
         OutputView.printTotalOrderResults(date, order, eventResult);
     }

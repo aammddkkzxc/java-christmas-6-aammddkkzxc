@@ -1,6 +1,7 @@
 package christmas.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +16,17 @@ class EventProcessTest {
         Date dateInput = new Date(3);
         Order orderInput = new Order(setUpSufficientTotalOrderPriceOrder());
         EventProcess eventProcess = new EventProcess();
-        EventResult eventResult = eventProcess.takeAllBenefit(dateInput, orderInput);
+        EventResult eventResult = new EventResult();
+        eventResult.takeAllBenefit(dateInput, orderInput, eventProcess);
         Map<BenefitType, Integer> result = eventResult.getAllBenefit();
 
-        assertThat(result.get(BenefitType.GIFT)).isEqualTo(25000);
-        assertThat(result.get(BenefitType.D_DAY)).isEqualTo(1200);
-        assertThat(result.get(BenefitType.WEEKDAY)).isEqualTo(2023);
-        assertThat(result.get(BenefitType.WEEKEND)).isEqualTo(0);
-        assertThat(result.get(BenefitType.SPECIAL)).isEqualTo(1000);
+        assertAll(
+                () -> assertThat(result.get(BenefitType.GIFT)).isEqualTo(25000),
+                () -> assertThat(result.get(BenefitType.D_DAY)).isEqualTo(1200),
+                () -> assertThat(result.get(BenefitType.WEEKDAY)).isEqualTo(2023),
+                () -> assertThat(result.get(BenefitType.WEEKEND)).isEqualTo(0),
+                () -> assertThat(result.get(BenefitType.SPECIAL)).isEqualTo(1000)
+        );
     }
 
     private List<OrderedMenu> setUpSufficientTotalOrderPriceOrder() {
@@ -40,7 +44,8 @@ class EventProcessTest {
         Date dateInput = new Date(26);
         Order orderInput = new Order(setUpInSufficientTotalOrderPriceOrder());
         EventProcess eventProcess = new EventProcess();
-        EventResult eventResult = eventProcess.takeAllBenefit(dateInput, orderInput);
+        EventResult eventResult = new EventResult();
+        eventResult.takeAllBenefit(dateInput, orderInput, eventProcess);
         Map<BenefitType, Integer> result = eventResult.getAllBenefit();
 
         assertThat(result.get(BenefitType.GIFT)).isEqualTo(0);

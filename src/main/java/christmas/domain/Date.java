@@ -8,8 +8,6 @@ public class Date {
     private static final LocalDate CHRISTMAS_DAY = LocalDate.of(2023, 12, 25);
     private static final int YEAR = 2023;
     private static final int MONTH = 12;
-    private static final int DATE_MIN_NUMBER = 1;
-    private static final int DATE_MAX_NUMBER = 31;
 
     private final int dayNumber;
 
@@ -19,7 +17,9 @@ public class Date {
     }
 
     private void validateRange(int dayNumber) {
-        if ((dayNumber < DATE_MIN_NUMBER) || (dayNumber > DATE_MAX_NUMBER)) {
+        try {
+            LocalDate.of(YEAR, MONTH, dayNumber);
+        } catch (NumberFormatException e){
             throw new IllegalArgumentException(DATE_RE_READ_REQUEST_MESSAGE);
         }
     }

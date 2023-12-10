@@ -2,11 +2,10 @@ package christmas.ui;
 
 import christmas.domain.BenefitType;
 import christmas.domain.Date;
+import christmas.domain.Badge;
 import christmas.domain.EventResult;
 import christmas.domain.Menu;
 import christmas.domain.Order;
-import christmas.domain.OrderResult;
-import christmas.domain.OrderResultType;
 import christmas.domain.OrderedMenu;
 import java.util.ArrayList;
 import java.util.List;
@@ -113,6 +112,7 @@ public class OutputView {
     }
 
     private static OrderResult makeBadgeResult(EventResult eventResult) {
-        return new OrderResult(OrderResultType.EVENT_BADGE, eventResult.decideEventBadge());
+        return new OrderResult(OrderResultType.EVENT_BADGE,
+                Badge.decideEventBadge(eventResult.calculateTotalBenefitAmount()).getName());
     }
 }
